@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
-namespace EmployeeManagement
+namespace EmployeeManagement.Forms.Employee
 {
     public partial class ModifyEmployeeForm : Form
     {
@@ -48,7 +49,7 @@ namespace EmployeeManagement
 
         private void LoadDeptComboBox()
         {
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EmployeeManageDB;Integrated Security=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
             string query = "SELECT DeptCode, DeptName FROM Department";
             deptTable = new DataTable();
 
@@ -102,7 +103,7 @@ namespace EmployeeManagement
             string messengerId = MessengerIDTextBox.Text;
             string memo = MemoTextBox.Text;
 
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EmployeeManageDB;Integrated Security=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
             string query = @"UPDATE Employee SET
                                 DeptCode = @DeptCode,
                                 EmpName = @EmpName,

@@ -1,4 +1,4 @@
-﻿namespace EmployeeManagement
+﻿namespace EmployeeManagement.Forms.Department
 {
     partial class ModifyDepartmentForm
     {
@@ -63,6 +63,7 @@
             // 
             this.MemoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MemoTextBox.Location = new System.Drawing.Point(134, 169);
+            this.MemoTextBox.MaxLength = 1000;
             this.MemoTextBox.Name = "MemoTextBox";
             this.MemoTextBox.Size = new System.Drawing.Size(356, 21);
             this.MemoTextBox.TabIndex = 34;
@@ -86,6 +87,7 @@
             // 
             this.DeptNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DeptNameTextBox.Location = new System.Drawing.Point(326, 112);
+            this.DeptNameTextBox.MaxLength = 20;
             this.DeptNameTextBox.Name = "DeptNameTextBox";
             this.DeptNameTextBox.Size = new System.Drawing.Size(164, 21);
             this.DeptNameTextBox.TabIndex = 32;
@@ -94,6 +96,7 @@
             // 
             this.DeptCodeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DeptCodeTextBox.Location = new System.Drawing.Point(134, 112);
+            this.DeptCodeTextBox.MaxLength = 10;
             this.DeptCodeTextBox.Name = "DeptCodeTextBox";
             this.DeptCodeTextBox.Size = new System.Drawing.Size(164, 21);
             this.DeptCodeTextBox.TabIndex = 31;

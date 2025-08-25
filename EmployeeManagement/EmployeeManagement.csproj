@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -73,17 +74,17 @@
     <Compile Include="Forms\Department\ModifyDepartmentForm.Designer.cs">
       <DependentUpon>ModifyDepartmentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Employee\DepartmentEmployeeForm.cs">
+    <Compile Include="Forms\Employee\ManageDeptEmpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Employee\DepartmentEmployeeForm.Designer.cs">
-      <DependentUpon>DepartmentEmployeeForm.cs</DependentUpon>
+    <Compile Include="Forms\Employee\ManageDeptEmpForm.Designer.cs">
+      <DependentUpon>ManageDeptEmpForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Department\DepartmentManagementForm.cs">
+    <Compile Include="Forms\Department\ManageDeptForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Department\DepartmentManagementForm.Designer.cs">
-      <DependentUpon>DepartmentManagementForm.cs</DependentUpon>
+    <Compile Include="Forms\Department\ManageDeptForm.Designer.cs">
+      <DependentUpon>ManageDeptForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Employee\LoginInformationForm.cs">
       <SubType>Form</SubType>
@@ -97,6 +98,7 @@
     <Compile Include="Forms\Employee\ModifyEmployeeForm.Designer.cs">
       <DependentUpon>ModifyEmployeeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NewFolder1\Class1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Employee\AddEmployeeForm.resx">
@@ -114,11 +116,11 @@
     <EmbeddedResource Include="Forms\Department\ModifyDepartmentForm.resx">
       <DependentUpon>ModifyDepartmentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Employee\DepartmentEmployeeForm.resx">
-      <DependentUpon>DepartmentEmployeeForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Employee\ManageDeptEmpForm.resx">
+      <DependentUpon>ManageDeptEmpForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Department\DepartmentManagementForm.resx">
-      <DependentUpon>DepartmentManagementForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Department\ManageDeptForm.resx">
+      <DependentUpon>ManageDeptForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Employee\LoginInformationForm.resx">
       <DependentUpon>LoginInformationForm.cs</DependentUpon>

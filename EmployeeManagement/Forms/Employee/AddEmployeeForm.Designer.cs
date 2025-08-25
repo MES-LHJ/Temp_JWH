@@ -1,4 +1,4 @@
-﻿namespace EmployeeManagement
+﻿namespace EmployeeManagement.Forms.Employee
 {
     partial class AddEmployeeForm
     {

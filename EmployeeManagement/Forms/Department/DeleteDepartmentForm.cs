@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
-namespace EmployeeManagement
+namespace EmployeeManagement.Forms.Department
 {
     public partial class DeleteDepartmentForm : Form
     {
@@ -23,7 +25,7 @@ namespace EmployeeManagement
             if (confirm != DialogResult.Yes)
                 return;
 
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EmployeeManageDB;Integrated Security=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
             string query = "DELETE FROM Department WHERE DeptCode = @DeptCode";
 
             try
@@ -31,7 +33,7 @@ namespace EmployeeManagement
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@DeptCode", deptCode);
+                    cmd.Parameters.Add("@DeptCode",SqlDbType.NVarChar, 10).Value = deptCode;
                     conn.Open();
                     int result = cmd.ExecuteNonQuery();
 

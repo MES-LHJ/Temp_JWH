@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
-namespace EmployeeManagement
+namespace EmployeeManagement.Forms.Employee
 {
     public partial class AddEmployeeForm : Form
     {
@@ -19,7 +20,7 @@ namespace EmployeeManagement
 
         private void LoadDeptCodes()
         {
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EmployeeManageDB;Integrated Security=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
             string query = "SELECT DeptCode, DeptName FROM Department";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -69,7 +70,7 @@ namespace EmployeeManagement
             string phone = PhoneTextBox.Text.Trim();
             string email = EmailTextBox.Text.Trim();
             string messengerId = MessengerIDTextBox.Text.Trim();
-            string memo = MemoTextBox.Text.Trim();
+            string memo = MemoTextBox.Text;
 
             // 필수 입력값 체크
             if (string.IsNullOrEmpty(deptCode))
@@ -103,7 +104,7 @@ namespace EmployeeManagement
                 return;
             }
 
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EmployeeManageDB;Integrated Security=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
             string query = @"INSERT INTO Employee
                                 (EmpCode, EmpName, Gender, LoginID, Pwd, Position, EmploymentType, Phone, Email, MessengerID, Memo, DeptCode)
                              VALUES
@@ -112,18 +113,17 @@ namespace EmployeeManagement
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
-                cmd.Parameters.AddWithValue("@EmpCode", empCode);
-                cmd.Parameters.AddWithValue("@EmpName", empName);
-                cmd.Parameters.AddWithValue("@Gender", gender);
-                cmd.Parameters.AddWithValue("@LoginID", loginId);
-                cmd.Parameters.AddWithValue("@Pwd", pwd);
-                cmd.Parameters.AddWithValue("@Position", position);
-                cmd.Parameters.AddWithValue("@EmploymentType", employmentType);
-                cmd.Parameters.AddWithValue("@Phone", phone);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@MessengerID", messengerId);
-                cmd.Parameters.AddWithValue("@Memo", memo);
-                cmd.Parameters.AddWithValue("@DeptCode", deptCode);
+
+                cmd.Parameters.Add("@EmpName",SqlDbType.NVarChar,20).Value = empName;
+                cmd.Parameters.Add("@Gender", SqlDbType.NVarChar, 2).Value = gender;
+                cmd.Parameters.Add("@LoginID",SqlDbType.NVarChar,25).Value = loginId;
+                cmd.Parameters.Add("@Pwd",SqlDbType.NVarChar,50).Value = pwd;
+                cmd.Parameters.Add("@Position",SqlDbType.NVarChar,30).Value = position;
+                cmd.Parameters.Add("@EmploymentType", SqlDbType.NVarChar,20).Value = employmentType;
+                cmd.Parameters.Add("@Phone",SqlDbType.NVarChar,15).Value = phone;
+                cmd.Parameters.Add("@Email",SqlDbType.NVarChar,40).Value = email;
+                cmd.Parameters.Add("@MessengerID",SqlDbType.NVarChar,30).Value = messengerId;
+                cmd.Parameters.Add("@Memo",SqlDbType.NVarChar,1000).Value = memo;
 
                 conn.Open();
                 int result = cmd.ExecuteNonQuery();

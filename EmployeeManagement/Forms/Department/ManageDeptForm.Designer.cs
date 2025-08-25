@@ -1,6 +1,6 @@
-﻿namespace EmployeeManagement
+﻿namespace EmployeeManagement.Forms.Department
 {
-    partial class DepartmentManagementForm
+    partial class ManageDeptForm
     {
         /// <summary>
         /// Required designer variable.
@@ -141,9 +141,8 @@
             this.DpetDgv.RowTemplate.Height = 23;
             this.DpetDgv.Size = new System.Drawing.Size(466, 178);
             this.DpetDgv.TabIndex = 14;
-            this.DpetDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
-            // DepartmentManagementForm
+            // ManageDeptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -151,8 +150,8 @@
             this.Controls.Add(this.DpetDgv);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "DepartmentManagementForm";
-            this.Text = "DepartmentManagementForm";
+            this.Name = "ManageDeptForm";
+            this.Text = "ManageDeptForm";
             this.Load += new System.EventHandler(this.DepartmentManagementForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

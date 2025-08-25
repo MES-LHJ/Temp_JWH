@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows.Forms;
 
 namespace EmployeeManagement
@@ -35,7 +36,7 @@ namespace EmployeeManagement
             if (result != DialogResult.Yes)
                 return;
 
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EmployeeManageDB;Integrated Security=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
             string query = "DELETE FROM Employee WHERE EmpCode = @EmpCode";
 
             try

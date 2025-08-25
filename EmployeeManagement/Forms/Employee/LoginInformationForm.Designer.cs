@@ -1,4 +1,4 @@
-﻿namespace EmployeeManagement
+﻿namespace EmployeeManagement.Forms.Employee
 {
     partial class LoginInformationForm
     {
@@ -54,7 +54,7 @@
             this.BtnClose.TabIndex = 35;
             this.BtnClose.Text = "닫기";
             this.BtnClose.UseVisualStyleBackColor = false;
-            this.BtnClose.Click += new System.EventHandler(this.button2_Click);
+            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // PwdTextBox
             // 

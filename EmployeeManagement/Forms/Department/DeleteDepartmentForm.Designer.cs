@@ -1,4 +1,4 @@
-﻿namespace EmployeeManagement
+﻿namespace EmployeeManagement.Forms.Department
 {
     partial class DeleteDepartmentForm
     {

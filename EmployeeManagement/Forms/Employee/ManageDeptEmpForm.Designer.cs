@@ -1,6 +1,6 @@
-﻿namespace EmployeeManagement
+﻿namespace EmployeeManagement.Forms.Employee
 {
-    partial class DepartmentEmployeeForm
+    partial class ManageDeptEmpForm
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -203,7 +203,7 @@
             this.EmpDgv.Size = new System.Drawing.Size(1110, 218);
             this.EmpDgv.TabIndex = 12;
             // 
-            // DepartmentEmployeeForm
+            // ManageDeptEmpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -211,7 +211,7 @@
             this.Controls.Add(this.EmpDgv);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.MainBackGround);
-            this.Name = "DepartmentEmployeeForm";
+            this.Name = "ManageDeptEmpForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.DepartmentEmployeeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MainBackGround)).EndInit();

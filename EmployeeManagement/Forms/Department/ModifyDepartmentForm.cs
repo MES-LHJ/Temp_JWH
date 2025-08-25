@@ -1,17 +1,19 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
-namespace EmployeeManagement
+namespace EmployeeManagement.Forms.Department
 {
     public partial class ModifyDepartmentForm : Form
     {
-        private string deptCode;
+        private int deptId;
 
-        public ModifyDepartmentForm(string deptCode, string deptName, string memo)
+        public ModifyDepartmentForm(int deptId, string deptCode, string deptName, string memo)
         {
             InitializeComponent();
-            this.deptCode = deptCode;
+            this.deptId = deptId;
             DeptCodeTextBox.Text = deptCode;   // 부서코드
             DeptNameTextBox.Text = deptName;   // 부서명
             MemoTextBox.Text = memo;       // 메모를 '부서관리'에서 받아오는 생성자
@@ -19,18 +21,20 @@ namespace EmployeeManagement
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
+            string newDeptCode = DeptCodeTextBox.Text.Trim();
             string newDeptName = DeptNameTextBox.Text.Trim();
-            string newMemo = MemoTextBox.Text.Trim();
+            string newMemo = MemoTextBox.Text;
 
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EmployeeManageDB;Integrated Security=True";
-            string query = "UPDATE Department SET DeptName = @DeptName, Memo = @Memo WHERE DeptCode = @DeptCode";
+            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
+            string query = "UPDATE Department SET DeptCode = @DeptCode, DeptName = @DeptName, Memo = @Memo WHERE DeptID = @DeptID";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
-                cmd.Parameters.AddWithValue("@DeptCode", deptCode);
-                cmd.Parameters.AddWithValue("@DeptName", newDeptName);
-                cmd.Parameters.AddWithValue("@Memo", newMemo);
+                cmd.Parameters.Add("@DeptCode", SqlDbType.NVarChar, 10).Value = newDeptCode;
+                cmd.Parameters.Add("@DeptName",SqlDbType.NVarChar,20).Value = newDeptName;
+                cmd.Parameters.Add("@Memo",SqlDbType.NVarChar,1000).Value = newMemo;
+                cmd.Parameters.Add("@DeptID",SqlDbType.Int).Value = deptId;
 
                 conn.Open();
                 int result = cmd.ExecuteNonQuery();

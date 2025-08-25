@@ -1,8 +1,10 @@
 using System;
+using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
-namespace EmployeeManagement
+namespace EmployeeManagement.Forms.Department
 {
     public partial class AddDepartmentForm : Form
     {
@@ -115,6 +117,7 @@ namespace EmployeeManagement
             // 
             this.MemoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MemoTextBox.Location = new System.Drawing.Point(76, 178);
+            this.MemoTextBox.MaxLength = 1000;
             this.MemoTextBox.Name = "MemoTextBox";
             this.MemoTextBox.Size = new System.Drawing.Size(356, 21);
             this.MemoTextBox.TabIndex = 21;
@@ -153,6 +156,7 @@ namespace EmployeeManagement
             // 
             this.DeptCodeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DeptCodeTextBox.Location = new System.Drawing.Point(76, 121);
+            this.DeptCodeTextBox.MaxLength = 10;
             this.DeptCodeTextBox.Name = "DeptCodeTextBox";
             this.DeptCodeTextBox.Size = new System.Drawing.Size(164, 21);
             this.DeptCodeTextBox.TabIndex = 26;
@@ -161,6 +165,7 @@ namespace EmployeeManagement
             // 
             this.DeptNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DeptNameTextBox.Location = new System.Drawing.Point(268, 121);
+            this.DeptNameTextBox.MaxLength = 20;
             this.DeptNameTextBox.Name = "DeptNameTextBox";
             this.DeptNameTextBox.Size = new System.Drawing.Size(164, 21);
             this.DeptNameTextBox.TabIndex = 27;
@@ -193,7 +198,7 @@ namespace EmployeeManagement
         {
             string DeptCode = DeptCodeTextBox.Text.Trim();
             string DeptName = DeptNameTextBox.Text.Trim();
-            string Memo = MemoTextBox.Text.Trim();
+            string Memo = MemoTextBox.Text;
 
             if (string.IsNullOrEmpty(DeptCode) || string.IsNullOrEmpty(DeptName))
             {
@@ -202,8 +207,7 @@ namespace EmployeeManagement
             }
 
             // DB 연결 문자열
-            string connectionString =
-                "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EmployeeManageDB;Integrated Security=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
             string query =
                 "INSERT INTO Department ([DeptCode], [DeptName], [Memo]) VALUES (@DeptCode, @DeptName, @Memo)";
 
@@ -212,9 +216,9 @@ namespace EmployeeManagement
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@DeptCode", DeptCode);
-                    cmd.Parameters.AddWithValue("@DeptName", DeptName);
-                    cmd.Parameters.AddWithValue("@Memo", Memo);
+                    cmd.Parameters.Add("@DeptCode", SqlDbType.NVarChar, 10).Value = DeptCode;
+                    cmd.Parameters.Add("@DeptName", SqlDbType.NVarChar, 20).Value = DeptName;
+                    cmd.Parameters.Add("@Memo", SqlDbType.NVarChar, 1000).Value = Memo;
 
                     conn.Open();
                     int result = cmd.ExecuteNonQuery();

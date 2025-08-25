@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using EmployeeManagement.Forms.Department;
 
-namespace EmployeeManagement
+namespace EmployeeManagement.Forms.Employee
 {
-    public partial class DepartmentEmployeeForm : Form
+    public partial class ManageDeptEmpForm : Form
     {
 
-        public DepartmentEmployeeForm()
+        public ManageDeptEmpForm()
         {
             InitializeComponent();
         }
@@ -19,7 +20,7 @@ namespace EmployeeManagement
             Application.Exit();
         }
 
-        private async void BtnRefresh_Click(object sender, EventArgs e)
+        private void BtnRefresh_Click(object sender, EventArgs e)
         {
             var originalText = BtnRefresh.Text;
             BtnRefresh.Text = "조회중..";
@@ -27,7 +28,6 @@ namespace EmployeeManagement
 
             try
             {
-
                 LoadEmployeeData();
             }
             catch (Exception ex)
@@ -54,21 +54,20 @@ namespace EmployeeManagement
 
         private void BtnDepartment_Click(object sender, EventArgs e)
         {
-            using (var dlg = new DepartmentManagementForm())
+            using (var dlg = new ManageDeptForm())
             {
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-
+                    LoadEmployeeData();
                 }
             }
         }
 
-        private void BtnModify_Click(object sender, EventArgs e)
+        private void BtnModify_Click(object sender, EventArgs e) //수정버튼
         {
             DataGridViewRow row = null;
-            if (EmpDgv.SelectedRows.Count > 0)
-                row = EmpDgv.SelectedRows[0];
-            else if (EmpDgv.SelectedCells.Count > 0)
+
+            if (EmpDgv.SelectedCells.Count > 0)
                 row = EmpDgv.SelectedCells[0].OwningRow;
 
             if (row != null)
@@ -97,7 +96,7 @@ namespace EmployeeManagement
             }
             else
             {
-                MessageBox.Show("수정할 셀 또는 행을 선택하세요.");
+                MessageBox.Show("수정할 셀을 선택하세요.");
             }
         }
 
@@ -109,9 +108,7 @@ namespace EmployeeManagement
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = null;
-            if (EmpDgv.SelectedRows.Count > 0)
-                row = EmpDgv.SelectedRows[0];
-            else if (EmpDgv.SelectedCells.Count > 0)
+            if (EmpDgv.SelectedCells.Count > 0)
                 row = EmpDgv.SelectedCells[0].OwningRow;
 
             if (row != null)
@@ -136,9 +133,7 @@ namespace EmployeeManagement
         private void Btn_LoginInfo_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = null;
-            if (EmpDgv.SelectedRows.Count > 0)
-                row = EmpDgv.SelectedRows[0];
-            else if (EmpDgv.SelectedCells.Count > 0)
+            if (EmpDgv.SelectedCells.Count > 0)
                 row = EmpDgv.SelectedCells[0].OwningRow;
 
             if (row != null)
@@ -163,9 +158,11 @@ namespace EmployeeManagement
 
         private void LoadEmployeeData()
         {
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EmployeeManageDB;Integrated Security=True";
+
+            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
             string query = @"SELECT 
-                                e.DeptCode AS [부서코드],
+                                e.EmpID AS [사원ID],
+                                d.DeptCode AS [부서코드],
                                 d.DeptName AS [부서명],
                                 e.EmpCode AS [사원코드],
                                 e.EmpName AS [사원명],
@@ -178,7 +175,7 @@ namespace EmployeeManagement
                                 e.Email AS [이메일],
                                 e.MessengerID AS [메신저ID],
                                 e.Memo AS [메모]
-                            FROM employee e LEFT JOIN Department d ON e.DeptCode = d.DeptCode";
+                            FROM employee e JOIN Department d ON e.DeptID = d.DeptID";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
