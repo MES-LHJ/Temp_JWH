@@ -15,7 +15,6 @@ namespace EmployeeManagement.Forms.Employee
         {
             InitializeComponent();
             LoadDeptCodes();
-            DeptCodeComboBox.SelectedIndexChanged += DeptCodeComboBox_SelectedIndexChanged;
         }
 
         private void LoadDeptCodes()
@@ -23,8 +22,8 @@ namespace EmployeeManagement.Forms.Employee
             string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
             string query = "SELECT DeptCode, DeptName FROM Department";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+            SqlConnection conn = new SqlConnection(connectionString);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
             {
                 deptTable = new DataTable();
                 adapter.Fill(deptTable);
@@ -71,6 +70,7 @@ namespace EmployeeManagement.Forms.Employee
             string email = EmailTextBox.Text.Trim();
             string messengerId = MessengerIDTextBox.Text.Trim();
             string memo = MemoTextBox.Text;
+        
 
             // 필수 입력값 체크
             if (string.IsNullOrEmpty(deptCode))
@@ -106,14 +106,14 @@ namespace EmployeeManagement.Forms.Employee
 
             string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
             string query = @"INSERT INTO Employee
-                                (EmpCode, EmpName, Gender, LoginID, Pwd, Position, EmploymentType, Phone, Email, MessengerID, Memo, DeptCode)
+                                (EmpCode, EmpName, Gender, LoginID, Pwd, Position, EmploymentType, Phone, Email, MessengerID, Memo)
                              VALUES
-                                (@EmpCode, @EmpName, @Gender, @LoginID, @Pwd, @Position, @EmploymentType, @Phone, @Email, @MessengerID, @Memo, @DeptCode)";
+                                (@EmpCode, @EmpName, @Gender, @LoginID, @Pwd, @Position, @EmploymentType, @Phone, @Email, @MessengerID, @Memo)";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
-
+                cmd.Parameters.Add("@EmpCode", SqlDbType.NVarChar, 10).Value = empCode;
                 cmd.Parameters.Add("@EmpName",SqlDbType.NVarChar,20).Value = empName;
                 cmd.Parameters.Add("@Gender", SqlDbType.NVarChar, 2).Value = gender;
                 cmd.Parameters.Add("@LoginID",SqlDbType.NVarChar,25).Value = loginId;
@@ -124,6 +124,7 @@ namespace EmployeeManagement.Forms.Employee
                 cmd.Parameters.Add("@Email",SqlDbType.NVarChar,40).Value = email;
                 cmd.Parameters.Add("@MessengerID",SqlDbType.NVarChar,30).Value = messengerId;
                 cmd.Parameters.Add("@Memo",SqlDbType.NVarChar,1000).Value = memo;
+  
 
                 conn.Open();
                 int result = cmd.ExecuteNonQuery();

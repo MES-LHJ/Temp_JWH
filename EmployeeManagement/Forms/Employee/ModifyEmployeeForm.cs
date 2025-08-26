@@ -14,7 +14,6 @@ namespace EmployeeManagement.Forms.Employee
         {
             InitializeComponent();
             LoadDeptComboBox();
-            DeptCodeComboBox.SelectedIndexChanged += DeptCodeComboBox_SelectedIndexChanged;
         }
 
         public ModifyEmployeeForm(

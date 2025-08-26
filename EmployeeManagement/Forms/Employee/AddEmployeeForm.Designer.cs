@@ -220,6 +220,7 @@
             this.DeptCodeComboBox.Name = "DeptCodeComboBox";
             this.DeptCodeComboBox.Size = new System.Drawing.Size(152, 20);
             this.DeptCodeComboBox.TabIndex = 37;
+            this.DeptCodeComboBox.SelectedIndexChanged += new System.EventHandler(this.DeptCodeComboBox_SelectedIndexChanged);
             // 
             // EmpCodeLabel
             // 

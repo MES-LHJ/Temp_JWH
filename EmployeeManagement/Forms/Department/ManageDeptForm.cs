@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeManagement.Forms.Classes;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -8,7 +9,6 @@ namespace EmployeeManagement.Forms.Department
 {
     public partial class ManageDeptForm : Form
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
 
         public ManageDeptForm()
         {
@@ -22,14 +22,16 @@ namespace EmployeeManagement.Forms.Department
 
         private void LoadDepartmentData()
         {
-            string query = "SELECT DeptID AS [부서ID], DeptCode AS [부서코드], DeptName AS [부서명] , Memo AS [메모] FROM [dbo].[Department]";
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+            try
             {
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                DpetDgv.DataSource = dt;
+                var departments = DepartmentModel.GetAllDepartments();
+                DpetDgv.DataSource = null; // 바인딩 초기화
+                DpetDgv.DataSource = departments;
                 DpetDgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"부서 데이터를 불러오는데 실패했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -53,10 +55,10 @@ namespace EmployeeManagement.Forms.Department
 
             if (row != null)
             {
-                int deptId = Convert.ToInt32(row.Cells["부서ID"].Value);
-                string deptCode = row.Cells["부서코드"].Value?.ToString() ?? string.Empty;
-                string deptName = row.Cells["부서명"].Value?.ToString() ?? string.Empty;
-                string memo = row.Cells["메모"].Value?.ToString() ?? string.Empty;
+                int deptId = Convert.ToInt32(row.Cells["DeptID"].Value);
+                string deptCode = row.Cells["DeptCode"].Value?.ToString() ?? string.Empty;
+                string deptName = row.Cells["DeptName"].Value?.ToString() ?? string.Empty;
+                string memo = row.Cells["Memo"].Value?.ToString() ?? string.Empty;
 
                 using (var dlg = new ModifyDepartmentForm(deptId, deptCode, deptName, memo))
                 {
@@ -79,8 +81,9 @@ namespace EmployeeManagement.Forms.Department
 
             if (row != null)
             {
-                string deptCode = row.Cells["부서코드"].Value?.ToString() ?? string.Empty;
-                string deptName = row.Cells["부서명"].Value?.ToString() ?? string.Empty;
+                int deptId = Convert.ToInt32(row.Cells["DeptID"].Value);
+                string deptCode = row.Cells["DeptCode"].Value?.ToString() ?? string.Empty;
+                string deptName = row.Cells["DeptName"].Value?.ToString() ?? string.Empty;
 
                 using (var dlg = new DeleteDepartmentForm(deptCode, deptName))
                 {

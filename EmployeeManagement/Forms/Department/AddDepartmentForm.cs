@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace EmployeeManagement.Forms.Department
 {
-    public partial class AddDepartmentForm : Form
+    public class AddDepartmentForm : Form
     {
         private Panel panel1;
         private Label label1;
@@ -184,7 +184,6 @@ namespace EmployeeManagement.Forms.Department
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "AddDepartmentForm";
-            this.Load += new System.EventHandler(this.DepartmentAddForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -239,11 +238,6 @@ namespace EmployeeManagement.Forms.Department
             {
                 MessageBox.Show("¿À·ù: " + ex.Message);
             }
-        }
-
-        private void DepartmentAddForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)

@@ -9,7 +9,6 @@ namespace EmployeeManagement.Forms.Employee
 {
     public partial class ManageDeptEmpForm : Form
     {
-
         public ManageDeptEmpForm()
         {
             InitializeComponent();
