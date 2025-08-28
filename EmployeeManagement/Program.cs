@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using EmployeeManagement.Forms;
 using EmployeeManagement.Forms.Employee;
 
 namespace EmployeeManagement
@@ -17,7 +15,16 @@ namespace EmployeeManagement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ManageDeptEmpForm());
+            
+            // 로그인 폼을 먼저 표시
+            using (var loginForm = new LoginForm())
+            {
+                if (loginForm.ShowDialog() == DialogResult.OK)
+                {
+                    // 로그인 성공 시 메인 폼 실행
+                    Application.Run(new ManageDeptEmpForm());
+                }
+            }
         }
     }
 }

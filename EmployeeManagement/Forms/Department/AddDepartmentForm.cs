@@ -1,20 +1,19 @@
+using EmployeeManagement.Models;
+using EmployeeManagement.Models.Repository;
 using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace EmployeeManagement.Forms.Department
 {
     public class AddDepartmentForm : Form
     {
-        private Panel panel1;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Button button1;
-        private Button button2;
+        private Panel AddDepartmentPanel;
+        private Label AddDepartmentLabel;
+        private Label DeptCodeLabel;
+        private Label DeptNameLabel;
+        private Label MemoLabel;
+        private Button BtnSave;
+        private Button BtnCancel;
         private TextBox MemoTextBox;
         private TextBox DeptCodeTextBox;
         private TextBox DeptNameTextBox;
@@ -27,55 +26,55 @@ namespace EmployeeManagement.Forms.Department
 
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.AddDepartmentPanel = new System.Windows.Forms.Panel();
+            this.AddDepartmentLabel = new System.Windows.Forms.Label();
+            this.DeptCodeLabel = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.DeptNameLabel = new System.Windows.Forms.Label();
+            this.MemoLabel = new System.Windows.Forms.Label();
             this.MemoTextBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BtnSave = new System.Windows.Forms.Button();
+            this.BtnCancel = new System.Windows.Forms.Button();
             this.DeptCodeTextBox = new System.Windows.Forms.TextBox();
             this.DeptNameTextBox = new System.Windows.Forms.TextBox();
-            this.panel1.SuspendLayout();
+            this.AddDepartmentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // AddDepartmentPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(58, 30);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(419, 40);
-            this.panel1.TabIndex = 14;
+            this.AddDepartmentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.AddDepartmentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AddDepartmentPanel.Controls.Add(this.AddDepartmentLabel);
+            this.AddDepartmentPanel.Location = new System.Drawing.Point(58, 30);
+            this.AddDepartmentPanel.Name = "AddDepartmentPanel";
+            this.AddDepartmentPanel.Size = new System.Drawing.Size(419, 40);
+            this.AddDepartmentPanel.TabIndex = 14;
             // 
-            // label1
+            // AddDepartmentLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(3, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 21);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "부서 추가";
+            this.AddDepartmentLabel.AutoSize = true;
+            this.AddDepartmentLabel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.AddDepartmentLabel.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.AddDepartmentLabel.Location = new System.Drawing.Point(3, 9);
+            this.AddDepartmentLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.AddDepartmentLabel.Name = "AddDepartmentLabel";
+            this.AddDepartmentLabel.Size = new System.Drawing.Size(80, 21);
+            this.AddDepartmentLabel.TabIndex = 10;
+            this.AddDepartmentLabel.Text = "부서 추가";
             // 
-            // label2
+            // DeptCodeLabel
             // 
-            this.label2.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
-            this.label2.Location = new System.Drawing.Point(74, 106);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 15);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "부서코드";
+            this.DeptCodeLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.DeptCodeLabel.AutoSize = true;
+            this.DeptCodeLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.DeptCodeLabel.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.DeptCodeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
+            this.DeptCodeLabel.Location = new System.Drawing.Point(74, 106);
+            this.DeptCodeLabel.Name = "DeptCodeLabel";
+            this.DeptCodeLabel.Size = new System.Drawing.Size(55, 15);
+            this.DeptCodeLabel.TabIndex = 16;
+            this.DeptCodeLabel.Text = "부서코드";
             // 
             // dataGridView1
             // 
@@ -87,31 +86,31 @@ namespace EmployeeManagement.Forms.Department
             this.dataGridView1.Size = new System.Drawing.Size(419, 211);
             this.dataGridView1.TabIndex = 13;
             // 
-            // label3
+            // DeptNameLabel
             // 
-            this.label3.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
-            this.label3.Location = new System.Drawing.Point(266, 106);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 15);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "부서명";
+            this.DeptNameLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.DeptNameLabel.AutoSize = true;
+            this.DeptNameLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.DeptNameLabel.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.DeptNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
+            this.DeptNameLabel.Location = new System.Drawing.Point(266, 106);
+            this.DeptNameLabel.Name = "DeptNameLabel";
+            this.DeptNameLabel.Size = new System.Drawing.Size(43, 15);
+            this.DeptNameLabel.TabIndex = 17;
+            this.DeptNameLabel.Text = "부서명";
             // 
-            // label4
+            // MemoLabel
             // 
-            this.label4.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label4.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(74, 163);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 15);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "메모";
+            this.MemoLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.MemoLabel.AutoSize = true;
+            this.MemoLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.MemoLabel.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.MemoLabel.ForeColor = System.Drawing.Color.Black;
+            this.MemoLabel.Location = new System.Drawing.Point(74, 163);
+            this.MemoLabel.Name = "MemoLabel";
+            this.MemoLabel.Size = new System.Drawing.Size(31, 15);
+            this.MemoLabel.TabIndex = 18;
+            this.MemoLabel.Text = "메모";
             // 
             // MemoTextBox
             // 
@@ -122,35 +121,35 @@ namespace EmployeeManagement.Forms.Department
             this.MemoTextBox.Size = new System.Drawing.Size(356, 21);
             this.MemoTextBox.TabIndex = 21;
             // 
-            // button1
+            // BtnSave
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(145, 223);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 32);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "저장";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.BtnSave_Click);
+            this.BtnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
+            this.BtnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSave.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnSave.ForeColor = System.Drawing.Color.White;
+            this.BtnSave.Location = new System.Drawing.Point(145, 223);
+            this.BtnSave.Margin = new System.Windows.Forms.Padding(0);
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(137, 32);
+            this.BtnSave.TabIndex = 22;
+            this.BtnSave.Text = "저장";
+            this.BtnSave.UseVisualStyleBackColor = false;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // button2
+            // BtnCancel
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(295, 223);
-            this.button2.Margin = new System.Windows.Forms.Padding(0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 32);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "취소";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.BtnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
+            this.BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCancel.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnCancel.ForeColor = System.Drawing.Color.White;
+            this.BtnCancel.Location = new System.Drawing.Point(295, 223);
+            this.BtnCancel.Margin = new System.Windows.Forms.Padding(0);
+            this.BtnCancel.Name = "BtnCancel";
+            this.BtnCancel.Size = new System.Drawing.Size(137, 32);
+            this.BtnCancel.TabIndex = 25;
+            this.BtnCancel.Text = "취소";
+            this.BtnCancel.UseVisualStyleBackColor = false;
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // DeptCodeTextBox
             // 
@@ -175,23 +174,22 @@ namespace EmployeeManagement.Forms.Department
             this.ClientSize = new System.Drawing.Size(550, 321);
             this.Controls.Add(this.DeptNameTextBox);
             this.Controls.Add(this.DeptCodeTextBox);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnCancel);
+            this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.MemoTextBox);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.MemoLabel);
+            this.Controls.Add(this.DeptNameLabel);
+            this.Controls.Add(this.DeptCodeLabel);
+            this.Controls.Add(this.AddDepartmentPanel);
             this.Controls.Add(this.dataGridView1);
             this.Name = "AddDepartmentForm";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.AddDepartmentPanel.ResumeLayout(false);
+            this.AddDepartmentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
-
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
@@ -205,33 +203,30 @@ namespace EmployeeManagement.Forms.Department
                 return;
             }
 
-            // DB 연결 문자열
-            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
-            string query =
-                "INSERT INTO Department ([DeptCode], [DeptName], [Memo]) VALUES (@DeptCode, @DeptName, @Memo)";
-
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                // DepartmentModel 인스턴스 생성
+                var department = new DepartmentModel
                 {
-                    cmd.Parameters.Add("@DeptCode", SqlDbType.NVarChar, 10).Value = DeptCode;
-                    cmd.Parameters.Add("@DeptName", SqlDbType.NVarChar, 20).Value = DeptName;
-                    cmd.Parameters.Add("@Memo", SqlDbType.NVarChar, 1000).Value = Memo;
+                    DeptCode = DeptCode,
+                    DeptName = DeptName,
+                    Memo = Memo
+                };
 
-                    conn.Open();
-                    int result = cmd.ExecuteNonQuery();
+                // DepartmentRepository 인스턴스 생성
+                var repository = new DepartmentRepository();
 
-                    if (result > 0)
-                    {
-                        MessageBox.Show("부서가 성공적으로 추가되었습니다.");
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("부서 추가에 실패했습니다.");
-                    }
+                bool success = repository.AddDepartment(department); // 부서 추가 메서드 호출
+
+                if (success)
+                {
+                    MessageBox.Show("부서가 성공적으로 추가되었습니다.");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("부서 추가에 실패했습니다.");
                 }
             }
             catch (Exception ex)

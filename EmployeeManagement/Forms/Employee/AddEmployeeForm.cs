@@ -3,6 +3,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using EmployeeManagement.Models;
+using EmployeeManagement.Models.Repository;
 
 namespace EmployeeManagement.Forms.Employee
 {
@@ -45,16 +47,10 @@ namespace EmployeeManagement.Forms.Employee
                 }
                 else
                 {
-                    DeptNameTextBox.Text = "";
+                    DeptNameTextBox.Text = string.Empty;
                 }
             }
         }
-
-        private void BtnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void buttonSave_Click(object sender, EventArgs e)
         {
             // 입력값 읽기
@@ -103,43 +99,48 @@ namespace EmployeeManagement.Forms.Employee
                 PwdTextBox.Focus();
                 return;
             }
-
-            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
-            string query = @"INSERT INTO Employee
-                                (EmpCode, EmpName, Gender, LoginID, Pwd, Position, EmploymentType, Phone, Email, MessengerID, Memo)
-                             VALUES
-                                (@EmpCode, @EmpName, @Gender, @LoginID, @Pwd, @Position, @EmploymentType, @Phone, @Email, @MessengerID, @Memo)";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            try
             {
-                cmd.Parameters.Add("@EmpCode", SqlDbType.NVarChar, 10).Value = empCode;
-                cmd.Parameters.Add("@EmpName",SqlDbType.NVarChar,20).Value = empName;
-                cmd.Parameters.Add("@Gender", SqlDbType.NVarChar, 2).Value = gender;
-                cmd.Parameters.Add("@LoginID",SqlDbType.NVarChar,25).Value = loginId;
-                cmd.Parameters.Add("@Pwd",SqlDbType.NVarChar,50).Value = pwd;
-                cmd.Parameters.Add("@Position",SqlDbType.NVarChar,30).Value = position;
-                cmd.Parameters.Add("@EmploymentType", SqlDbType.NVarChar,20).Value = employmentType;
-                cmd.Parameters.Add("@Phone",SqlDbType.NVarChar,15).Value = phone;
-                cmd.Parameters.Add("@Email",SqlDbType.NVarChar,40).Value = email;
-                cmd.Parameters.Add("@MessengerID",SqlDbType.NVarChar,30).Value = messengerId;
-                cmd.Parameters.Add("@Memo",SqlDbType.NVarChar,1000).Value = memo;
-  
-
-                conn.Open();
-                int result = cmd.ExecuteNonQuery();
-
-                if (result > 0)
+                // EmployeeModel 객체 생성
+                var employee = new EmployeeModel
                 {
-                    MessageBox.Show("사원 정보가 저장되었습니다.");
+                    DeptID = int.Parse(deptCode),
+                    EmpCode = empCode,
+                    EmpName = empName,
+                    Gender = gender,
+                    LoginID = loginId,
+                    Pwd = pwd,
+                    Position = position,
+                    EmploymentType = employmentType,
+                    Phone = phone,
+                    Email = email,
+                    MessengerID = messengerId,
+                    Memo = memo
+                };
+
+                // EmployeeRepository를 통해 저장
+                bool result = EmployeeRepository.AddEmployee(employee);
+
+                if (result)
+                {
+                    MessageBox.Show("사원 정보가 저장되었습니다.", "저장 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("저장에 실패했습니다.");
+                    MessageBox.Show("저장에 실패했습니다.", "저장 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"저장 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

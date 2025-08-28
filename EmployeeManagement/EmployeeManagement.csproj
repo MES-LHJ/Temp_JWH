@@ -98,7 +98,16 @@
     <Compile Include="Forms\Employee\ModifyEmployeeForm.Designer.cs">
       <DependentUpon>ModifyEmployeeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\NewFolder1\Class1.cs" />
+    <Compile Include="Forms\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DepartmentModel.cs" />
+    <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\Repository\EmployeeRepository.cs" />
+    <Compile Include="Models\Repository\DepartmentRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Employee\AddEmployeeForm.resx">
@@ -127,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Employee\ModifyEmployeeForm.resx">
       <DependentUpon>ModifyEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -160,6 +172,8 @@
   <ItemGroup>
     <None Include="Resources\free-icon-user-6607993 %281%291.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

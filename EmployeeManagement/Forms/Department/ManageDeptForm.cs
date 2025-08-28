@@ -1,8 +1,6 @@
-﻿using EmployeeManagement.Forms.Classes;
+﻿using EmployeeManagement.Models;
+using EmployeeManagement.Models.Repository;
 using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace EmployeeManagement.Forms.Department
@@ -19,8 +17,9 @@ namespace EmployeeManagement.Forms.Department
         {
             LoadDepartmentData();
         }
+        private readonly DepartmentRepository DepartmentModel = new DepartmentRepository();
 
-        private void LoadDepartmentData()
+        private void LoadDepartmentData() // 조회기능 
         {
             try
             {
@@ -85,7 +84,7 @@ namespace EmployeeManagement.Forms.Department
                 string deptCode = row.Cells["DeptCode"].Value?.ToString() ?? string.Empty;
                 string deptName = row.Cells["DeptName"].Value?.ToString() ?? string.Empty;
 
-                using (var dlg = new DeleteDepartmentForm(deptCode, deptName))
+                using (var dlg = new DeleteDepartmentForm(deptId, deptCode, deptName))
                 {
                     if (dlg.ShowDialog() == DialogResult.OK)
                     {

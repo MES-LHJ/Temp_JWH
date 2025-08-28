@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using EmployeeManagement.Forms.Department;
+using EmployeeManagement.Models.Repository;
 
 namespace EmployeeManagement.Forms.Employee
 {
@@ -14,10 +15,7 @@ namespace EmployeeManagement.Forms.Employee
             InitializeComponent();
         }
 
-        private void BtnClose_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+
 
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
@@ -157,38 +155,27 @@ namespace EmployeeManagement.Forms.Employee
 
         private void LoadEmployeeData()
         {
-
-            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
-            string query = @"SELECT 
-                                e.EmpID AS [사원ID],
-                                d.DeptCode AS [부서코드],
-                                d.DeptName AS [부서명],
-                                e.EmpCode AS [사원코드],
-                                e.EmpName AS [사원명],
-                                e.Gender AS [성별],
-                                e.LoginID AS [로그인ID],
-                                e.Pwd AS [비밀번호],
-                                e.Position AS [직위],
-                                e.EmploymentType AS [고용형태],
-                                e.Phone AS [휴대전화],
-                                e.Email AS [이메일],
-                                e.MessengerID AS [메신저ID],
-                                e.Memo AS [메모]
-                            FROM employee e JOIN Department d ON e.DeptID = d.DeptID";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+            try
             {
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                EmpDgv.DataSource = dt;
+                var employees = EmployeeRepository.GetAllEmployees();
+
+                // DataGridView에 바인딩
+                EmpDgv.DataSource = employees;
                 EmpDgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"데이터 로드 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void BtnDataConv_Click(object sender, EventArgs e)
         {
             //자료변환
+        }
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
