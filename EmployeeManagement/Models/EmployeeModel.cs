@@ -9,6 +9,13 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Models
 {
+    public enum Gender
+    {
+        None = 0,
+        남 = 1,
+        여 = 2
+    }
+
     public class EmployeeModel
     {
         [DisplayName("사원ID")]
@@ -23,8 +30,12 @@ namespace EmployeeManagement.Models
         [DisplayName("사원명")]
         public string EmpName { get; set; }
 
+        // 이넘 으로 바꾸는 중
+
         [DisplayName("성별")]
-        public string Gender { get; set; }
+        public Gender Gender { get; set; }
+
+        // 이넘 으로 바꾸는 중
 
         [DisplayName("로그인ID")]
         public string LoginID { get; set; }

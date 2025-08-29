@@ -202,6 +202,7 @@
             this.EmpDgv.RowTemplate.Height = 23;
             this.EmpDgv.Size = new System.Drawing.Size(1110, 218);
             this.EmpDgv.TabIndex = 12;
+            this.EmpDgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.EmpDgv_CellFormatting);
             // 
             // ManageDeptEmpForm
             // 

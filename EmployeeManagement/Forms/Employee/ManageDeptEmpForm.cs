@@ -1,10 +1,7 @@
-﻿using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.Windows.Forms;
-using EmployeeManagement.Forms.Department;
+﻿using EmployeeManagement.Forms.Department;
 using EmployeeManagement.Models.Repository;
+using System;
+using System.Windows.Forms;
 
 namespace EmployeeManagement.Forms.Employee
 {
@@ -14,10 +11,12 @@ namespace EmployeeManagement.Forms.Employee
         {
             InitializeComponent();
         }
+        private void DepartmentEmployeeForm_Load(object sender, EventArgs e)
+        {
+            LoadEmployeeData();
+        }
 
-
-
-        private void BtnRefresh_Click(object sender, EventArgs e)
+        private void BtnRefresh_Click(object sender, EventArgs e) //조회
         {
             var originalText = BtnRefresh.Text;
             BtnRefresh.Text = "조회중..";
@@ -38,7 +37,7 @@ namespace EmployeeManagement.Forms.Employee
             }
         }
 
-        private void BtnAdd_Click(object sender, EventArgs e)
+        private void BtnAdd_Click(object sender, EventArgs e) //추가버튼
         {
             using (var dlg = new AddEmployeeForm())
             {
@@ -49,7 +48,7 @@ namespace EmployeeManagement.Forms.Employee
             }
         }
 
-        private void BtnDepartment_Click(object sender, EventArgs e)
+        private void BtnDepartment_Click(object sender, EventArgs e) //부서관리버튼
         {
             using (var dlg = new ManageDeptForm())
             {
@@ -62,47 +61,38 @@ namespace EmployeeManagement.Forms.Employee
 
         private void BtnModify_Click(object sender, EventArgs e) //수정버튼
         {
-            DataGridViewRow row = null;
-
-            if (EmpDgv.SelectedCells.Count > 0)
-                row = EmpDgv.SelectedCells[0].OwningRow;
-
-            if (row != null)
-            {
-                // 각 셀 값 추출 (LoginID, Pwd 제외)
-                string deptCode = row.Cells["부서코드"].Value?.ToString();
-                string deptName = row.Cells["부서명"].Value?.ToString();
-                string empCode = row.Cells["사원코드"].Value?.ToString();
-                string empName = row.Cells["사원명"].Value?.ToString();
-                string gender = row.Cells["성별"].Value?.ToString();
-                string position = row.Cells["직위"].Value?.ToString();
-                string employmentType = row.Cells["고용형태"].Value?.ToString();
-                string phone = row.Cells["휴대전화"].Value?.ToString();
-                string email = row.Cells["이메일"].Value?.ToString();
-                string messengerId = row.Cells["메신저ID"].Value?.ToString();
-                string memo = row.Cells["메모"].Value?.ToString();
-
-                using (var dlg = new ModifyEmployeeForm(
-                    deptCode, deptName, empCode, empName, gender, position, employmentType, phone, email, messengerId, memo))
-                {
-                    if (dlg.ShowDialog() == DialogResult.OK)
-                    {
-                        LoadEmployeeData();
-                    }
-                }
-            }
-            else
+            if (EmpDgv.SelectedCells.Count == 0)
             {
                 MessageBox.Show("수정할 셀을 선택하세요.");
+                return;
+            }
+            var row = EmpDgv.SelectedCells[0].OwningRow;
+
+            // 각 셀 값 추출 (LoginID, Pwd 제외) 11개
+            int employeeId = Convert.ToInt32(row.Cells["EmpID"].Value);
+            string deptCode = row.Cells["DeptCode"].Value?.ToString();
+            string deptName = row.Cells["DeptName"].Value?.ToString();
+            string empCode = row.Cells["EmpCode"].Value?.ToString();
+            string empName = row.Cells["EmpName"].Value?.ToString();
+            string gender = row.Cells["Gender"].Value?.ToString();
+            string position = row.Cells["Position"].Value?.ToString();
+            string employmentType = row.Cells["EmploymentType"].Value?.ToString();
+            string phone = row.Cells["Phone"].Value?.ToString();
+            string email = row.Cells["Email"].Value?.ToString();
+            string messengerId = row.Cells["MessengerID"].Value?.ToString();
+            string memo = row.Cells["Memo"].Value?.ToString();
+
+            using (var dlg = new ModifyEmployeeForm(
+                employeeId, deptCode, deptName, empCode, empName, gender, position, employmentType, phone, email, messengerId, memo))
+            {
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    LoadEmployeeData();
+                }
             }
         }
 
-        private void DepartmentEmployeeForm_Load(object sender, EventArgs e)
-        {
-            LoadEmployeeData();
-        }
-
-        private void BtnDelete_Click(object sender, EventArgs e)
+        private void BtnDelete_Click(object sender, EventArgs e) //삭제버튼
         {
             DataGridViewRow row = null;
             if (EmpDgv.SelectedCells.Count > 0)
@@ -110,10 +100,11 @@ namespace EmployeeManagement.Forms.Employee
 
             if (row != null)
             {
-                string empCode = row.Cells["사원코드"].Value?.ToString();
-                string empName = row.Cells["사원명"].Value?.ToString();
+                string empId = row.Cells["EmpID"].Value?.ToString();
+                string empCode = row.Cells["EmpCode"].Value?.ToString();
+                string empName = row.Cells["EmpName"].Value?.ToString();
 
-                using (var dlg = new DeleteEmployeeForm(empCode, empName))
+                using (var dlg = new DeleteEmployeeForm(empId, empCode, empName))
                 {
                     if (dlg.ShowDialog() == DialogResult.OK)
                     {
@@ -127,7 +118,7 @@ namespace EmployeeManagement.Forms.Employee
             }
         }
 
-        private void Btn_LoginInfo_Click(object sender, EventArgs e)
+        private void Btn_LoginInfo_Click(object sender, EventArgs e) //로그인정보버튼
         {
             DataGridViewRow row = null;
             if (EmpDgv.SelectedCells.Count > 0)
@@ -135,11 +126,11 @@ namespace EmployeeManagement.Forms.Employee
 
             if (row != null)
             {
-                string loginId = row.Cells["로그인ID"].Value?.ToString();
-                string pwd = row.Cells["비밀번호"].Value?.ToString();
-                string empCode = row.Cells["사원코드"].Value?.ToString();
+                string loginId = row.Cells["LoginID"].Value?.ToString();
+                string pwd = row.Cells["Pwd"].Value?.ToString();
+                string empID = row.Cells["empID"].Value?.ToString();
 
-                using (var dlg = new LoginInformationForm(loginId, pwd, empCode))
+                using (var dlg = new LoginInformationForm(loginId, pwd, empID))
                 {
                     if (dlg.ShowDialog() == DialogResult.OK)
                     {
@@ -176,6 +167,16 @@ namespace EmployeeManagement.Forms.Employee
         private void BtnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        //비밀번호 마스킹
+        private void EmpDgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (EmpDgv.Columns[e.ColumnIndex].Name == "Pwd" && e.Value != null)
+            {
+                e.Value = new string('*', e.Value.ToString().Length);
+                e.FormattingApplied = true;
+            }
         }
     }
 }

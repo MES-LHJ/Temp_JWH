@@ -1,9 +1,6 @@
-﻿using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+﻿using EmployeeManagement.Models.Repository;
+using System;
 using System.Windows.Forms;
-using EmployeeManagement.Models.Repository;
 
 namespace EmployeeManagement.Forms.Department
 {
@@ -31,7 +28,6 @@ namespace EmployeeManagement.Forms.Department
                 MessageBox.Show("부서코드와 부서명은 필수 입력 항목입니다.", "입력 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             try
             {
                 var department = new EmployeeManagement.Models.DepartmentModel
@@ -42,17 +38,10 @@ namespace EmployeeManagement.Forms.Department
                     Memo = newMemo,
                 };
                 var repository = new DepartmentRepository();
-                bool success = repository.UpdateDepartment(department);
-                if (success)
-                {
-                    MessageBox.Show("수정 성공");
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("수정 실패");
-                }
+                repository.UpdateDepartment(department);
+                MessageBox.Show("수정 성공");
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (Exception ex)
             {

@@ -64,7 +64,7 @@ namespace EmployeeManagement.Models.Repository
         }
 
         // 부서 수정
-        public bool UpdateDepartment(DepartmentModel department)
+        public void UpdateDepartment(DepartmentModel department)
         {
             string query = "UPDATE Department SET DeptCode = @DeptCode, DeptName = @DeptName, Memo = @Memo WHERE DeptID = @DeptID";
 
@@ -77,7 +77,6 @@ namespace EmployeeManagement.Models.Repository
                 cmd.Parameters.AddWithValue("@Memo", department.Memo ?? string.Empty);
 
                 conn.Open();
-                return cmd.ExecuteNonQuery() > 0;
             }
         }
 

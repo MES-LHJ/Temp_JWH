@@ -76,7 +76,7 @@
             this.BtnCancel.Margin = new System.Windows.Forms.Padding(0);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(137, 32);
-            this.BtnCancel.TabIndex = 35;
+            this.BtnCancel.TabIndex = 25;
             this.BtnCancel.Text = "취소";
             this.BtnCancel.UseVisualStyleBackColor = false;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
@@ -87,7 +87,7 @@
             this.EmpCodeTextBox.Location = new System.Drawing.Point(73, 110);
             this.EmpCodeTextBox.Name = "EmpCodeTextBox";
             this.EmpCodeTextBox.Size = new System.Drawing.Size(152, 21);
-            this.EmpCodeTextBox.TabIndex = 34;
+            this.EmpCodeTextBox.TabIndex = 2;
             // 
             // BtnSave
             // 
@@ -99,7 +99,7 @@
             this.BtnSave.Margin = new System.Windows.Forms.Padding(0);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(137, 32);
-            this.BtnSave.TabIndex = 33;
+            this.BtnSave.TabIndex = 14;
             this.BtnSave.Text = "저장";
             this.BtnSave.UseVisualStyleBackColor = false;
             this.BtnSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -161,6 +161,7 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(497, 319);
             this.dataGridView1.TabIndex = 26;
+            this.dataGridView1.TabStop = false;
             // 
             // LoginIDTextBox
             // 
@@ -168,7 +169,7 @@
             this.LoginIDTextBox.Location = new System.Drawing.Point(73, 153);
             this.LoginIDTextBox.Name = "LoginIDTextBox";
             this.LoginIDTextBox.Size = new System.Drawing.Size(152, 21);
-            this.LoginIDTextBox.TabIndex = 50;
+            this.LoginIDTextBox.TabIndex = 6;
             // 
             // EmpNameTextBox
             // 
@@ -176,7 +177,7 @@
             this.EmpNameTextBox.Location = new System.Drawing.Point(232, 110);
             this.EmpNameTextBox.Name = "EmpNameTextBox";
             this.EmpNameTextBox.Size = new System.Drawing.Size(152, 21);
-            this.EmpNameTextBox.TabIndex = 47;
+            this.EmpNameTextBox.TabIndex = 3;
             // 
             // DeptNameTextBox
             // 
@@ -186,6 +187,7 @@
             this.DeptNameTextBox.ReadOnly = true;
             this.DeptNameTextBox.Size = new System.Drawing.Size(152, 21);
             this.DeptNameTextBox.TabIndex = 44;
+            this.DeptNameTextBox.TabStop = false;
             // 
             // PositionLabel
             // 
@@ -219,7 +221,7 @@
             this.DeptCodeComboBox.Location = new System.Drawing.Point(73, 67);
             this.DeptCodeComboBox.Name = "DeptCodeComboBox";
             this.DeptCodeComboBox.Size = new System.Drawing.Size(152, 20);
-            this.DeptCodeComboBox.TabIndex = 37;
+            this.DeptCodeComboBox.TabIndex = 1;
             this.DeptCodeComboBox.SelectedIndexChanged += new System.EventHandler(this.DeptCodeComboBox_SelectedIndexChanged);
             // 
             // EmpCodeLabel
@@ -332,7 +334,7 @@
             this.PwdTextBox.Location = new System.Drawing.Point(232, 153);
             this.PwdTextBox.Name = "PwdTextBox";
             this.PwdTextBox.Size = new System.Drawing.Size(152, 21);
-            this.PwdTextBox.TabIndex = 43;
+            this.PwdTextBox.TabIndex = 7;
             this.PwdTextBox.UseSystemPasswordChar = true;
             // 
             // PositionTextBox
@@ -341,7 +343,7 @@
             this.PositionTextBox.Location = new System.Drawing.Point(73, 196);
             this.PositionTextBox.Name = "PositionTextBox";
             this.PositionTextBox.Size = new System.Drawing.Size(152, 21);
-            this.PositionTextBox.TabIndex = 45;
+            this.PositionTextBox.TabIndex = 8;
             // 
             // EmploymentTypeTextBox
             // 
@@ -349,7 +351,7 @@
             this.EmploymentTypeTextBox.Location = new System.Drawing.Point(232, 196);
             this.EmploymentTypeTextBox.Name = "EmploymentTypeTextBox";
             this.EmploymentTypeTextBox.Size = new System.Drawing.Size(152, 21);
-            this.EmploymentTypeTextBox.TabIndex = 48;
+            this.EmploymentTypeTextBox.TabIndex = 9;
             // 
             // PhoneTextBox
             // 
@@ -357,7 +359,7 @@
             this.PhoneTextBox.Location = new System.Drawing.Point(73, 239);
             this.PhoneTextBox.Name = "PhoneTextBox";
             this.PhoneTextBox.Size = new System.Drawing.Size(152, 21);
-            this.PhoneTextBox.TabIndex = 46;
+            this.PhoneTextBox.TabIndex = 10;
             // 
             // EmailTextBox
             // 
@@ -365,7 +367,7 @@
             this.EmailTextBox.Location = new System.Drawing.Point(232, 239);
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(152, 21);
-            this.EmailTextBox.TabIndex = 49;
+            this.EmailTextBox.TabIndex = 11;
             // 
             // MessengerIDTextBox
             // 
@@ -373,7 +375,7 @@
             this.MessengerIDTextBox.Location = new System.Drawing.Point(392, 239);
             this.MessengerIDTextBox.Name = "MessengerIDTextBox";
             this.MessengerIDTextBox.Size = new System.Drawing.Size(155, 21);
-            this.MessengerIDTextBox.TabIndex = 51;
+            this.MessengerIDTextBox.TabIndex = 12;
             // 
             // MemoTextBox
             // 
@@ -381,7 +383,7 @@
             this.MemoTextBox.Location = new System.Drawing.Point(73, 281);
             this.MemoTextBox.Name = "MemoTextBox";
             this.MemoTextBox.Size = new System.Drawing.Size(474, 21);
-            this.MemoTextBox.TabIndex = 52;
+            this.MemoTextBox.TabIndex = 13;
             // 
             // GenderPanel
             // 
@@ -392,7 +394,7 @@
             this.GenderPanel.Location = new System.Drawing.Point(394, 85);
             this.GenderPanel.Name = "GenderPanel";
             this.GenderPanel.Size = new System.Drawing.Size(133, 64);
-            this.GenderPanel.TabIndex = 62;
+            this.GenderPanel.TabIndex = 4;
             this.GenderPanel.Tag = "";
             // 
             // GenderLabel
@@ -415,7 +417,7 @@
             this.RbtnGenderFemale.Location = new System.Drawing.Point(70, 30);
             this.RbtnGenderFemale.Name = "RbtnGenderFemale";
             this.RbtnGenderFemale.Size = new System.Drawing.Size(37, 19);
-            this.RbtnGenderFemale.TabIndex = 60;
+            this.RbtnGenderFemale.TabIndex = 5;
             this.RbtnGenderFemale.TabStop = true;
             this.RbtnGenderFemale.Text = "여";
             this.RbtnGenderFemale.UseVisualStyleBackColor = true;
@@ -427,7 +429,7 @@
             this.RbtnGenderMale.Location = new System.Drawing.Point(15, 30);
             this.RbtnGenderMale.Name = "RbtnGenderMale";
             this.RbtnGenderMale.Size = new System.Drawing.Size(37, 19);
-            this.RbtnGenderMale.TabIndex = 59;
+            this.RbtnGenderMale.TabIndex = 4;
             this.RbtnGenderMale.TabStop = true;
             this.RbtnGenderMale.Text = "남";
             this.RbtnGenderMale.UseVisualStyleBackColor = true;
@@ -513,5 +515,7 @@
         private System.Windows.Forms.Label GenderLabel;
         private System.Windows.Forms.RadioButton RbtnGenderFemale;
         private System.Windows.Forms.RadioButton RbtnGenderMale;
+
+
     }
 }

@@ -19,10 +19,10 @@ namespace EmployeeManagement.Forms.Employee
             LoadDeptCodes();
         }
 
-        private void LoadDeptCodes()
+        private void LoadDeptCodes() // 부서코드, 부서명 콤보박스에 데이터 로드
         {
             string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
-            string query = "SELECT DeptCode, DeptName FROM Department";
+            string query = "SELECT DeptID, DeptCode, DeptName FROM Department";
 
             SqlConnection conn = new SqlConnection(connectionString);
             SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
@@ -51,13 +51,18 @@ namespace EmployeeManagement.Forms.Employee
                 }
             }
         }
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void buttonSave_Click(object sender, EventArgs e) // 저장 버튼 누른다
         {
-            // 입력값 읽기
-            string deptCode = DeptCodeComboBox.SelectedValue?.ToString();
+            // 입력값 읽기 11
+            // deptcode랑 deptName은 employee DB에 없다. -> deptcode로 deptID를 조회해서 저장을 해야한다
+            int deptId = EmployeeRepository.GetDeptIdByCode(DeptCodeComboBox.SelectedValue?.ToString());
             string empCode = EmpCodeTextBox.Text.Trim();
             string empName = EmpNameTextBox.Text.Trim();
-            string gender = RbtnGenderMale.Checked ? "남" : (RbtnGenderFemale.Checked ? "여" : "");
+            Gender gender = Gender.None;
+            if (RbtnGenderMale.Checked)
+                gender = Gender.남;
+            else if (RbtnGenderFemale.Checked)
+                gender = Gender.여;
             string loginId = LoginIDTextBox.Text.Trim();
             string pwd = PwdTextBox.Text.Trim();
             string position = PositionTextBox.Text.Trim();
@@ -67,14 +72,7 @@ namespace EmployeeManagement.Forms.Employee
             string messengerId = MessengerIDTextBox.Text.Trim();
             string memo = MemoTextBox.Text;
         
-
             // 필수 입력값 체크
-            if (string.IsNullOrEmpty(deptCode))
-            {
-                MessageBox.Show("부서코드를 선택하세요.", "입력 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                DeptCodeComboBox.Focus();
-                return;
-            }
             if (string.IsNullOrEmpty(empCode))
             {
                 MessageBox.Show("사원코드를 입력하세요.", "입력 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -101,10 +99,10 @@ namespace EmployeeManagement.Forms.Employee
             }
             try
             {
-                // EmployeeModel 객체 생성
+                // EmployeeModel 객체 생성 12개
                 var employee = new EmployeeModel
                 {
-                    DeptID = int.Parse(deptCode),
+                    DeptID = deptId,
                     EmpCode = empCode,
                     EmpName = empName,
                     Gender = gender,
@@ -119,7 +117,8 @@ namespace EmployeeManagement.Forms.Employee
                 };
 
                 // EmployeeRepository를 통해 저장
-                bool result = EmployeeRepository.AddEmployee(employee);
+                var repository = new EmployeeRepository();
+                bool result = repository.AddEmployee(employee);
 
                 if (result)
                 {

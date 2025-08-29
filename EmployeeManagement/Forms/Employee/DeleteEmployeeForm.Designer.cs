@@ -68,7 +68,7 @@
             this.BtnCancel.TabIndex = 65;
             this.BtnCancel.Text = "취소";
             this.BtnCancel.UseVisualStyleBackColor = false;
-            this.BtnCancel.Click += new System.EventHandler(this.button3_Click);
+            this.BtnCancel.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // EmpDelLabel
             // 
