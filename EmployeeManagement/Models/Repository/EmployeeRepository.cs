@@ -95,7 +95,7 @@ namespace EmployeeManagement.Models.Repository
         }
 
         // 사원 추가
-        public bool AddEmployee(EmployeeModel employeeData) // 매개변수로 EmployeeModel 객체 받기 12개
+        public void AddEmployee(EmployeeModel employeeData) // 매개변수로 EmployeeModel 객체 받기 12개
         {
             string query = @"INSERT INTO Employee 
                             (DeptID, EmpCode, EmpName, Gender, LoginID, Pwd, Position, 
@@ -123,14 +123,13 @@ namespace EmployeeManagement.Models.Repository
                     cmd.Parameters.Add("@Memo", SqlDbType.NVarChar, 1000).Value = employeeData.Memo ?? string.Empty;
 
                     conn.Open();
-                    int result = cmd.ExecuteNonQuery();
-                    return result > 0;
+                    cmd.ExecuteNonQuery();
+                   
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"사원 추가 중 오류: {ex.Message}");
-                return false;
             }
         }
         // DeptCode로 DeptID를 검색하는 메서드
@@ -223,7 +222,7 @@ namespace EmployeeManagement.Models.Repository
         }
 
         // 사원 삭제
-        public bool DeleteEmployee(int empId)
+        public void DeleteEmployee(int empId)
         {
             string query = "DELETE FROM Employee WHERE EmpID = @EmpID";
 
@@ -232,11 +231,11 @@ namespace EmployeeManagement.Models.Repository
             {
                 cmd.Parameters.AddWithValue("@EmpID", empId);
                 conn.Open();
-                return cmd.ExecuteNonQuery() > 0;
+                cmd.ExecuteNonQuery();
             }
         }
         // 로그인 정보 업데이트
-        public bool UpdateLoginInfo(int EmpID, string LoginID, string Pwd)
+        public void UpdateLoginInfo(int EmpID, string LoginID, string Pwd)
         {
             string query = "UPDATE Employee SET LoginID = @LoginID, Pwd = @Pwd WHERE EmpID = @EmpID";
 
@@ -248,7 +247,7 @@ namespace EmployeeManagement.Models.Repository
                 cmd.Parameters.AddWithValue("@Pwd", Pwd ?? string.Empty);
 
                 conn.Open();
-                return cmd.ExecuteNonQuery() > 0;
+                cmd.ExecuteNonQuery();
             }
         }
     }

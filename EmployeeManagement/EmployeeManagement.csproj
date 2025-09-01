@@ -172,8 +172,6 @@
   <ItemGroup>
     <None Include="Resources\free-icon-user-6607993 %281%291.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

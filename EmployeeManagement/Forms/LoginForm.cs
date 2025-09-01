@@ -16,12 +16,6 @@ namespace EmployeeManagement.Forms
         {
             // 폼 시작 시 로그인ID 텍스트박스에 포커스
             LoginIDTextBox.Focus();
-            
-            // 탭 순서 설정
-            LoginIDTextBox.TabIndex = 0;
-            PwdTextBox.TabIndex = 1;
-            BtnLogin.TabIndex = 2;
-            BtnClose.TabIndex = 3;
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

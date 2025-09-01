@@ -31,22 +31,16 @@ namespace EmployeeManagement
             try
             {
                 var repo = new EmployeeRepository();
-                bool deleteSuccess = repo.DeleteEmployee(empId); // 삭제 결과 반환
+                repo.DeleteEmployee(empId); // 삭제 결과 반환
 
-                if (deleteSuccess)
-                {
+
                     MessageBox.Show("사원이 성공적으로 삭제되었습니다.", "삭제 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("해당 사원을 찾을 수 없습니다.", "삭제 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"삭제 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"삭제 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void BtnClose_Click(object sender, EventArgs e)

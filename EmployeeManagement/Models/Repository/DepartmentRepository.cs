@@ -47,7 +47,7 @@ namespace EmployeeManagement.Models.Repository
         }
 
         // 부서 추가
-        public bool AddDepartment(DepartmentModel department)
+        public void AddDepartment(DepartmentModel department)
         {
             string query = "INSERT INTO Department (DeptCode, DeptName, Memo) VALUES (@DeptCode, @DeptName, @Memo)";
 
@@ -59,7 +59,7 @@ namespace EmployeeManagement.Models.Repository
                 cmd.Parameters.AddWithValue("@Memo", department.Memo ?? string.Empty);
 
                 conn.Open();
-                return cmd.ExecuteNonQuery() > 0;
+                cmd.ExecuteNonQuery();
             }
         }
 
@@ -77,11 +77,12 @@ namespace EmployeeManagement.Models.Repository
                 cmd.Parameters.AddWithValue("@Memo", department.Memo ?? string.Empty);
 
                 conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
 
         // 부서 삭제
-        public bool DeleteDepartment(int deptID)
+        public void DeleteDepartment(int deptID)
         {
             string query = "DELETE FROM Department WHERE DeptID = @DeptID";
 
@@ -90,7 +91,7 @@ namespace EmployeeManagement.Models.Repository
             {
                 cmd.Parameters.AddWithValue("@DeptID", deptID);
                 conn.Open();
-                return cmd.ExecuteNonQuery() > 0;
+                cmd.ExecuteNonQuery();
             }
         }
     }

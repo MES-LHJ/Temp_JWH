@@ -25,21 +25,16 @@ namespace EmployeeManagement.Forms.Department
             try
             {
                 var repository = new DepartmentRepository();
-                bool success = repository.DeleteDepartment(this.DeptID); // 부서 삭제 메서드 호출
-                if (success)
-                {
+                repository.DeleteDepartment(this.DeptID); // 부서 삭제 메서드 호출
+
                     MessageBox.Show("삭제 성공");
                     this.DialogResult = DialogResult.OK;
                     this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("삭제 실패");
-                }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"부서 삭제 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"부서 삭제 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }

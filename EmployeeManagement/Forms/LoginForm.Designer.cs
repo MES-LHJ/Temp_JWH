@@ -52,7 +52,7 @@
             this.BtnClose.Margin = new System.Windows.Forms.Padding(0);
             this.BtnClose.Name = "BtnClose";
             this.BtnClose.Size = new System.Drawing.Size(137, 32);
-            this.BtnClose.TabIndex = 43;
+            this.BtnClose.TabIndex = 3;
             this.BtnClose.Text = "종료";
             this.BtnClose.UseVisualStyleBackColor = false;
             this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
@@ -63,7 +63,7 @@
             this.PwdTextBox.Location = new System.Drawing.Point(268, 137);
             this.PwdTextBox.Name = "PwdTextBox";
             this.PwdTextBox.Size = new System.Drawing.Size(164, 21);
-            this.PwdTextBox.TabIndex = 42;
+            this.PwdTextBox.TabIndex = 1;
             this.PwdTextBox.UseSystemPasswordChar = true;
             // 
             // BtnLogin
@@ -76,7 +76,7 @@
             this.BtnLogin.Margin = new System.Windows.Forms.Padding(0);
             this.BtnLogin.Name = "BtnLogin";
             this.BtnLogin.Size = new System.Drawing.Size(137, 32);
-            this.BtnLogin.TabIndex = 41;
+            this.BtnLogin.TabIndex = 2;
             this.BtnLogin.Text = "로그인";
             this.BtnLogin.UseVisualStyleBackColor = false;
             this.BtnLogin.Click += new System.EventHandler(this.BtnSave_Click);
@@ -87,7 +87,7 @@
             this.LoginIDTextBox.Location = new System.Drawing.Point(76, 137);
             this.LoginIDTextBox.Name = "LoginIDTextBox";
             this.LoginIDTextBox.Size = new System.Drawing.Size(164, 21);
-            this.LoginIDTextBox.TabIndex = 40;
+            this.LoginIDTextBox.TabIndex = 0;
             // 
             // PwdLabel
             // 

@@ -216,22 +216,15 @@ namespace EmployeeManagement.Forms.Department
                 // DepartmentRepository 인스턴스 생성
                 var repository = new DepartmentRepository();
 
-                bool success = repository.AddDepartment(department); // 부서 추가 메서드 호출
-
-                if (success)
-                {
-                    MessageBox.Show("부서가 성공적으로 추가되었습니다.");
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("부서 추가에 실패했습니다.");
-                }
+                repository.AddDepartment(department); // 부서 추가 메서드 호출    
+                MessageBox.Show("부서가 성공적으로 추가되었습니다.");
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+                
             }
             catch (Exception ex)
             {
-                MessageBox.Show("오류: " + ex.Message);
+                MessageBox.Show($"부서 추가 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
