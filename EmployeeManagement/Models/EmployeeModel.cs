@@ -9,13 +9,6 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Models
 {
-    public enum Gender
-    {
-        None = 0,
-        남 = 1,
-        여 = 2
-    }
-
     public class EmployeeModel
     {
         [DisplayName("사원ID")]
@@ -30,12 +23,8 @@ namespace EmployeeManagement.Models
         [DisplayName("사원명")]
         public string EmpName { get; set; }
 
-        // 이넘 으로 바꾸는 중
-
         [DisplayName("성별")]
         public Gender Gender { get; set; }
-
-        // 이넘 으로 바꾸는 중
 
         [DisplayName("로그인ID")]
         public string LoginID { get; set; }
@@ -60,6 +49,9 @@ namespace EmployeeManagement.Models
 
         [DisplayName("메모")]
         public string Memo { get; set; }
+        
+        [DisplayName("사진경로")]
+        public string ImagePath { get; set; }
 
         // 조인용 속성 (읽기 전용)
         [DisplayName("부서코드")]

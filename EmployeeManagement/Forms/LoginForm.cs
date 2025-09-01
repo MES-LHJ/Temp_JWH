@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeManagement.Models.Repository;
+using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -21,8 +22,8 @@ namespace EmployeeManagement.Forms
         private void BtnSave_Click(object sender, EventArgs e)
         {
             // 입력값 검증
-            string loginId = LoginIDTextBox.Text.Trim();
-            string password = PwdTextBox.Text.Trim();
+            string loginId = LoginIDTextBox.Text;
+            string password = PwdTextBox.Text;
 
             if (string.IsNullOrEmpty(loginId))
             {
@@ -39,7 +40,8 @@ namespace EmployeeManagement.Forms
             }
 
             // 로그인 검증
-            if (ValidateLogin(loginId, password))
+            var loginRepository = new LoginRepository();
+            if (loginRepository.ValidateLogin(loginId, password))
             {
                 MessageBox.Show("로그인 성공!", "로그인", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
@@ -56,32 +58,6 @@ namespace EmployeeManagement.Forms
         private void BtnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private bool ValidateLogin(string loginId, string password)
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
-            string query = @"SELECT COUNT(*) FROM Employee WHERE LoginID = @LoginID AND Pwd = @Pwd";
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@LoginID", loginId);
-                    cmd.Parameters.AddWithValue("@Pwd", password);
-
-                    conn.Open();
-                    int count = (int)cmd.ExecuteScalar();
-                    
-                    return count > 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"데이터베이스 연결 오류: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
         }
     }
 }

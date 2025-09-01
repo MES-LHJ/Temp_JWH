@@ -37,6 +37,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.DpetDgv = new System.Windows.Forms.DataGridView();
+            this.DeptID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -135,12 +136,20 @@
             this.DpetDgv.AllowUserToDeleteRows = false;
             this.DpetDgv.BackgroundColor = System.Drawing.Color.White;
             this.DpetDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DpetDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DeptID});
             this.DpetDgv.Location = new System.Drawing.Point(66, 99);
             this.DpetDgv.Name = "DpetDgv";
             this.DpetDgv.ReadOnly = true;
             this.DpetDgv.RowTemplate.Height = 23;
             this.DpetDgv.Size = new System.Drawing.Size(466, 178);
             this.DpetDgv.TabIndex = 14;
+            // 
+            // DeptID
+            // 
+            this.DeptID.HeaderText = "부서ID";
+            this.DeptID.Name = "DeptID";
+            this.DeptID.ReadOnly = true;
             // 
             // ManageDeptForm
             // 
@@ -173,5 +182,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView DpetDgv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DeptID;
     }
 }

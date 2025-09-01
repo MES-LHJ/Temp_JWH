@@ -214,7 +214,6 @@
             this.Controls.Add(this.MainBackGround);
             this.Name = "ManageDeptEmpForm";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.DepartmentEmployeeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MainBackGround)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

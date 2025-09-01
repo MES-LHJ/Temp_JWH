@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Department\AddDepartmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department\AddDepartmentForm.Designer.cs">
+      <DependentUpon>AddDepartmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Employee\AddEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,9 +70,6 @@
     </Compile>
     <Compile Include="Forms\Employee\DeleteEmployeeForm.Designer.cs">
       <DependentUpon>DeleteEmployeeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Department\AddDepartmentForm.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Department\ModifyDepartmentForm.cs">
       <SubType>Form</SubType>
@@ -104,12 +107,17 @@
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\Repository\EmployeeRepository.cs" />
     <Compile Include="Models\Repository\DepartmentRepository.cs" />
+    <Compile Include="Models\Repository\LoginRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Department\AddDepartmentForm.resx">
+      <DependentUpon>AddDepartmentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Employee\AddEmployeeForm.resx">
       <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,9 +126,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Employee\DeleteEmployeeForm.resx">
       <DependentUpon>DeleteEmployeeForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Department\AddDepartmentForm.resx">
-      <DependentUpon>AddDepartmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Department\ModifyDepartmentForm.resx">
       <DependentUpon>ModifyDepartmentForm.cs</DependentUpon>

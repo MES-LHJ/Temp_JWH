@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement.Forms.Department;
+using EmployeeManagement.Models;
 using EmployeeManagement.Models.Repository;
 using System;
 using System.Windows.Forms;
@@ -10,9 +11,6 @@ namespace EmployeeManagement.Forms.Employee
         public ManageDeptEmpForm()
         {
             InitializeComponent();
-        }
-        private void DepartmentEmployeeForm_Load(object sender, EventArgs e)
-        {
             LoadEmployeeData();
         }
 
@@ -126,9 +124,9 @@ namespace EmployeeManagement.Forms.Employee
 
             if (row != null)
             {
-                string loginId = row.Cells["LoginID"].Value?.ToString();
-                string pwd = row.Cells["Pwd"].Value?.ToString();
-                string empID = row.Cells["empID"].Value?.ToString();
+                string loginId = row.Cells[nameof(EmployeeModel.LoginID)].Value?.ToString();
+                string pwd = row.Cells[nameof(EmployeeModel.Pwd)].Value?.ToString();
+                string empID = row.Cells[nameof(EmployeeModel.EmpID)].Value?.ToString();
 
                 using (var dlg = new LoginInformationForm(loginId, pwd, empID))
                 {
@@ -172,7 +170,7 @@ namespace EmployeeManagement.Forms.Employee
         //비밀번호 마스킹
         private void EmpDgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (EmpDgv.Columns[e.ColumnIndex].Name == "Pwd" && e.Value != null)
+            if (EmpDgv.Columns[e.ColumnIndex].Name == nameof(EmployeeModel.Pwd) && e.Value != null)
             {
                 e.Value = new string('*', e.Value.ToString().Length);
                 e.FormattingApplied = true;

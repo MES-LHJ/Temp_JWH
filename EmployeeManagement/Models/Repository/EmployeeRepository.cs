@@ -64,7 +64,7 @@ namespace EmployeeManagement.Models.Repository
 
             return employees;
         }
-        // Gender enum과 문자열 간 변환 헬퍼 메서드
+        // Gender enum 문자열 변환 ?
         private static Gender ParseGender(string genderString)
         {
             if (string.IsNullOrEmpty(genderString))
@@ -78,19 +78,6 @@ namespace EmployeeManagement.Models.Repository
                     return Gender.여;
                 default:
                     return Gender.None;
-            }
-        }
-
-        private static string GenderToString(Gender gender) 
-        {
-            switch (gender)
-            {
-                case Gender.남:
-                    return "남";
-                case Gender.여:
-                    return "여";
-                default:
-                    return string.Empty;
             }
         }
 
@@ -112,7 +99,7 @@ namespace EmployeeManagement.Models.Repository
                     cmd.Parameters.Add("@DeptID", SqlDbType.Int).Value = employeeData.DeptID;
                     cmd.Parameters.Add("@EmpCode", SqlDbType.NVarChar, 10).Value = employeeData.EmpCode ?? string.Empty;
                     cmd.Parameters.Add("@EmpName", SqlDbType.NVarChar, 20).Value = employeeData.EmpName ?? string.Empty;
-                    cmd.Parameters.Add("@Gender", SqlDbType.NVarChar, 2).Value = GenderToString(employeeData.Gender);
+                    cmd.Parameters.Add("@Gender", SqlDbType.NVarChar, 2).Value = employeeData.Gender;
                     cmd.Parameters.Add("@LoginID", SqlDbType.NVarChar, 25).Value = employeeData.LoginID ?? string.Empty;
                     cmd.Parameters.Add("@Pwd", SqlDbType.NVarChar, 50).Value = employeeData.Pwd ?? string.Empty;
                     cmd.Parameters.Add("@Position", SqlDbType.NVarChar, 30).Value = employeeData.Position ?? string.Empty;
@@ -192,7 +179,7 @@ namespace EmployeeManagement.Models.Repository
                     cmdEmp.Parameters.AddWithValue("@DeptID", employee.DeptID);
                     cmdEmp.Parameters.AddWithValue("@EmpCode", employee.EmpCode);
                     cmdEmp.Parameters.AddWithValue("@EmpName", employee.EmpName);
-                    cmdEmp.Parameters.AddWithValue("@Gender", GenderToString(employee.Gender));
+                    cmdEmp.Parameters.AddWithValue("@Gender", employee.Gender);
                     cmdEmp.Parameters.AddWithValue("@Position", employee.Position ?? string.Empty);
                     cmdEmp.Parameters.AddWithValue("@EmploymentType", employee.EmploymentType ?? string.Empty);
                     cmdEmp.Parameters.AddWithValue("@Phone", employee.Phone ?? string.Empty);

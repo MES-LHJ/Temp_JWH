@@ -286,6 +286,7 @@
             // 
             // DeptCodeComboBox
             // 
+            this.DeptCodeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DeptCodeComboBox.FormattingEnabled = true;
             this.DeptCodeComboBox.Location = new System.Drawing.Point(72, 71);
             this.DeptCodeComboBox.Name = "DeptCodeComboBox";
