@@ -1,56 +1,70 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace EmployeeManagement.Models.Repository
 {
     internal class EmployeeRepository
     {
-        private static string ConnectionString => ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
-        Models.EmployeeModel employee = new EmployeeModel();
+        // 🔹 Lazy<T>를 이용한 싱글톤 인스턴스
+        private static readonly Lazy<EmployeeRepository> _instance =
+            new Lazy<EmployeeRepository>(() => new EmployeeRepository());
+
+        // 🔹 외부에서 접근할 수 있는 프로퍼티
+        public static EmployeeRepository Instance => _instance.Value;
+
+        // 🔹 private 생성자 (외부에서 new 금지)
+        private readonly string connectionString;
+        private EmployeeRepository() 
+        {   connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString; }
+
+
         // 모든 사원 데이터 조회 (부서 정보 포함)
-        public static List<EmployeeModel> GetAllEmployees()
+        public BindingList<EmployeeModel> GetAllEmployees()
         {
-            var employees = new List<EmployeeModel>();
+            var employees = new BindingList<EmployeeModel>();
             string query = @"
         SELECT e.EmpID, e.DeptID, e.EmpCode, e.EmpName, e.Gender,
                e.LoginID, e.Pwd, e.Position, e.EmploymentType,
                e.Phone, e.Email, e.MessengerID, e.Memo,
                d.DeptCode, d.DeptName
         FROM Employee e 
-        JOIN Department d ON e.DeptID = d.DeptID";
+        JOIN Department d ON e.DeptID = d.DeptID
+        ORDER BY e.EmpCode";
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     conn.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        // Helper 함수 사용
                         while (reader.Read())
                         {
                             var emp = new EmployeeModel //15개
                             {
-                                EmpID = reader.GetInt32(reader.GetOrdinal("EmpID")),
-                                DeptID = reader.GetInt32(reader.GetOrdinal("DeptID")),
-                                EmpCode = reader.GetString(reader.GetOrdinal("EmpCode")),
-                                EmpName = reader.GetString(reader.GetOrdinal("EmpName")),
-                                Gender = ParseGender(reader.IsDBNull(reader.GetOrdinal("Gender")) ? string.Empty : reader.GetString(reader.GetOrdinal("Gender"))),
-                                LoginID = reader.IsDBNull(reader.GetOrdinal("LoginID")) ? string.Empty : reader.GetString(reader.GetOrdinal("LoginID")),
-                                Pwd = reader.IsDBNull(reader.GetOrdinal("Pwd")) ? string.Empty : reader.GetString(reader.GetOrdinal("Pwd")),
-                                Position = reader.IsDBNull(reader.GetOrdinal("Position")) ? string.Empty : reader.GetString(reader.GetOrdinal("Position")),
-                                EmploymentType = reader.IsDBNull(reader.GetOrdinal("EmploymentType")) ? string.Empty : reader.GetString(reader.GetOrdinal("EmploymentType")),
-                                Phone = reader.IsDBNull(reader.GetOrdinal("Phone")) ? string.Empty : reader.GetString(reader.GetOrdinal("Phone")),
-                                Email = reader.IsDBNull(reader.GetOrdinal("Email")) ? string.Empty : reader.GetString(reader.GetOrdinal("Email")),
-                                MessengerID = reader.IsDBNull(reader.GetOrdinal("MessengerID")) ? string.Empty : reader.GetString(reader.GetOrdinal("MessengerID")),
-                                Memo = reader.IsDBNull(reader.GetOrdinal("Memo")) ? string.Empty : reader.GetString(reader.GetOrdinal("Memo")),
-                                DeptCode = reader.GetString(reader.GetOrdinal("DeptCode")),
-                                DeptName = reader.GetString(reader.GetOrdinal("DeptName"))
+                                EmpID = reader.GetInt32(reader.GetOrdinal(nameof(EmployeeModel.EmpID))),
+                                DeptID = reader.GetInt32(reader.GetOrdinal(nameof(EmployeeModel.DeptID))),
+                                EmpCode = reader.GetString(reader.GetOrdinal(nameof(EmployeeModel.EmpCode))),
+                                EmpName = reader.GetString(reader.GetOrdinal(nameof(EmployeeModel.EmpName))),
+                                Gender = ParseGender(reader.IsDBNull(reader.GetOrdinal(nameof(EmployeeModel.Gender))) ? string.Empty : reader.GetString(reader.GetOrdinal(nameof(EmployeeModel.Gender)))), // string.empty -> None
+                                LoginID = reader.IsDBNull(reader.GetOrdinal(nameof(EmployeeModel.LoginID))) ? string.Empty : reader.GetString(reader.GetOrdinal(nameof(EmployeeModel.LoginID))),
+                                Pwd = reader.IsDBNull(reader.GetOrdinal(nameof(EmployeeModel.Pwd))) ? string.Empty : reader.GetString(reader.GetOrdinal(nameof(EmployeeModel.Pwd))),
+                                Position = reader.IsDBNull(reader.GetOrdinal(nameof(EmployeeModel.Position))) ? string.Empty : reader.GetString(reader.GetOrdinal(nameof(EmployeeModel.Position))),
+                                EmploymentType = reader.IsDBNull(reader.GetOrdinal(nameof(EmployeeModel.EmploymentType))) ? string.Empty : reader.GetString(reader.GetOrdinal(nameof(EmployeeModel.EmploymentType))),
+                                Phone = reader.IsDBNull(reader.GetOrdinal(nameof(EmployeeModel.Phone))) ? string.Empty : reader.GetString(reader.GetOrdinal(nameof(EmployeeModel.Phone))),
+                                Email = reader.IsDBNull(reader.GetOrdinal(nameof(EmployeeModel.Email))) ? string.Empty : reader.GetString(reader.GetOrdinal(nameof(EmployeeModel.Email))),
+                                MessengerID = reader.IsDBNull(reader.GetOrdinal(nameof(EmployeeModel.MessengerID))) ? string.Empty : reader.GetString(reader.GetOrdinal(nameof(EmployeeModel.MessengerID))),
+                                Memo = reader.IsDBNull(reader.GetOrdinal(nameof(EmployeeModel.Memo))) ? string.Empty : reader.GetString(reader.GetOrdinal(nameof(EmployeeModel.Memo))),
+                                DeptCode = reader.GetString(reader.GetOrdinal(nameof(EmployeeModel.DeptCode))),
+                                DeptName = reader.GetString(reader.GetOrdinal(nameof(EmployeeModel.DeptName)))
                             };
                             employees.Add(emp);
                         }
@@ -82,8 +96,19 @@ namespace EmployeeManagement.Models.Repository
         }
 
         // 사원 추가
-        public void AddEmployee(EmployeeModel employeeData) // 매개변수로 EmployeeModel 객체 받기 12개
+        public bool AddEmployee(EmployeeModel employeeData) // 매개변수로 EmployeeModel 객체 받기 12개
         {
+            // Phone 유효성 검사
+            if (!IsValidPhone(employeeData.Phone))
+            {
+                throw new ArgumentException("휴대전화 번호 형식이 올바르지 않습니다. (예: 010-1234-5678)");
+            }
+
+            // Email 유효성 검사
+            if (!IsValidEmail(employeeData.Email))
+            {
+                throw new ArgumentException("이메일 주소 형식이 올바르지 않습니다. (예: user@example.com)");
+            }
             string query = @"INSERT INTO Employee 
                             (DeptID, EmpCode, EmpName, Gender, LoginID, Pwd, Position, 
                              EmploymentType, Phone, Email, MessengerID, Memo) 
@@ -93,13 +118,14 @@ namespace EmployeeManagement.Models.Repository
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn)) //12개 deptcode deptname 제외
                 {
                     cmd.Parameters.Add("@DeptID", SqlDbType.Int).Value = employeeData.DeptID;
                     cmd.Parameters.Add("@EmpCode", SqlDbType.NVarChar, 10).Value = employeeData.EmpCode ?? string.Empty;
                     cmd.Parameters.Add("@EmpName", SqlDbType.NVarChar, 20).Value = employeeData.EmpName ?? string.Empty;
-                    cmd.Parameters.Add("@Gender", SqlDbType.NVarChar, 2).Value = employeeData.Gender;
+                    cmd.Parameters.Add("@Gender", SqlDbType.NVarChar, 2).Value = 
+                        employeeData.Gender == Gender.None ? string.Empty : employeeData.Gender.ToString();
                     cmd.Parameters.Add("@LoginID", SqlDbType.NVarChar, 25).Value = employeeData.LoginID ?? string.Empty;
                     cmd.Parameters.Add("@Pwd", SqlDbType.NVarChar, 50).Value = employeeData.Pwd ?? string.Empty;
                     cmd.Parameters.Add("@Position", SqlDbType.NVarChar, 30).Value = employeeData.Position ?? string.Empty;
@@ -110,17 +136,46 @@ namespace EmployeeManagement.Models.Repository
                     cmd.Parameters.Add("@Memo", SqlDbType.NVarChar, 1000).Value = employeeData.Memo ?? string.Empty;
 
                     conn.Open();
-                    cmd.ExecuteNonQuery();
+                    return cmd.ExecuteNonQuery() > 0;
                    
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"사원 추가 중 오류: {ex.Message}");
+                return false;
             }
         }
+
+        // Phone 유효성 검사 메서드
+        private bool IsValidPhone(string phone)
+        {
+            if (string.IsNullOrWhiteSpace(phone))
+                return true; // 선택사항이므로 빈 값 허용
+
+            // 11자리 숫자만 있는 경우 하이픈 추가
+            if (Regex.IsMatch(phone, @"^\d{11}$"))
+            {
+                phone = phone.Insert(3, "-").Insert(8, "-");
+            }
+
+            // 휴대전화 패턴: 010, 011, 016, 017, 018, 019로 시작하는 번호
+            string phonePattern = @"^01[0-9]-\d{3,4}-\d{4}$";
+            return Regex.IsMatch(phone, phonePattern);
+        }
+        // Email 유효성 검사 메서드
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return true; // 선택사항이므로 빈 값 허용
+
+            // 이메일 패턴 검사
+            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            return Regex.IsMatch(email, emailPattern);
+        }
+
         // DeptCode로 DeptID를 검색하는 메서드
-        public static int GetDeptIdByCode(string deptCode)
+        public int GetDeptIdByCode(string deptCode)
         {
             if (string.IsNullOrEmpty(deptCode))
                 return 0;
@@ -129,7 +184,7 @@ namespace EmployeeManagement.Models.Repository
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@DeptCode", deptCode);
@@ -147,9 +202,9 @@ namespace EmployeeManagement.Models.Repository
         }
 
         // 사원 수정
-        public void UpdateEmployee(EmployeeModel employee)
+        public bool UpdateEmployee(EmployeeModel employee)
         {
-            string queryEmployee = @"
+            string query = @"
         UPDATE Employee 
         SET DeptID = @DeptID,
             EmpCode = @EmpCode,
@@ -163,78 +218,62 @@ namespace EmployeeManagement.Models.Repository
             Memo = @Memo
         WHERE EmpID = @EmpID;";
 
-            string queryDept = @"
-        UPDATE Department
-        SET DeptName = @DeptName
-        WHERE DeptID = @DeptID;";
-
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            try
             {
-                conn.Open();
-                using (SqlTransaction tran = conn.BeginTransaction())
-                using (SqlCommand cmdEmp = new SqlCommand(queryEmployee, conn, tran))
-                using (SqlCommand cmdDept = new SqlCommand(queryDept, conn, tran))
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    // Employee 파라미터
-                    cmdEmp.Parameters.AddWithValue("@DeptID", employee.DeptID);
-                    cmdEmp.Parameters.AddWithValue("@EmpCode", employee.EmpCode);
-                    cmdEmp.Parameters.AddWithValue("@EmpName", employee.EmpName);
-                    cmdEmp.Parameters.AddWithValue("@Gender", employee.Gender);
-                    cmdEmp.Parameters.AddWithValue("@Position", employee.Position ?? string.Empty);
-                    cmdEmp.Parameters.AddWithValue("@EmploymentType", employee.EmploymentType ?? string.Empty);
-                    cmdEmp.Parameters.AddWithValue("@Phone", employee.Phone ?? string.Empty);
-                    cmdEmp.Parameters.AddWithValue("@Email", employee.Email ?? string.Empty);
-                    cmdEmp.Parameters.AddWithValue("@MessengerID", employee.MessengerID ?? string.Empty);
-                    cmdEmp.Parameters.AddWithValue("@Memo", employee.Memo ?? string.Empty);
-                    cmdEmp.Parameters.AddWithValue("@EmpID", employee.EmpID);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.DeptID), employee.DeptID);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpCode), employee.EmpCode ?? string.Empty);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpName), employee.EmpName ?? string.Empty);
+                    // Gender enum을 문자열로 변환
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Gender), employee.Gender == Models.Gender.None ? string.Empty : employee.Gender.ToString());
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Position), employee.Position ?? string.Empty);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmploymentType), employee.EmploymentType ?? string.Empty);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Phone), employee.Phone ?? string.Empty);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Email), employee.Email ?? string.Empty);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.MessengerID), employee.MessengerID ?? string.Empty);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Memo), employee.Memo ?? string.Empty);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpID), employee.EmpID);
 
-                    // Department 파라미터
-                    cmdDept.Parameters.AddWithValue("@DeptID", employee.DeptID); 
-                    cmdDept.Parameters.AddWithValue("@DeptCode", employee.DeptCode);
-                    cmdDept.Parameters.AddWithValue("@DeptName", employee.DeptName ?? string.Empty);
-
-                    try
-                    {
-                        cmdEmp.ExecuteNonQuery();
-                        cmdDept.ExecuteNonQuery();
-                        tran.Commit();
-                    }
-                    catch
-                    {
-                        tran.Rollback();
-                        throw;
-                    }
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"사원 수정 중 오류 발생: {ex.Message}", ex);
             }
         }
 
         // 사원 삭제
-        public void DeleteEmployee(int empId)
+        public bool DeleteEmployee(int empId)
         {
             string query = "DELETE FROM Employee WHERE EmpID = @EmpID";
 
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
-                cmd.Parameters.AddWithValue("@EmpID", empId);
+                cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpID), empId);
                 conn.Open();
-                cmd.ExecuteNonQuery();
+                return cmd.ExecuteNonQuery() > 0;
             }
         }
         // 로그인 정보 업데이트
-        public void UpdateLoginInfo(int EmpID, string LoginID, string Pwd)
+        public bool UpdateLoginInfo(int EmpID, string LoginID, string Pwd)
         {
             string query = "UPDATE Employee SET LoginID = @LoginID, Pwd = @Pwd WHERE EmpID = @EmpID";
 
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
-                cmd.Parameters.AddWithValue("@EmpID", EmpID);     
-                cmd.Parameters.AddWithValue("@LoginID", LoginID ?? string.Empty);
-                cmd.Parameters.AddWithValue("@Pwd", Pwd ?? string.Empty);
+                cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpID), EmpID);     
+                cmd.Parameters.AddWithValue(nameof(EmployeeModel.LoginID), LoginID ?? string.Empty);
+                cmd.Parameters.AddWithValue(nameof(EmployeeModel.Pwd), Pwd ?? string.Empty);
 
                 conn.Open();
-                cmd.ExecuteNonQuery();
+                return cmd.ExecuteNonQuery() > 0;
             }
         }
     }

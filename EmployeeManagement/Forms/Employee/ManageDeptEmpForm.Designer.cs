@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.MainBackGround = new System.Windows.Forms.DataGridView();
             this.BtnDepartment = new System.Windows.Forms.Button();
             this.BtnRefresh = new System.Windows.Forms.Button();
@@ -42,10 +43,28 @@
             this.MyImage = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.EmpDgv = new System.Windows.Forms.DataGridView();
+            this.empIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deptIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loginIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pwdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.positionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employmentTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.messengerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.memoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imagePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deptCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deptNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.MainBackGround)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmpDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // MainBackGround
@@ -151,11 +170,11 @@
             // 
             this.MainTileLabel.AutoSize = true;
             this.MainTileLabel.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.MainTileLabel.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.MainTileLabel.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.MainTileLabel.Location = new System.Drawing.Point(45, 15);
             this.MainTileLabel.Margin = new System.Windows.Forms.Padding(3);
             this.MainTileLabel.Name = "MainTileLabel";
-            this.MainTileLabel.Size = new System.Drawing.Size(71, 16);
+            this.MainTileLabel.Size = new System.Drawing.Size(74, 21);
             this.MainTileLabel.TabIndex = 10;
             this.MainTileLabel.Text = "부서사원";
             // 
@@ -193,9 +212,30 @@
             // 
             // EmpDgv
             // 
+            this.EmpDgv.AllowUserToAddRows = false;
+            this.EmpDgv.AllowUserToDeleteRows = false;
+            this.EmpDgv.AutoGenerateColumns = false;
             this.EmpDgv.BackgroundColor = System.Drawing.Color.White;
             this.EmpDgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.EmpDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.EmpDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.empIDDataGridViewTextBoxColumn,
+            this.deptIDDataGridViewTextBoxColumn,
+            this.empCodeDataGridViewTextBoxColumn,
+            this.empNameDataGridViewTextBoxColumn,
+            this.genderDataGridViewTextBoxColumn,
+            this.loginIDDataGridViewTextBoxColumn,
+            this.pwdDataGridViewTextBoxColumn,
+            this.positionDataGridViewTextBoxColumn,
+            this.employmentTypeDataGridViewTextBoxColumn,
+            this.phoneDataGridViewTextBoxColumn,
+            this.emailDataGridViewTextBoxColumn,
+            this.messengerIDDataGridViewTextBoxColumn,
+            this.memoDataGridViewTextBoxColumn,
+            this.imagePathDataGridViewTextBoxColumn,
+            this.deptCodeDataGridViewTextBoxColumn,
+            this.deptNameDataGridViewTextBoxColumn});
+            this.EmpDgv.DataSource = this.employeeModelBindingSource;
             this.EmpDgv.Location = new System.Drawing.Point(58, 134);
             this.EmpDgv.Name = "EmpDgv";
             this.EmpDgv.ReadOnly = true;
@@ -203,6 +243,122 @@
             this.EmpDgv.Size = new System.Drawing.Size(1110, 218);
             this.EmpDgv.TabIndex = 12;
             this.EmpDgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.EmpDgv_CellFormatting);
+            // 
+            // empIDDataGridViewTextBoxColumn
+            // 
+            this.empIDDataGridViewTextBoxColumn.DataPropertyName = "EmpID";
+            this.empIDDataGridViewTextBoxColumn.HeaderText = "사원ID";
+            this.empIDDataGridViewTextBoxColumn.Name = "empIDDataGridViewTextBoxColumn";
+            this.empIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // deptIDDataGridViewTextBoxColumn
+            // 
+            this.deptIDDataGridViewTextBoxColumn.DataPropertyName = "DeptID";
+            this.deptIDDataGridViewTextBoxColumn.HeaderText = "부서ID";
+            this.deptIDDataGridViewTextBoxColumn.Name = "deptIDDataGridViewTextBoxColumn";
+            this.deptIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // empCodeDataGridViewTextBoxColumn
+            // 
+            this.empCodeDataGridViewTextBoxColumn.DataPropertyName = "EmpCode";
+            this.empCodeDataGridViewTextBoxColumn.HeaderText = "사원코드";
+            this.empCodeDataGridViewTextBoxColumn.Name = "empCodeDataGridViewTextBoxColumn";
+            this.empCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // empNameDataGridViewTextBoxColumn
+            // 
+            this.empNameDataGridViewTextBoxColumn.DataPropertyName = "EmpName";
+            this.empNameDataGridViewTextBoxColumn.HeaderText = "사원명";
+            this.empNameDataGridViewTextBoxColumn.Name = "empNameDataGridViewTextBoxColumn";
+            this.empNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // genderDataGridViewTextBoxColumn
+            // 
+            this.genderDataGridViewTextBoxColumn.DataPropertyName = "Gender";
+            this.genderDataGridViewTextBoxColumn.HeaderText = "성별";
+            this.genderDataGridViewTextBoxColumn.Name = "genderDataGridViewTextBoxColumn";
+            this.genderDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // loginIDDataGridViewTextBoxColumn
+            // 
+            this.loginIDDataGridViewTextBoxColumn.DataPropertyName = "LoginID";
+            this.loginIDDataGridViewTextBoxColumn.HeaderText = "로그인ID";
+            this.loginIDDataGridViewTextBoxColumn.Name = "loginIDDataGridViewTextBoxColumn";
+            this.loginIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // pwdDataGridViewTextBoxColumn
+            // 
+            this.pwdDataGridViewTextBoxColumn.DataPropertyName = "Pwd";
+            this.pwdDataGridViewTextBoxColumn.HeaderText = "비밀번호";
+            this.pwdDataGridViewTextBoxColumn.Name = "pwdDataGridViewTextBoxColumn";
+            this.pwdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // positionDataGridViewTextBoxColumn
+            // 
+            this.positionDataGridViewTextBoxColumn.DataPropertyName = "Position";
+            this.positionDataGridViewTextBoxColumn.HeaderText = "직위";
+            this.positionDataGridViewTextBoxColumn.Name = "positionDataGridViewTextBoxColumn";
+            this.positionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // employmentTypeDataGridViewTextBoxColumn
+            // 
+            this.employmentTypeDataGridViewTextBoxColumn.DataPropertyName = "EmploymentType";
+            this.employmentTypeDataGridViewTextBoxColumn.HeaderText = "고용형태";
+            this.employmentTypeDataGridViewTextBoxColumn.Name = "employmentTypeDataGridViewTextBoxColumn";
+            this.employmentTypeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // phoneDataGridViewTextBoxColumn
+            // 
+            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
+            this.phoneDataGridViewTextBoxColumn.HeaderText = "휴대전화";
+            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
+            this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "이메일";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // messengerIDDataGridViewTextBoxColumn
+            // 
+            this.messengerIDDataGridViewTextBoxColumn.DataPropertyName = "MessengerID";
+            this.messengerIDDataGridViewTextBoxColumn.HeaderText = "메신저ID";
+            this.messengerIDDataGridViewTextBoxColumn.Name = "messengerIDDataGridViewTextBoxColumn";
+            this.messengerIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // memoDataGridViewTextBoxColumn
+            // 
+            this.memoDataGridViewTextBoxColumn.DataPropertyName = "Memo";
+            this.memoDataGridViewTextBoxColumn.HeaderText = "메모";
+            this.memoDataGridViewTextBoxColumn.Name = "memoDataGridViewTextBoxColumn";
+            this.memoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // imagePathDataGridViewTextBoxColumn
+            // 
+            this.imagePathDataGridViewTextBoxColumn.DataPropertyName = "ImagePath";
+            this.imagePathDataGridViewTextBoxColumn.HeaderText = "사진경로";
+            this.imagePathDataGridViewTextBoxColumn.Name = "imagePathDataGridViewTextBoxColumn";
+            this.imagePathDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // deptCodeDataGridViewTextBoxColumn
+            // 
+            this.deptCodeDataGridViewTextBoxColumn.DataPropertyName = "DeptCode";
+            this.deptCodeDataGridViewTextBoxColumn.HeaderText = "부서코드";
+            this.deptCodeDataGridViewTextBoxColumn.Name = "deptCodeDataGridViewTextBoxColumn";
+            this.deptCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // deptNameDataGridViewTextBoxColumn
+            // 
+            this.deptNameDataGridViewTextBoxColumn.DataPropertyName = "DeptName";
+            this.deptNameDataGridViewTextBoxColumn.HeaderText = "부서명";
+            this.deptNameDataGridViewTextBoxColumn.Name = "deptNameDataGridViewTextBoxColumn";
+            this.deptNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // employeeModelBindingSource
+            // 
+            this.employeeModelBindingSource.DataSource = typeof(EmployeeManagement.Models.EmployeeModel);
             // 
             // ManageDeptEmpForm
             // 
@@ -219,6 +375,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmpDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -239,6 +396,23 @@
         private System.Windows.Forms.PictureBox MyImage;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.DataGridView EmpDgv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn empIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn deptIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn empCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn empNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn loginIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pwdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn positionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn employmentTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn messengerIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn memoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imagePathDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn deptCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn deptNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource employeeModelBindingSource;
     }
 }
 

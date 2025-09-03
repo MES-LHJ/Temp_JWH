@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +53,12 @@
     </Compile>
     <Compile Include="Forms\Department\AddDepartmentForm.Designer.cs">
       <DependentUpon>AddDepartmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department\ChartDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department\ChartDepartment.Designer.cs">
+      <DependentUpon>ChartDepartment.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Employee\AddEmployeeForm.cs">
       <SubType>Form</SubType>
@@ -118,6 +125,9 @@
     <EmbeddedResource Include="Forms\Department\AddDepartmentForm.resx">
       <DependentUpon>AddDepartmentForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department\ChartDepartment.resx">
+      <DependentUpon>ChartDepartment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Employee\AddEmployeeForm.resx">
       <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +165,26 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\DeleteEmployeeForm.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Forms.Department.AddDepartmentForm.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Forms.Department.DeleteDepartmentForm.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Forms.Department.ManageDeptForm.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Forms.Department.ModifyDepartmentForm.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Forms.Employee.AddEmployeeForm.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Forms.Employee.LoginInformationForm.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Forms.Employee.ManageDeptEmpForm.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Forms.Employee.ModifyEmployeeForm.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Forms.LoginForm.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Models.DepartmentModel.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Models.EmployeeModel.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Models.Repository.DepartmentRepository.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Models.Repository.EmployeeRepository.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Models.Repository.LoginRepository.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Properties.Resources1.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\EmployeeManagement.Properties.Settings1.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

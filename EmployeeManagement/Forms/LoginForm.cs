@@ -11,11 +11,6 @@ namespace EmployeeManagement.Forms
         public LoginForm()
         {
             InitializeComponent();
-        }
-
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-            // 폼 시작 시 로그인ID 텍스트박스에 포커스
             LoginIDTextBox.Focus();
         }
 

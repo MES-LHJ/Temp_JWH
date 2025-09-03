@@ -17,16 +17,16 @@ namespace EmployeeManagement.Forms.Department
         {
             LoadDepartmentData();
         }
-        private readonly DepartmentRepository DepartmentModel = new DepartmentRepository();
+        private readonly DepartmentRepository DepartmentModel = DepartmentRepository.Instance;
 
         private void LoadDepartmentData() // 조회기능 
         {
             try
             {
                 var departments = DepartmentModel.GetAllDepartments();
-                DpetDgv.DataSource = null; // 바인딩 초기화
-                DpetDgv.DataSource = departments;
-                DpetDgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                DeptDgv.DataSource = null; // 바인딩 초기화
+                DeptDgv.DataSource = departments;
+                DeptDgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             }
             catch (Exception ex)
             {
@@ -49,15 +49,15 @@ namespace EmployeeManagement.Forms.Department
         private void BtnModify_Click(object sender, EventArgs e) //수정버튼
         {
             DataGridViewRow row = null;
-            if (DpetDgv.SelectedCells.Count > 0)
-                row = DpetDgv.SelectedCells[0].OwningRow;
+            if (DeptDgv.SelectedCells.Count > 0)
+                row = DeptDgv.SelectedCells[0].OwningRow;
 
             if (row != null)
             {
-                int deptId = Convert.ToInt32(row.Cells["DeptID"].Value);
-                string deptCode = row.Cells["DeptCode"].Value?.ToString() ?? string.Empty;
-                string deptName = row.Cells["DeptName"].Value?.ToString() ?? string.Empty;
-                string memo = row.Cells["Memo"].Value?.ToString() ?? string.Empty;
+                int deptId = Convert.ToInt32(row.Cells[nameof(deptIDDataGridViewTextBoxColumn)].Value);
+                string deptCode = row.Cells[nameof(deptCodeDataGridViewTextBoxColumn)].Value?.ToString() ?? string.Empty;
+                string deptName = row.Cells[nameof(deptNameDataGridViewTextBoxColumn)].Value?.ToString() ?? string.Empty;
+                string memo = row.Cells[nameof(memoDataGridViewTextBoxColumn)].Value?.ToString() ?? string.Empty;
 
                 using (var dlg = new ModifyDepartmentForm(deptId, deptCode, deptName, memo))
                 {
@@ -75,14 +75,14 @@ namespace EmployeeManagement.Forms.Department
         private void BtnDelete_Click(object sender, EventArgs e) //삭제버튼
         {
             DataGridViewRow row = null;
-            if (DpetDgv.SelectedCells.Count > 0)
-                row = DpetDgv.SelectedCells[0].OwningRow;
+            if (DeptDgv.SelectedCells.Count > 0)
+                row = DeptDgv.SelectedCells[0].OwningRow;
 
             if (row != null)
             {
-                int deptId = Convert.ToInt32(row.Cells["DeptID"].Value);
-                string deptCode = row.Cells["DeptCode"].Value?.ToString() ?? string.Empty;
-                string deptName = row.Cells["DeptName"].Value?.ToString() ?? string.Empty;
+                int deptId = Convert.ToInt32(row.Cells[nameof(deptIDDataGridViewTextBoxColumn)].Value);
+                string deptCode = row.Cells[nameof(deptCodeDataGridViewTextBoxColumn)].Value?.ToString() ?? string.Empty;
+                string deptName = row.Cells[nameof(deptNameDataGridViewTextBoxColumn)].Value?.ToString() ?? string.Empty;
 
                 using (var dlg = new DeleteDepartmentForm(deptId, deptCode, deptName))
                 {
@@ -101,6 +101,12 @@ namespace EmployeeManagement.Forms.Department
         private void BtnClose_Click(object sender, EventArgs e) //닫기버튼
         {
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var dlg = new ChartDepartment();
+            dlg.ShowDialog();
         }
     }
 }

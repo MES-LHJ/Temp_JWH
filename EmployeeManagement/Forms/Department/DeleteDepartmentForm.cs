@@ -1,5 +1,6 @@
 ﻿using EmployeeManagement.Models.Repository;
 using System;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace EmployeeManagement.Forms.Department
@@ -17,20 +18,27 @@ namespace EmployeeManagement.Forms.Department
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
+            var repo = DepartmentRepository.Instance;
+
             var confirm = MessageBox.Show("정말 삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirm != DialogResult.Yes)
                 return;
-          
+
             try
             {
-                var repository = new DepartmentRepository();
-                repository.DeleteDepartment(this.DeptID); // 부서 삭제 메서드 호출
+                var deleted = repo.DeleteDepartment(this.DeptID);
 
-                    MessageBox.Show("삭제 성공");
+                if (deleted)
+                {
+                    MessageBox.Show("삭제성공");
                     this.DialogResult = DialogResult.OK;
                     this.Close();
-
+                }
+                else
+                {
+                    MessageBox.Show("삭제실패");
+                }
             }
             catch (Exception ex)
             {

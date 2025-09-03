@@ -21,8 +21,8 @@ namespace EmployeeManagement.Models.Repository
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@LoginID", loginId);
-                    cmd.Parameters.AddWithValue("@Pwd", password);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.LoginID), loginId);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Pwd), password);
 
                     conn.Open();
                     int count = (int)cmd.ExecuteScalar();

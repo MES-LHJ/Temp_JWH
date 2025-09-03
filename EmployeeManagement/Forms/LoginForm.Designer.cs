@@ -162,7 +162,6 @@
             this.Controls.Add(this.LoginInfoDgv);
             this.Name = "LoginForm";
             this.Text = "LoginForm";
-            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.LoginInfoPanel.ResumeLayout(false);
             this.LoginInfoPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoginInfoDgv)).EndInit();

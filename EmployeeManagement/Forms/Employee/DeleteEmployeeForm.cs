@@ -13,7 +13,7 @@ namespace EmployeeManagement
             InitializeComponent();
         }
 
-        public DeleteEmployeeForm(string empId, string empCode, string empName) : this()
+        public DeleteEmployeeForm(int empId, string empCode, string empName) : this()
         {
             this.empId = Convert.ToInt32(empId);
             EmpCodeTextBox.Text = empCode;
@@ -30,13 +30,17 @@ namespace EmployeeManagement
 
             try
             {
-                var repo = new EmployeeRepository();
-                repo.DeleteEmployee(empId); // 삭제 결과 반환
-
-
+                var repo = EmployeeRepository.Instance;
+                var success = repo.DeleteEmployee(empId); // 삭제 결과 반환
+                if (success) {
                     MessageBox.Show("사원이 성공적으로 삭제되었습니다.", "삭제 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("사원 삭제에 실패했습니다.", "삭제 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {

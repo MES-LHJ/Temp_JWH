@@ -61,9 +61,12 @@
             this.GenderLabel = new System.Windows.Forms.Label();
             this.RbtnGenderFemale = new System.Windows.Forms.RadioButton();
             this.RbtnGenderMale = new System.Windows.Forms.RadioButton();
+            this.EmpPictureBox = new System.Windows.Forms.PictureBox();
+            this.BtnSelectPicture = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.GenderPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EmpPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnCancel
@@ -72,7 +75,7 @@
             this.BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCancel.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.BtnCancel.ForeColor = System.Drawing.Color.White;
-            this.BtnCancel.Location = new System.Drawing.Point(412, 318);
+            this.BtnCancel.Location = new System.Drawing.Point(504, 461);
             this.BtnCancel.Margin = new System.Windows.Forms.Padding(0);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(137, 32);
@@ -84,9 +87,9 @@
             // EmpCodeTextBox
             // 
             this.EmpCodeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.EmpCodeTextBox.Location = new System.Drawing.Point(73, 110);
+            this.EmpCodeTextBox.Location = new System.Drawing.Point(72, 158);
             this.EmpCodeTextBox.Name = "EmpCodeTextBox";
-            this.EmpCodeTextBox.Size = new System.Drawing.Size(152, 21);
+            this.EmpCodeTextBox.Size = new System.Drawing.Size(157, 21);
             this.EmpCodeTextBox.TabIndex = 2;
             // 
             // BtnSave
@@ -95,7 +98,7 @@
             this.BtnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSave.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.BtnSave.ForeColor = System.Drawing.Color.White;
-            this.BtnSave.Location = new System.Drawing.Point(261, 318);
+            this.BtnSave.Location = new System.Drawing.Point(353, 461);
             this.BtnSave.Margin = new System.Windows.Forms.Padding(0);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(137, 32);
@@ -111,7 +114,7 @@
             this.MemoLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.MemoLabel.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.MemoLabel.ForeColor = System.Drawing.Color.Black;
-            this.MemoLabel.Location = new System.Drawing.Point(73, 266);
+            this.MemoLabel.Location = new System.Drawing.Point(73, 406);
             this.MemoLabel.Name = "MemoLabel";
             this.MemoLabel.Size = new System.Drawing.Size(31, 15);
             this.MemoLabel.TabIndex = 30;
@@ -124,7 +127,7 @@
             this.DeptCodeLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.DeptCodeLabel.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.DeptCodeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
-            this.DeptCodeLabel.Location = new System.Drawing.Point(73, 51);
+            this.DeptCodeLabel.Location = new System.Drawing.Point(73, 72);
             this.DeptCodeLabel.Name = "DeptCodeLabel";
             this.DeptCodeLabel.Size = new System.Drawing.Size(55, 15);
             this.DeptCodeLabel.TabIndex = 28;
@@ -135,9 +138,9 @@
             this.panel1.BackColor = System.Drawing.SystemColors.Menu;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.AddEmployeeLabel);
-            this.panel1.Location = new System.Drawing.Point(63, 12);
+            this.panel1.Location = new System.Drawing.Point(59, 22);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(497, 31);
+            this.panel1.Size = new System.Drawing.Size(601, 31);
             this.panel1.TabIndex = 27;
             // 
             // AddEmployeeLabel
@@ -156,36 +159,36 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(63, 40);
+            this.dataGridView1.Location = new System.Drawing.Point(59, 45);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(497, 319);
+            this.dataGridView1.Size = new System.Drawing.Size(601, 464);
             this.dataGridView1.TabIndex = 26;
             this.dataGridView1.TabStop = false;
             // 
             // LoginIDTextBox
             // 
             this.LoginIDTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LoginIDTextBox.Location = new System.Drawing.Point(73, 153);
+            this.LoginIDTextBox.Location = new System.Drawing.Point(72, 228);
             this.LoginIDTextBox.Name = "LoginIDTextBox";
-            this.LoginIDTextBox.Size = new System.Drawing.Size(152, 21);
+            this.LoginIDTextBox.Size = new System.Drawing.Size(157, 21);
             this.LoginIDTextBox.TabIndex = 6;
             // 
             // EmpNameTextBox
             // 
             this.EmpNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.EmpNameTextBox.Location = new System.Drawing.Point(232, 110);
+            this.EmpNameTextBox.Location = new System.Drawing.Point(245, 158);
             this.EmpNameTextBox.Name = "EmpNameTextBox";
-            this.EmpNameTextBox.Size = new System.Drawing.Size(152, 21);
+            this.EmpNameTextBox.Size = new System.Drawing.Size(165, 21);
             this.EmpNameTextBox.TabIndex = 3;
             // 
             // DeptNameTextBox
             // 
             this.DeptNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DeptNameTextBox.Location = new System.Drawing.Point(232, 67);
+            this.DeptNameTextBox.Location = new System.Drawing.Point(245, 88);
             this.DeptNameTextBox.Name = "DeptNameTextBox";
             this.DeptNameTextBox.ReadOnly = true;
-            this.DeptNameTextBox.Size = new System.Drawing.Size(152, 21);
+            this.DeptNameTextBox.Size = new System.Drawing.Size(165, 21);
             this.DeptNameTextBox.TabIndex = 44;
             this.DeptNameTextBox.TabStop = false;
             // 
@@ -196,7 +199,7 @@
             this.PositionLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.PositionLabel.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.PositionLabel.ForeColor = System.Drawing.Color.Black;
-            this.PositionLabel.Location = new System.Drawing.Point(73, 180);
+            this.PositionLabel.Location = new System.Drawing.Point(73, 279);
             this.PositionLabel.Name = "PositionLabel";
             this.PositionLabel.Size = new System.Drawing.Size(31, 15);
             this.PositionLabel.TabIndex = 37;
@@ -209,7 +212,7 @@
             this.DeptNameLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.DeptNameLabel.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.DeptNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.DeptNameLabel.Location = new System.Drawing.Point(232, 51);
+            this.DeptNameLabel.Location = new System.Drawing.Point(245, 72);
             this.DeptNameLabel.Name = "DeptNameLabel";
             this.DeptNameLabel.Size = new System.Drawing.Size(43, 15);
             this.DeptNameLabel.TabIndex = 37;
@@ -218,9 +221,9 @@
             // DeptCodeComboBox
             // 
             this.DeptCodeComboBox.FormattingEnabled = true;
-            this.DeptCodeComboBox.Location = new System.Drawing.Point(73, 67);
+            this.DeptCodeComboBox.Location = new System.Drawing.Point(73, 88);
             this.DeptCodeComboBox.Name = "DeptCodeComboBox";
-            this.DeptCodeComboBox.Size = new System.Drawing.Size(152, 20);
+            this.DeptCodeComboBox.Size = new System.Drawing.Size(157, 20);
             this.DeptCodeComboBox.TabIndex = 1;
             this.DeptCodeComboBox.SelectedIndexChanged += new System.EventHandler(this.DeptCodeComboBox_SelectedIndexChanged);
             // 
@@ -231,7 +234,7 @@
             this.EmpCodeLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.EmpCodeLabel.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.EmpCodeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
-            this.EmpCodeLabel.Location = new System.Drawing.Point(73, 94);
+            this.EmpCodeLabel.Location = new System.Drawing.Point(72, 142);
             this.EmpCodeLabel.Name = "EmpCodeLabel";
             this.EmpCodeLabel.Size = new System.Drawing.Size(55, 15);
             this.EmpCodeLabel.TabIndex = 35;
@@ -244,7 +247,7 @@
             this.EmpNameLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.EmpNameLabel.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.EmpNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
-            this.EmpNameLabel.Location = new System.Drawing.Point(232, 94);
+            this.EmpNameLabel.Location = new System.Drawing.Point(244, 142);
             this.EmpNameLabel.Name = "EmpNameLabel";
             this.EmpNameLabel.Size = new System.Drawing.Size(43, 15);
             this.EmpNameLabel.TabIndex = 36;
@@ -257,7 +260,7 @@
             this.LoginIDLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.LoginIDLabel.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.LoginIDLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
-            this.LoginIDLabel.Location = new System.Drawing.Point(73, 137);
+            this.LoginIDLabel.Location = new System.Drawing.Point(72, 212);
             this.LoginIDLabel.Name = "LoginIDLabel";
             this.LoginIDLabel.Size = new System.Drawing.Size(55, 15);
             this.LoginIDLabel.TabIndex = 37;
@@ -270,7 +273,7 @@
             this.PwdLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.PwdLabel.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.PwdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
-            this.PwdLabel.Location = new System.Drawing.Point(232, 137);
+            this.PwdLabel.Location = new System.Drawing.Point(244, 212);
             this.PwdLabel.Name = "PwdLabel";
             this.PwdLabel.Size = new System.Drawing.Size(55, 15);
             this.PwdLabel.TabIndex = 38;
@@ -283,7 +286,7 @@
             this.EmploymentTypeLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.EmploymentTypeLabel.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.EmploymentTypeLabel.ForeColor = System.Drawing.Color.Black;
-            this.EmploymentTypeLabel.Location = new System.Drawing.Point(232, 180);
+            this.EmploymentTypeLabel.Location = new System.Drawing.Point(245, 279);
             this.EmploymentTypeLabel.Name = "EmploymentTypeLabel";
             this.EmploymentTypeLabel.Size = new System.Drawing.Size(55, 15);
             this.EmploymentTypeLabel.TabIndex = 39;
@@ -296,7 +299,7 @@
             this.PhoneLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.PhoneLabel.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.PhoneLabel.ForeColor = System.Drawing.Color.Black;
-            this.PhoneLabel.Location = new System.Drawing.Point(73, 223);
+            this.PhoneLabel.Location = new System.Drawing.Point(73, 347);
             this.PhoneLabel.Name = "PhoneLabel";
             this.PhoneLabel.Size = new System.Drawing.Size(55, 15);
             this.PhoneLabel.TabIndex = 40;
@@ -309,7 +312,7 @@
             this.EmailLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.EmailLabel.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.EmailLabel.ForeColor = System.Drawing.Color.Black;
-            this.EmailLabel.Location = new System.Drawing.Point(232, 223);
+            this.EmailLabel.Location = new System.Drawing.Point(245, 347);
             this.EmailLabel.Name = "EmailLabel";
             this.EmailLabel.Size = new System.Drawing.Size(43, 15);
             this.EmailLabel.TabIndex = 41;
@@ -322,7 +325,7 @@
             this.MessengerIDLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.MessengerIDLabel.Font = new System.Drawing.Font("맑은 고딕", 9F);
             this.MessengerIDLabel.ForeColor = System.Drawing.Color.Black;
-            this.MessengerIDLabel.Location = new System.Drawing.Point(392, 223);
+            this.MessengerIDLabel.Location = new System.Drawing.Point(428, 347);
             this.MessengerIDLabel.Name = "MessengerIDLabel";
             this.MessengerIDLabel.Size = new System.Drawing.Size(55, 15);
             this.MessengerIDLabel.TabIndex = 42;
@@ -331,58 +334,58 @@
             // PwdTextBox
             // 
             this.PwdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PwdTextBox.Location = new System.Drawing.Point(232, 153);
+            this.PwdTextBox.Location = new System.Drawing.Point(245, 228);
             this.PwdTextBox.Name = "PwdTextBox";
-            this.PwdTextBox.Size = new System.Drawing.Size(152, 21);
+            this.PwdTextBox.Size = new System.Drawing.Size(165, 21);
             this.PwdTextBox.TabIndex = 7;
             this.PwdTextBox.UseSystemPasswordChar = true;
             // 
             // PositionTextBox
             // 
             this.PositionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PositionTextBox.Location = new System.Drawing.Point(73, 196);
+            this.PositionTextBox.Location = new System.Drawing.Point(73, 295);
             this.PositionTextBox.Name = "PositionTextBox";
-            this.PositionTextBox.Size = new System.Drawing.Size(152, 21);
+            this.PositionTextBox.Size = new System.Drawing.Size(157, 21);
             this.PositionTextBox.TabIndex = 8;
             // 
             // EmploymentTypeTextBox
             // 
             this.EmploymentTypeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.EmploymentTypeTextBox.Location = new System.Drawing.Point(232, 196);
+            this.EmploymentTypeTextBox.Location = new System.Drawing.Point(246, 295);
             this.EmploymentTypeTextBox.Name = "EmploymentTypeTextBox";
-            this.EmploymentTypeTextBox.Size = new System.Drawing.Size(152, 21);
+            this.EmploymentTypeTextBox.Size = new System.Drawing.Size(164, 21);
             this.EmploymentTypeTextBox.TabIndex = 9;
             // 
             // PhoneTextBox
             // 
             this.PhoneTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PhoneTextBox.Location = new System.Drawing.Point(73, 239);
+            this.PhoneTextBox.Location = new System.Drawing.Point(73, 363);
             this.PhoneTextBox.Name = "PhoneTextBox";
-            this.PhoneTextBox.Size = new System.Drawing.Size(152, 21);
+            this.PhoneTextBox.Size = new System.Drawing.Size(157, 21);
             this.PhoneTextBox.TabIndex = 10;
             // 
             // EmailTextBox
             // 
             this.EmailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.EmailTextBox.Location = new System.Drawing.Point(232, 239);
+            this.EmailTextBox.Location = new System.Drawing.Point(245, 363);
             this.EmailTextBox.Name = "EmailTextBox";
-            this.EmailTextBox.Size = new System.Drawing.Size(152, 21);
+            this.EmailTextBox.Size = new System.Drawing.Size(165, 21);
             this.EmailTextBox.TabIndex = 11;
             // 
             // MessengerIDTextBox
             // 
             this.MessengerIDTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MessengerIDTextBox.Location = new System.Drawing.Point(392, 239);
+            this.MessengerIDTextBox.Location = new System.Drawing.Point(431, 363);
             this.MessengerIDTextBox.Name = "MessengerIDTextBox";
-            this.MessengerIDTextBox.Size = new System.Drawing.Size(155, 21);
+            this.MessengerIDTextBox.Size = new System.Drawing.Size(210, 21);
             this.MessengerIDTextBox.TabIndex = 12;
             // 
             // MemoTextBox
             // 
             this.MemoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MemoTextBox.Location = new System.Drawing.Point(73, 281);
+            this.MemoTextBox.Location = new System.Drawing.Point(73, 421);
             this.MemoTextBox.Name = "MemoTextBox";
-            this.MemoTextBox.Size = new System.Drawing.Size(474, 21);
+            this.MemoTextBox.Size = new System.Drawing.Size(568, 21);
             this.MemoTextBox.TabIndex = 13;
             // 
             // GenderPanel
@@ -391,9 +394,9 @@
             this.GenderPanel.Controls.Add(this.GenderLabel);
             this.GenderPanel.Controls.Add(this.RbtnGenderFemale);
             this.GenderPanel.Controls.Add(this.RbtnGenderMale);
-            this.GenderPanel.Location = new System.Drawing.Point(394, 85);
+            this.GenderPanel.Location = new System.Drawing.Point(470, 270);
             this.GenderPanel.Name = "GenderPanel";
-            this.GenderPanel.Size = new System.Drawing.Size(133, 64);
+            this.GenderPanel.Size = new System.Drawing.Size(128, 64);
             this.GenderPanel.TabIndex = 4;
             this.GenderPanel.Tag = "";
             // 
@@ -434,11 +437,32 @@
             this.RbtnGenderMale.Text = "남";
             this.RbtnGenderMale.UseVisualStyleBackColor = true;
             // 
+            // EmpPictureBox
+            // 
+            this.EmpPictureBox.Location = new System.Drawing.Point(431, 72);
+            this.EmpPictureBox.Name = "EmpPictureBox";
+            this.EmpPictureBox.Size = new System.Drawing.Size(211, 155);
+            this.EmpPictureBox.TabIndex = 45;
+            this.EmpPictureBox.TabStop = false;
+            // 
+            // BtnSelectPicture
+            // 
+            this.BtnSelectPicture.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnSelectPicture.Location = new System.Drawing.Point(431, 233);
+            this.BtnSelectPicture.Name = "BtnSelectPicture";
+            this.BtnSelectPicture.Size = new System.Drawing.Size(210, 22);
+            this.BtnSelectPicture.TabIndex = 46;
+            this.BtnSelectPicture.Text = "이미지 선택";
+            this.BtnSelectPicture.UseVisualStyleBackColor = true;
+            this.BtnSelectPicture.Click += new System.EventHandler(this.BtnSelectPicture_Click);
+            // 
             // AddEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(614, 382);
+            this.ClientSize = new System.Drawing.Size(722, 571);
+            this.Controls.Add(this.BtnSelectPicture);
+            this.Controls.Add(this.EmpPictureBox);
             this.Controls.Add(this.LoginIDTextBox);
             this.Controls.Add(this.GenderPanel);
             this.Controls.Add(this.EmpNameTextBox);
@@ -475,6 +499,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.GenderPanel.ResumeLayout(false);
             this.GenderPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EmpPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -515,7 +540,7 @@
         private System.Windows.Forms.Label GenderLabel;
         private System.Windows.Forms.RadioButton RbtnGenderFemale;
         private System.Windows.Forms.RadioButton RbtnGenderMale;
-
-
+        private System.Windows.Forms.PictureBox EmpPictureBox;
+        private System.Windows.Forms.Button BtnSelectPicture;
     }
 }

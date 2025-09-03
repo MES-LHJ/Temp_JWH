@@ -1,13 +1,6 @@
 ﻿using EmployeeManagement.Models;
 using EmployeeManagement.Models.Repository;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EmployeeManagement.Forms.Department
@@ -41,7 +34,9 @@ namespace EmployeeManagement.Forms.Department
                 };
 
                 // DepartmentRepository 인스턴스 생성
-                var repository = new DepartmentRepository();
+
+                var repository = DepartmentRepository.Instance;
+                var allDepartments = repository.GetAllDepartments();
 
                 repository.AddDepartment(department); // 부서 추가 메서드 호출    
                 MessageBox.Show("부서가 성공적으로 추가되었습니다.");

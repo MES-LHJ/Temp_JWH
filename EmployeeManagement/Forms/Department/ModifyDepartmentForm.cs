@@ -37,7 +37,7 @@ namespace EmployeeManagement.Forms.Department
                     DeptName = newDeptName, 
                     Memo = newMemo,
                 };
-                var repository = new DepartmentRepository();
+                var repository = DepartmentRepository.Instance;
                 repository.UpdateDepartment(department);
                 MessageBox.Show("수정 성공");
                 this.DialogResult = DialogResult.OK;

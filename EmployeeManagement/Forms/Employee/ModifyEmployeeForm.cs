@@ -72,19 +72,16 @@ namespace EmployeeManagement.Forms.Employee
 
         private void BtnSave_Click(object sender, EventArgs e) // 수정 버튼
         {
-            //쿼리 두번 보냄
             string deptCode = DeptCodeComboBox.SelectedValue?.ToString() ?? string.Empty;
+            int deptId = EmployeeRepository.Instance.GetDeptIdByCode(deptCode);
             string deptName = DeptNameTextBox.Text;
-
-            int deptId = EmployeeRepository.GetDeptIdByCode(deptCode);
-
             string empCode = EmpCodeTextBox.Text;
             string empName = EmpNameTextBox.Text;
-            EmployeeManagement.Models.Gender gender = EmployeeManagement.Models.Gender.None;
+            Models.Gender gender = Models.Gender.None;
             if (RbtnGenderMale.Checked)
-                gender = EmployeeManagement.Models.Gender.남;
+                gender = Models.Gender.남;
             else if (RbtnGenderFemale.Checked)
-                gender = EmployeeManagement.Models.Gender.여;
+                gender = Models.Gender.여;
             string position = PositionTextBox.Text;
             string employmentType = EmploymentTypeTextBox.Text;
             string phone = PhoneTextBox.Text;
@@ -101,9 +98,16 @@ namespace EmployeeManagement.Forms.Employee
                 return;
             }
 
+            // 부서ID 유효성 체크
+            if (deptId == 0)
+            {
+                MessageBox.Show("유효하지 않은 부서코드입니다.");
+                return;
+            }
+
             try
             {
-                var info = new EmployeeManagement.Models.EmployeeModel
+                var info = new Models.EmployeeModel
                 {
                     EmpID = this.empId,
                     DeptID = deptId,
@@ -118,17 +122,25 @@ namespace EmployeeManagement.Forms.Employee
                     Email = email,
                     MessengerID = messengerId,
                     Memo = memo
-
                 };
-                var repository = new EmployeeRepository();
-                repository.UpdateEmployee(info);
-                MessageBox.Show("수정 성공");
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+
+                var repository = EmployeeRepository.Instance;
+                bool success = repository.UpdateEmployee(info);
+
+                if (success)
+                {
+                    MessageBox.Show("사원 정보가 수정되었습니다.", "수정 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("사원 정보 수정에 실패했습니다.", "수정 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("오류: " + ex.Message);
+                MessageBox.Show($"오류 : {ex.Message}\n\n상세 오류: {ex.InnerException?.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void BtnClose_Click(object sender, EventArgs e)

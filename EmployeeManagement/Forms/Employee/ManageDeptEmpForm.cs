@@ -67,18 +67,18 @@ namespace EmployeeManagement.Forms.Employee
             var row = EmpDgv.SelectedCells[0].OwningRow;
 
             // 각 셀 값 추출 (LoginID, Pwd 제외) 11개
-            int employeeId = Convert.ToInt32(row.Cells["EmpID"].Value);
-            string deptCode = row.Cells["DeptCode"].Value?.ToString();
-            string deptName = row.Cells["DeptName"].Value?.ToString();
-            string empCode = row.Cells["EmpCode"].Value?.ToString();
-            string empName = row.Cells["EmpName"].Value?.ToString();
-            string gender = row.Cells["Gender"].Value?.ToString();
-            string position = row.Cells["Position"].Value?.ToString();
-            string employmentType = row.Cells["EmploymentType"].Value?.ToString();
-            string phone = row.Cells["Phone"].Value?.ToString();
-            string email = row.Cells["Email"].Value?.ToString();
-            string messengerId = row.Cells["MessengerID"].Value?.ToString();
-            string memo = row.Cells["Memo"].Value?.ToString();
+            int employeeId = Convert.ToInt32(row.Cells[nameof(empIDDataGridViewTextBoxColumn)].Value);
+            string deptCode = row.Cells[nameof(deptCodeDataGridViewTextBoxColumn)].Value?.ToString();
+            string deptName = row.Cells[nameof(deptNameDataGridViewTextBoxColumn)].Value?.ToString();
+            string empCode = row.Cells[nameof(empCodeDataGridViewTextBoxColumn)].Value?.ToString();
+            string empName = row.Cells[nameof(empNameDataGridViewTextBoxColumn)].Value?.ToString();
+            string gender = row.Cells[nameof(genderDataGridViewTextBoxColumn)].Value?.ToString();
+            string position = row.Cells[nameof(positionDataGridViewTextBoxColumn)].Value?.ToString();
+            string employmentType = row.Cells[nameof(employmentTypeDataGridViewTextBoxColumn)].Value?.ToString();
+            string phone = row.Cells[nameof(phoneDataGridViewTextBoxColumn)].Value?.ToString();
+            string email = row.Cells[nameof(emailDataGridViewTextBoxColumn)].Value?.ToString();
+            string messengerId = row.Cells[nameof(messengerIDDataGridViewTextBoxColumn)].Value?.ToString();
+            string memo = row.Cells[nameof(memoDataGridViewTextBoxColumn)].Value?.ToString();
 
             using (var dlg = new ModifyEmployeeForm(
                 employeeId, deptCode, deptName, empCode, empName, gender, position, employmentType, phone, email, messengerId, memo))
@@ -98,9 +98,10 @@ namespace EmployeeManagement.Forms.Employee
 
             if (row != null)
             {
-                string empId = row.Cells["EmpID"].Value?.ToString();
-                string empCode = row.Cells["EmpCode"].Value?.ToString();
-                string empName = row.Cells["EmpName"].Value?.ToString();
+
+                int empId = Convert.ToInt32(row.Cells[nameof(empIDDataGridViewTextBoxColumn)].Value);
+                string empCode = row.Cells[nameof(empCodeDataGridViewTextBoxColumn)].Value?.ToString();
+                string empName = row.Cells[nameof(empNameDataGridViewTextBoxColumn)].Value?.ToString();
 
                 using (var dlg = new DeleteEmployeeForm(empId, empCode, empName))
                 {
@@ -124,9 +125,9 @@ namespace EmployeeManagement.Forms.Employee
 
             if (row != null)
             {
-                string loginId = row.Cells[nameof(EmployeeModel.LoginID)].Value?.ToString();
-                string pwd = row.Cells[nameof(EmployeeModel.Pwd)].Value?.ToString();
-                string empID = row.Cells[nameof(EmployeeModel.EmpID)].Value?.ToString();
+                string loginId = row.Cells[nameof(loginIDDataGridViewTextBoxColumn)].Value?.ToString();
+                string pwd = row.Cells[nameof(pwdDataGridViewTextBoxColumn)].Value?.ToString();
+                string empID = row.Cells[nameof(empIDDataGridViewTextBoxColumn)].Value?.ToString();
 
                 using (var dlg = new LoginInformationForm(loginId, pwd, empID))
                 {
@@ -146,9 +147,9 @@ namespace EmployeeManagement.Forms.Employee
         {
             try
             {
-                var employees = EmployeeRepository.GetAllEmployees();
+                var employees = EmployeeRepository.Instance.GetAllEmployees();
 
-                // DataGridView에 바인딩
+                // DataGridView에 바인딩 -> DataBound 사용하기
                 EmpDgv.DataSource = employees;
                 EmpDgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             }
@@ -170,7 +171,7 @@ namespace EmployeeManagement.Forms.Employee
         //비밀번호 마스킹
         private void EmpDgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (EmpDgv.Columns[e.ColumnIndex].Name == nameof(EmployeeModel.Pwd) && e.Value != null)
+            if (EmpDgv.Columns[e.ColumnIndex].Name == nameof(pwdDataGridViewTextBoxColumn) && e.Value != null)
             {
                 e.Value = new string('*', e.Value.ToString().Length);
                 e.FormattingApplied = true;
