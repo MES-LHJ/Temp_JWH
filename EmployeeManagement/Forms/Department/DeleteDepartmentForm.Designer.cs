@@ -94,7 +94,6 @@
             this.BtnCancel.TabIndex = 60;
             this.BtnCancel.Text = "취소";
             this.BtnCancel.UseVisualStyleBackColor = false;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // BtnDelete
             // 
@@ -109,7 +108,6 @@
             this.BtnDelete.TabIndex = 61;
             this.BtnDelete.Text = "삭제";
             this.BtnDelete.UseVisualStyleBackColor = false;
-            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // DeptCodeTextBox
             // 

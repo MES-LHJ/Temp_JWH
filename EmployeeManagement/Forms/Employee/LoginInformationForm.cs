@@ -12,6 +12,8 @@ namespace EmployeeManagement.Forms.Employee
         public LoginInformationForm()
         {
             InitializeComponent();
+            BtnSave.Click += BtnSave_Click;
+            BtnClose.Click += BtnClose_Click;
         }
 
         public LoginInformationForm(string loginId, string pwd, string empID) : this()

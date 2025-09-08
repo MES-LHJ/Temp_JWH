@@ -74,7 +74,6 @@
             this.BtnCancel.TabIndex = 35;
             this.BtnCancel.Text = "취소";
             this.BtnCancel.UseVisualStyleBackColor = false;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // BtnSave
             // 
@@ -89,7 +88,6 @@
             this.BtnSave.TabIndex = 34;
             this.BtnSave.Text = "저장";
             this.BtnSave.UseVisualStyleBackColor = false;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // MemoTextBox
             // 

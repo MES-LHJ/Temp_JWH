@@ -53,7 +53,6 @@
             this.BtnDelete.TabIndex = 66;
             this.BtnDelete.Text = "삭제";
             this.BtnDelete.UseVisualStyleBackColor = false;
-            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnCancel
             // 
@@ -68,7 +67,6 @@
             this.BtnCancel.TabIndex = 65;
             this.BtnCancel.Text = "취소";
             this.BtnCancel.UseVisualStyleBackColor = false;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // EmpDelLabel
             // 

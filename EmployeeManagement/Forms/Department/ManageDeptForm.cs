@@ -11,6 +11,12 @@ namespace EmployeeManagement.Forms.Department
         public ManageDeptForm()
         {
             InitializeComponent();
+            this.Load += DepartmentManagementForm_Load;
+            BtnChart.Click += BtnChart_Click;
+            BtnAdd.Click += BtnAdd_Click;
+            BtnModify.Click += BtnModify_Click;
+            BtnDelete.Click += BtnDelete_Click;
+            BtnClose.Click += BtnClose_Click;
         }
 
         private void DepartmentManagementForm_Load(object sender, EventArgs e)
@@ -103,7 +109,7 @@ namespace EmployeeManagement.Forms.Department
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnChart_Click(object sender, EventArgs e)
         {
             var dlg = new ChartDepartment();
             dlg.ShowDialog();

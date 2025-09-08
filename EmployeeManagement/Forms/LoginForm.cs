@@ -12,9 +12,11 @@ namespace EmployeeManagement.Forms
         {
             InitializeComponent();
             LoginIDTextBox.Focus();
+            BtnLogin.Click += BtnLogin_Click;
+            BtnClose.Click += BtnClose_Click;
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
+        private void BtnLogin_Click(object sender, EventArgs e)
         {
             // 입력값 검증
             string loginId = LoginIDTextBox.Text;

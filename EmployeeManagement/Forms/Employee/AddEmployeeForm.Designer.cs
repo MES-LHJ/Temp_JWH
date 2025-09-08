@@ -82,7 +82,6 @@
             this.BtnCancel.TabIndex = 25;
             this.BtnCancel.Text = "취소";
             this.BtnCancel.UseVisualStyleBackColor = false;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // EmpCodeTextBox
             // 
@@ -98,14 +97,13 @@
             this.BtnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSave.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.BtnSave.ForeColor = System.Drawing.Color.White;
-            this.BtnSave.Location = new System.Drawing.Point(353, 461);
+            this.BtnSave.Location = new System.Drawing.Point(318, 461);
             this.BtnSave.Margin = new System.Windows.Forms.Padding(0);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(137, 32);
             this.BtnSave.TabIndex = 14;
             this.BtnSave.Text = "저장";
             this.BtnSave.UseVisualStyleBackColor = false;
-            this.BtnSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // MemoLabel
             // 
@@ -225,7 +223,6 @@
             this.DeptCodeComboBox.Name = "DeptCodeComboBox";
             this.DeptCodeComboBox.Size = new System.Drawing.Size(157, 20);
             this.DeptCodeComboBox.TabIndex = 1;
-            this.DeptCodeComboBox.SelectedIndexChanged += new System.EventHandler(this.DeptCodeComboBox_SelectedIndexChanged);
             // 
             // EmpCodeLabel
             // 
@@ -454,7 +451,6 @@
             this.BtnSelectPicture.TabIndex = 46;
             this.BtnSelectPicture.Text = "이미지 선택";
             this.BtnSelectPicture.UseVisualStyleBackColor = true;
-            this.BtnSelectPicture.Click += new System.EventHandler(this.BtnSelectPicture_Click);
             // 
             // AddEmployeeForm
             // 

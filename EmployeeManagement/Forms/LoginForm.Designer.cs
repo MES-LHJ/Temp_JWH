@@ -55,7 +55,6 @@
             this.BtnClose.TabIndex = 3;
             this.BtnClose.Text = "종료";
             this.BtnClose.UseVisualStyleBackColor = false;
-            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // PwdTextBox
             // 
@@ -79,7 +78,6 @@
             this.BtnLogin.TabIndex = 2;
             this.BtnLogin.Text = "로그인";
             this.BtnLogin.UseVisualStyleBackColor = false;
-            this.BtnLogin.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // LoginIDTextBox
             // 

@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnChart = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.BtnClose = new System.Windows.Forms.Button();
+            this.BtnDelete = new System.Windows.Forms.Button();
+            this.BtnAdd = new System.Windows.Forms.Button();
+            this.BtnModify = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.DeptDgv = new System.Windows.Forms.DataGridView();
             this.deptIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,28 +57,28 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.BtnChart);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.button8);
-            this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.BtnClose);
+            this.panel1.Controls.Add(this.BtnDelete);
+            this.panel1.Controls.Add(this.BtnAdd);
+            this.panel1.Controls.Add(this.BtnModify);
             this.panel1.Location = new System.Drawing.Point(57, 25);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(490, 50);
             this.panel1.TabIndex = 13;
             // 
-            // button1
+            // BtnChart
             // 
-            this.button1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(156, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(58, 28);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "차트";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.BtnChart.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnChart.Location = new System.Drawing.Point(156, 11);
+            this.BtnChart.Name = "BtnChart";
+            this.BtnChart.Size = new System.Drawing.Size(58, 28);
+            this.BtnChart.TabIndex = 13;
+            this.BtnChart.Text = "차트";
+            this.BtnChart.UseVisualStyleBackColor = true;
+            this.BtnChart.Click += new System.EventHandler(this.BtnChart_Click);
             // 
             // pictureBox1
             // 
@@ -101,49 +101,49 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "부서";
             // 
-            // button8
+            // BtnClose
             // 
-            this.button8.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button8.Location = new System.Drawing.Point(435, 11);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(40, 28);
-            this.button8.TabIndex = 9;
-            this.button8.Text = "닫기";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.BtnClose_Click);
+            this.BtnClose.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnClose.Location = new System.Drawing.Point(435, 11);
+            this.BtnClose.Name = "BtnClose";
+            this.BtnClose.Size = new System.Drawing.Size(40, 28);
+            this.BtnClose.TabIndex = 9;
+            this.BtnClose.Text = "닫기";
+            this.BtnClose.UseVisualStyleBackColor = true;
+            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // button6
+            // BtnDelete
             // 
-            this.button6.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button6.Location = new System.Drawing.Point(348, 11);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(58, 28);
-            this.button6.TabIndex = 7;
-            this.button6.Text = "삭제";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.BtnDelete_Click);
+            this.BtnDelete.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnDelete.Location = new System.Drawing.Point(348, 11);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(58, 28);
+            this.BtnDelete.TabIndex = 7;
+            this.BtnDelete.Text = "삭제";
+            this.BtnDelete.UseVisualStyleBackColor = true;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
-            // button3
+            // BtnAdd
             // 
-            this.button3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button3.Location = new System.Drawing.Point(220, 11);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(58, 28);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "추가";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.BtnAdd.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnAdd.Location = new System.Drawing.Point(220, 11);
+            this.BtnAdd.Name = "BtnAdd";
+            this.BtnAdd.Size = new System.Drawing.Size(58, 28);
+            this.BtnAdd.TabIndex = 4;
+            this.BtnAdd.Text = "추가";
+            this.BtnAdd.UseVisualStyleBackColor = true;
+            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
-            // button4
+            // BtnModify
             // 
-            this.button4.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button4.Location = new System.Drawing.Point(284, 11);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(58, 28);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "수정";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.BtnModify_Click);
+            this.BtnModify.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnModify.Location = new System.Drawing.Point(284, 11);
+            this.BtnModify.Name = "BtnModify";
+            this.BtnModify.Size = new System.Drawing.Size(58, 28);
+            this.BtnModify.TabIndex = 5;
+            this.BtnModify.Text = "수정";
+            this.BtnModify.UseVisualStyleBackColor = true;
+            this.BtnModify.Click += new System.EventHandler(this.BtnModify_Click);
             // 
             // dataGridView1
             // 
@@ -238,10 +238,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button BtnClose;
+        private System.Windows.Forms.Button BtnDelete;
+        private System.Windows.Forms.Button BtnAdd;
+        private System.Windows.Forms.Button BtnModify;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView DeptDgv;
         private System.Windows.Forms.BindingSource departmentModelBindingSource;
@@ -250,6 +250,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn deptCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn deptNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn memoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnChart;
     }
 }

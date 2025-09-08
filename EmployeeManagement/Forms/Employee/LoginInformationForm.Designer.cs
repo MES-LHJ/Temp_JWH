@@ -54,7 +54,6 @@
             this.BtnClose.TabIndex = 35;
             this.BtnClose.Text = "닫기";
             this.BtnClose.UseVisualStyleBackColor = false;
-            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // PwdTextBox
             // 
@@ -78,7 +77,6 @@
             this.BtnSave.TabIndex = 33;
             this.BtnSave.Text = "저장";
             this.BtnSave.UseVisualStyleBackColor = false;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // LoginIDTextBox
             // 

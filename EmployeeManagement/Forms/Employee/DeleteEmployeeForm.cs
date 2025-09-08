@@ -7,23 +7,27 @@ namespace EmployeeManagement
 {
     public partial class DeleteEmployeeForm : Form
     {
-        private int empId;
+        private readonly int empId;
+        private readonly string empCode;
+
         public DeleteEmployeeForm()
         {
             InitializeComponent();
+            BtnDelete.Click += BtnDelete_Click;
+            BtnCancel.Click += BtnClose_Click;
         }
 
         public DeleteEmployeeForm(int empId, string empCode, string empName) : this()
         {
             this.empId = Convert.ToInt32(empId);
+            this.empCode = empCode;
             EmpCodeTextBox.Text = empCode;
             EmpNameTextBox.Text = empName;
         }
 
+
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            string empCode = EmpCodeTextBox.Text;
-
             var result = MessageBox.Show("정말로 삭제하시겠습니까?", "삭제 확인", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result != DialogResult.Yes)
                 return;
@@ -31,7 +35,7 @@ namespace EmployeeManagement
             try
             {
                 var repo = EmployeeRepository.Instance;
-                var success = repo.DeleteEmployee(empId); // 삭제 결과 반환
+                var success = repo.DeleteEmployee(empId, empCode); // 삭제 결과 반환
                 if (success) {
                     MessageBox.Show("사원이 성공적으로 삭제되었습니다.", "삭제 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;

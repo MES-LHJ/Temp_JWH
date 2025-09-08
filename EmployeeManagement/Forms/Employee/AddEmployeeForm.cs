@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using EmployeeManagement.Models;
@@ -13,11 +14,17 @@ namespace EmployeeManagement.Forms.Employee
     {
         // 부서 정보 저장용 - DataTable에서 List로 변경
         private List<DepartmentModel> deptList;
+        public string SelectedPicturePath { get; private set; } // 선택된 사진 경로
 
         public AddEmployeeForm()
         {
             InitializeComponent();
             LoadDeptCodes();
+            DeptCodeComboBox.SelectedIndexChanged += DeptCodeComboBox_SelectedIndexChanged;
+            BtnSave.Click += ButtonSave_Click;
+            BtnCancel.Click += BtnCancel_Click;
+            BtnSelectPicture.Click += BtnSelectPicture_Click;
+
         }
 
         private void LoadDeptCodes() // 부서코드, 부서명 콤보박스에 데이터 로드
@@ -46,7 +53,6 @@ namespace EmployeeManagement.Forms.Employee
                         }
                     }
                 }
-
                 DeptCodeComboBox.DisplayMember = "DeptCode";
                 DeptCodeComboBox.ValueMember = "DeptID";
                 DeptCodeComboBox.DataSource = deptList;
@@ -77,7 +83,7 @@ namespace EmployeeManagement.Forms.Employee
             }
         }
 
-        private void buttonSave_Click(object sender, EventArgs e) // 저장 버튼 누른다
+        private void ButtonSave_Click(object sender, EventArgs e) // 저장 버튼 누른다
         {
             // 입력값 읽기 - ValueMember가 DeptID이므로 직접 사용
             int deptId = Convert.ToInt32(DeptCodeComboBox.SelectedValue ?? 0);
@@ -96,7 +102,7 @@ namespace EmployeeManagement.Forms.Employee
             string email = EmailTextBox.Text.Trim();
             string messengerId = MessengerIDTextBox.Text.Trim();
             string memo = MemoTextBox.Text;
-        
+
             // 필수 입력값 체크
             if (string.IsNullOrEmpty(empCode))
             {
@@ -122,9 +128,11 @@ namespace EmployeeManagement.Forms.Employee
                 PwdTextBox.Focus();
                 return;
             }
-            
             try
             {
+                var repository = EmployeeRepository.Instance; //EmployeeRepository 객체 가져오기
+                string targetFile = repository.ImageAdd(empCode, SelectedPicturePath); // 이미지 처리
+
                 // EmployeeModel 객체 생성
                 var employee = new EmployeeModel
                 {
@@ -139,11 +147,11 @@ namespace EmployeeManagement.Forms.Employee
                     Phone = phone,
                     Email = email,
                     MessengerID = messengerId,
-                    Memo = memo
+                    Memo = memo,
+                    ImagePath = targetFile // 이미지 경로
                 };
 
                 // EmployeeRepository를 통해 저장
-                var repository = EmployeeRepository.Instance;
                 bool success = repository.AddEmployee(employee);
 
                 if (success)
@@ -180,12 +188,16 @@ namespace EmployeeManagement.Forms.Employee
                 Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp|All Files|*.*"
             };
             ofd.ShowDialog();
+
             if (!string.IsNullOrEmpty(ofd.FileName))
             {
+                
                 EmpPictureBox.ImageLocation = ofd.FileName;
+                EmpPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+
+                SelectedPicturePath = ofd.FileName;
             }
-            ofd.Dispose();
-            // 여기서부터 받은 파일 경로를 DB에 저장하는 로직 추가 필요 -> 이후 조회에서 경로를 받아서 이미지 로드
+            ofd.Dispose();       
         }
     }
 }

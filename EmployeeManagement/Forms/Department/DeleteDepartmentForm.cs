@@ -8,12 +8,16 @@ namespace EmployeeManagement.Forms.Department
     public partial class DeleteDepartmentForm : Form
     {
         private readonly int DeptID;
+
         public DeleteDepartmentForm(int deptId, string deptCode, string deptName)
         {
             InitializeComponent();
+            BtnDelete.Click += BtnDelete_Click;
+            BtnCancel.Click += BtnCancel_Click;
             this.DeptID = deptId;
             DeptCodeTextBox.Text = deptCode; // 부서코드
             DeptNameTextBox.Text = deptName; // 부서명
+
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)

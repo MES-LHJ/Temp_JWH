@@ -10,6 +10,8 @@ namespace EmployeeManagement.Forms.Department
         public AddDepartmentForm()
         {
             InitializeComponent();
+            BtnSave.Click += BtnSave_Click;
+            BtnCancel.Click += BtnCancel_Click;
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
@@ -34,15 +36,19 @@ namespace EmployeeManagement.Forms.Department
                 };
 
                 // DepartmentRepository 인스턴스 생성
-
                 var repository = DepartmentRepository.Instance;
-                var allDepartments = repository.GetAllDepartments();
 
-                repository.AddDepartment(department); // 부서 추가 메서드 호출    
-                MessageBox.Show("부서가 성공적으로 추가되었습니다.");
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-
+                bool success = repository.AddDepartment(department);
+                if (success)
+                {
+                    MessageBox.Show("부서가 성공적으로 추가되었습니다.");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("부서 추가에 실패했습니다.");
+                }
             }
             catch (Exception ex)
             {

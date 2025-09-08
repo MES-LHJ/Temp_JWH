@@ -12,6 +12,16 @@ namespace EmployeeManagement.Forms.Employee
         {
             InitializeComponent();
             LoadEmployeeData();
+
+            BtnRefresh.Click += BtnRefresh_Click;
+            BtnEmpAdd.Click += BtnAdd_Click;
+            BtnDepartment.Click += BtnDepartment_Click;
+            BtnEmpModify.Click += BtnModify_Click;
+            BtnEmpDel.Click += BtnDelete_Click;
+            BtnLoginInfo.Click += Btn_LoginInfo_Click;
+            BtnDataConv.Click += BtnDataConv_Click;
+            BtnClose.Click += BtnClose_Click;
+            EmpDgv.CellFormatting += EmpDgv_CellFormatting;
         }
 
         private void BtnRefresh_Click(object sender, EventArgs e) //조회
@@ -66,7 +76,7 @@ namespace EmployeeManagement.Forms.Employee
             }
             var row = EmpDgv.SelectedCells[0].OwningRow;
 
-            // 각 셀 값 추출 (LoginID, Pwd 제외) 11개
+            // 각 셀 값 추출 (LoginID, Pwd 제외) 13개
             int employeeId = Convert.ToInt32(row.Cells[nameof(empIDDataGridViewTextBoxColumn)].Value);
             string deptCode = row.Cells[nameof(deptCodeDataGridViewTextBoxColumn)].Value?.ToString();
             string deptName = row.Cells[nameof(deptNameDataGridViewTextBoxColumn)].Value?.ToString();
@@ -79,9 +89,10 @@ namespace EmployeeManagement.Forms.Employee
             string email = row.Cells[nameof(emailDataGridViewTextBoxColumn)].Value?.ToString();
             string messengerId = row.Cells[nameof(messengerIDDataGridViewTextBoxColumn)].Value?.ToString();
             string memo = row.Cells[nameof(memoDataGridViewTextBoxColumn)].Value?.ToString();
+            string imagePath = row.Cells[nameof(imagePathDataGridViewTextBoxColumn)].Value?.ToString();
 
             using (var dlg = new ModifyEmployeeForm(
-                employeeId, deptCode, deptName, empCode, empName, gender, position, employmentType, phone, email, messengerId, memo))
+                employeeId, deptCode, deptName, empCode, empName, gender, position, employmentType, phone, email, messengerId, memo, imagePath))
             {
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
@@ -161,7 +172,48 @@ namespace EmployeeManagement.Forms.Employee
 
         private void BtnDataConv_Click(object sender, EventArgs e)
         {
-            //자료변환
+            // 자료변환 - Excel로 내보내기
+            try
+            {
+                // 저장할 파일 경로 선택
+                string filePath = DataConverSion.GetExcelSaveFilePath();
+                if (string.IsNullOrEmpty(filePath))
+                {
+                    return; // 사용자가 취소한 경우
+                }
+
+                // 모든 직원 데이터 조회
+                var employees = EmployeeRepository.Instance.GetAllEmployees();
+
+                if (employees == null || employees.Count == 0)
+                {
+                    MessageBox.Show("내보낼 직원 데이터가 없습니다.", "알림",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Excel 파일로 변환
+                bool success = DataConverSion.ExportEmployeesToExcel(employees, filePath);
+
+                if (success)
+                {
+                    var result = MessageBox.Show(
+                        $"Excel 파일이 성공적으로 생성되었습니다.\n\n파일 위치: {filePath}\n\n파일을 열어보시겠습니까?",
+                        "변환 완료",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Information);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(filePath);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"데이터 변환 중 오류가 발생했습니다: {ex.Message}",
+                    "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void BtnClose_Click(object sender, EventArgs e)
         {

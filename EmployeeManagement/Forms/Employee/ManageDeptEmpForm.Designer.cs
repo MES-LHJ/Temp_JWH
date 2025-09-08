@@ -86,7 +86,6 @@
             this.BtnDepartment.TabIndex = 2;
             this.BtnDepartment.Text = "부서";
             this.BtnDepartment.UseVisualStyleBackColor = true;
-            this.BtnDepartment.Click += new System.EventHandler(this.BtnDepartment_Click);
             // 
             // BtnRefresh
             // 
@@ -97,7 +96,6 @@
             this.BtnRefresh.TabIndex = 3;
             this.BtnRefresh.Text = "조회";
             this.BtnRefresh.UseVisualStyleBackColor = true;
-            this.BtnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
             // 
             // BtnEmpAdd
             // 
@@ -108,7 +106,6 @@
             this.BtnEmpAdd.TabIndex = 4;
             this.BtnEmpAdd.Text = "추가";
             this.BtnEmpAdd.UseVisualStyleBackColor = true;
-            this.BtnEmpAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // BtnEmpModify
             // 
@@ -119,7 +116,6 @@
             this.BtnEmpModify.TabIndex = 5;
             this.BtnEmpModify.Text = "수정";
             this.BtnEmpModify.UseVisualStyleBackColor = true;
-            this.BtnEmpModify.Click += new System.EventHandler(this.BtnModify_Click);
             // 
             // BtnLoginInfo
             // 
@@ -130,7 +126,6 @@
             this.BtnLoginInfo.TabIndex = 6;
             this.BtnLoginInfo.Text = "로그인정보";
             this.BtnLoginInfo.UseVisualStyleBackColor = true;
-            this.BtnLoginInfo.Click += new System.EventHandler(this.Btn_LoginInfo_Click);
             // 
             // BtnEmpDel
             // 
@@ -141,7 +136,6 @@
             this.BtnEmpDel.TabIndex = 7;
             this.BtnEmpDel.Text = "삭제";
             this.BtnEmpDel.UseVisualStyleBackColor = true;
-            this.BtnEmpDel.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnDataConv
             // 
@@ -153,7 +147,6 @@
             this.BtnDataConv.TabIndex = 8;
             this.BtnDataConv.Text = "자료변환";
             this.BtnDataConv.UseVisualStyleBackColor = true;
-            this.BtnDataConv.Click += new System.EventHandler(this.BtnDataConv_Click);
             // 
             // BtnClose
             // 
@@ -164,7 +157,6 @@
             this.BtnClose.TabIndex = 9;
             this.BtnClose.Text = "닫기";
             this.BtnClose.UseVisualStyleBackColor = true;
-            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // MainTileLabel
             // 
@@ -242,7 +234,6 @@
             this.EmpDgv.RowTemplate.Height = 23;
             this.EmpDgv.Size = new System.Drawing.Size(1110, 218);
             this.EmpDgv.TabIndex = 12;
-            this.EmpDgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.EmpDgv_CellFormatting);
             // 
             // empIDDataGridViewTextBoxColumn
             // 
