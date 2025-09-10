@@ -78,7 +78,6 @@
             this.BtnChart.TabIndex = 13;
             this.BtnChart.Text = "차트";
             this.BtnChart.UseVisualStyleBackColor = true;
-            this.BtnChart.Click += new System.EventHandler(this.BtnChart_Click);
             // 
             // pictureBox1
             // 
@@ -110,7 +109,6 @@
             this.BtnClose.TabIndex = 9;
             this.BtnClose.Text = "닫기";
             this.BtnClose.UseVisualStyleBackColor = true;
-            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // BtnDelete
             // 
@@ -121,7 +119,6 @@
             this.BtnDelete.TabIndex = 7;
             this.BtnDelete.Text = "삭제";
             this.BtnDelete.UseVisualStyleBackColor = true;
-            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnAdd
             // 
@@ -132,7 +129,6 @@
             this.BtnAdd.TabIndex = 4;
             this.BtnAdd.Text = "추가";
             this.BtnAdd.UseVisualStyleBackColor = true;
-            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // BtnModify
             // 
@@ -143,7 +139,6 @@
             this.BtnModify.TabIndex = 5;
             this.BtnModify.Text = "수정";
             this.BtnModify.UseVisualStyleBackColor = true;
-            this.BtnModify.Click += new System.EventHandler(this.BtnModify_Click);
             // 
             // dataGridView1
             // 
@@ -221,7 +216,6 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "ManageDeptForm";
             this.Text = "ManageDeptForm";
-            this.Load += new System.EventHandler(this.DepartmentManagementForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

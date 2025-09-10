@@ -1,6 +1,7 @@
 ﻿using EmployeeManagement.Models;
 using EmployeeManagement.Models.Repository;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -8,46 +9,64 @@ namespace EmployeeManagement.Forms.Employee
 {
     public partial class ModifyEmployeeForm : Form
     {
+        private EmployeeModel employee;
         public string SelectedPicturePath { get; private set; }
-        private int EmpID { get; set; }
         private string CurrentPicturePath { get; set; }
 
-        public ModifyEmployeeForm()
+        public ModifyEmployeeForm(EmployeeModel employee)
         {
             InitializeComponent();
+            this.employee = employee;
             LoadDepartments();
-            BtnSelectPicture.Click += BtnSelectPicture_Click;
+            LoadEmployeeData();
+            LoadEvents();
+        }
+
+        private void LoadEvents()
+        {
             BtnSave.Click += BtnSave_Click;
             BtnClose.Click += BtnClose_Click;
+            BtnSelectPicture.Click += BtnSelectPicture_Click;
         }
-
-        public ModifyEmployeeForm(
-            int empID,
-            string deptCode, string deptName, string empCode, string empName, string gender,
-            string position, string employmentType, string phone, string email, string messengerId, string memo, string imagePath)
-            : this()
+        private void LoadEmployeeData()
         {
-            EmpID = empID;
-            CurrentPicturePath = imagePath;
-            if (!string.IsNullOrEmpty(deptCode))
+            DeptCodeComboBox.SelectedValue = employee.DeptID; // deptid?
+            DeptNameTextBox.Text = employee.DeptName;
+            EmpCodeTextBox.Text = employee.EmpCode;
+            EmpNameTextBox.Text = employee.EmpName;
+            PositionTextBox.Text = employee.Position;
+            EmploymentTypeTextBox.Text = employee.EmploymentType;
+            PhoneTextBox.Text = employee.Phone;
+            EmailTextBox.Text = employee.Email;
+            MessengerIDTextBox.Text = employee.MessengerID;
+            MemoTextBox.Text = employee.Memo;
+            RbtnGenderMale.Checked = (employee.Gender == Gender.남);
+            RbtnGenderFemale.Checked = (employee.Gender == Gender.여);
+            CurrentPicturePath = employee.ImagePath;
+            // 이미지 로드
+            if (!string.IsNullOrEmpty(employee.ImagePath) && File.Exists(employee.ImagePath))
+            {
+                try
+                {
+                    using (FileStream fs = new FileStream(employee.ImagePath, FileMode.Open, FileAccess.Read))
+                    {
+                        var imageBytes = new byte[fs.Length];
+                        fs.Read(imageBytes, 0, (int)fs.Length);
 
-                DeptNameTextBox.Text = deptName;
-                EmpCodeTextBox.Text = empCode;
-                EmpNameTextBox.Text = empName;
-                RbtnGenderMale.Checked = (gender == "남"); // Gender 라디오버튼 처리
-                RbtnGenderFemale.Checked = (gender == "여");
-                PositionTextBox.Text = position;
-                EmploymentTypeTextBox.Text = employmentType;
-                PhoneTextBox.Text = phone;
-                EmailTextBox.Text = email;
-                MessengerIDTextBox.Text = messengerId;
-                MemoTextBox.Text = memo;
-            if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath)){
-                EmpPictureBox.Image = System.Drawing.Image.FromFile(imagePath);
-                EmpPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                        using (var ms = new MemoryStream(imageBytes))
+                        {
+                            EmpPictureBox.Image = Image.FromStream(ms);
+                            EmpPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"이미지 로드 실패: {ex.Message}");
+                    EmpPictureBox.Image = null;
+                }
             }
         }
-
         private void LoadDepartments()
         {
             try
@@ -115,27 +134,24 @@ namespace EmployeeManagement.Forms.Employee
             {
                 //이미지 삭제 후 선택이미지 복사되도록 수정필요
                 var repository = EmployeeRepository.Instance;
-                string targetFile = repository.ImageModify(empCode, SelectedPicturePath, CurrentPicturePath); 
+                MessageBox.Show($"CurrentPicturePath: {CurrentPicturePath ?? "NULL"}\nSelectedPicturePath: {SelectedPicturePath ?? "NULL"}", "디버그 정보");
+                string targetFile = repository.ImageModify(empCode, SelectedPicturePath, CurrentPicturePath);
 
-                var info = new EmployeeModel
-                    {
-                        EmpID = this.EmpID,
-                        DeptID = deptId,
-                        DeptCode = deptCode,
-                        DeptName = deptName,
-                        EmpCode = empCode,
-                        EmpName = empName,
-                        Gender = gender,
-                        Position = position,
-                        EmploymentType = employmentType,
-                        Phone = phone,
-                        Email = email,
-                        MessengerID = messengerId,
-                        Memo = memo,
-                        ImagePath = targetFile ?? string.Empty
-                    };
+                employee.DeptID = deptId;
+                employee.DeptCode = deptCode;
+                employee.DeptName = deptName;
+                employee.EmpCode = empCode;
+                employee.EmpName = empName;
+                employee.Gender = gender;
+                employee.Position = position;
+                employee.EmploymentType = employmentType;
+                employee.Phone = phone;
+                employee.Email = email;
+                employee.MessengerID = messengerId;
+                employee.Memo = memo;
+                employee.ImagePath = targetFile;
 
-                bool success = repository.UpdateEmployee(info);
+                bool success = repository.UpdateEmployee(employee);
 
                 if (success)
                 {
@@ -166,15 +182,36 @@ namespace EmployeeManagement.Forms.Employee
                 Title = "사진 선택",
                 Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp|All Files|*.*"
             };
-            ofd.ShowDialog();
-
-            if (!string.IsNullOrEmpty(ofd.FileName))
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
+                try
+                {
+                    // 기존 이미지 해제 (파일 잠금 방지)
+                    if (EmpPictureBox.Image != null)
+                    {
+                        EmpPictureBox.Image.Dispose();
+                        EmpPictureBox.Image = null;
+                    }
 
-                EmpPictureBox.ImageLocation = ofd.FileName;
-                EmpPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                    // 새 이미지를 복사본으로 로드
+                    using (var fs = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read))
+                    {
+                        var imageBytes = new byte[fs.Length];
+                        fs.Read(imageBytes, 0, (int)fs.Length);
 
-                SelectedPicturePath = ofd.FileName; //OFD 화면에 떠 있는 이미지
+                        using (var ms = new MemoryStream(imageBytes))
+                        {
+                            EmpPictureBox.Image = Image.FromStream(ms);
+                            EmpPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                        }
+                    }
+
+                    SelectedPicturePath = ofd.FileName;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"이미지 로드 실패: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             ofd.Dispose();
         }

@@ -12,7 +12,11 @@ namespace EmployeeManagement.Forms.Employee
         {
             InitializeComponent();
             LoadEmployeeData();
+            LoadEvents();
+        }
 
+        private void LoadEvents()
+        {
             BtnRefresh.Click += BtnRefresh_Click;
             BtnEmpAdd.Click += BtnAdd_Click;
             BtnDepartment.Click += BtnDepartment_Click;
@@ -69,88 +73,31 @@ namespace EmployeeManagement.Forms.Employee
 
         private void BtnModify_Click(object sender, EventArgs e) //수정버튼
         {
-            if (EmpDgv.SelectedCells.Count == 0)
+            var row = EmpDgv.CurrentRow.DataBoundItem as EmployeeModel;
+            var dlg = new ModifyEmployeeForm(row);
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("수정할 셀을 선택하세요.");
-                return;
-            }
-            var row = EmpDgv.SelectedCells[0].OwningRow;
-
-            // 각 셀 값 추출 (LoginID, Pwd 제외) 13개
-            int employeeId = Convert.ToInt32(row.Cells[nameof(empIDDataGridViewTextBoxColumn)].Value);
-            string deptCode = row.Cells[nameof(deptCodeDataGridViewTextBoxColumn)].Value?.ToString();
-            string deptName = row.Cells[nameof(deptNameDataGridViewTextBoxColumn)].Value?.ToString();
-            string empCode = row.Cells[nameof(empCodeDataGridViewTextBoxColumn)].Value?.ToString();
-            string empName = row.Cells[nameof(empNameDataGridViewTextBoxColumn)].Value?.ToString();
-            string gender = row.Cells[nameof(genderDataGridViewTextBoxColumn)].Value?.ToString();
-            string position = row.Cells[nameof(positionDataGridViewTextBoxColumn)].Value?.ToString();
-            string employmentType = row.Cells[nameof(employmentTypeDataGridViewTextBoxColumn)].Value?.ToString();
-            string phone = row.Cells[nameof(phoneDataGridViewTextBoxColumn)].Value?.ToString();
-            string email = row.Cells[nameof(emailDataGridViewTextBoxColumn)].Value?.ToString();
-            string messengerId = row.Cells[nameof(messengerIDDataGridViewTextBoxColumn)].Value?.ToString();
-            string memo = row.Cells[nameof(memoDataGridViewTextBoxColumn)].Value?.ToString();
-            string imagePath = row.Cells[nameof(imagePathDataGridViewTextBoxColumn)].Value?.ToString();
-
-            using (var dlg = new ModifyEmployeeForm(
-                employeeId, deptCode, deptName, empCode, empName, gender, position, employmentType, phone, email, messengerId, memo, imagePath))
-            {
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    LoadEmployeeData();
-                }
+                LoadEmployeeData();
             }
         }
 
         private void BtnDelete_Click(object sender, EventArgs e) //삭제버튼
         {
-            DataGridViewRow row = null;
-            if (EmpDgv.SelectedCells.Count > 0)
-                row = EmpDgv.SelectedCells[0].OwningRow;
-
-            if (row != null)
+            var row = EmpDgv.CurrentRow.DataBoundItem as EmployeeModel;
+            var dlg = new DeleteEmployeeForm(row.EmpID, row.EmpCode, row.EmpName);
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-
-                int empId = Convert.ToInt32(row.Cells[nameof(empIDDataGridViewTextBoxColumn)].Value);
-                string empCode = row.Cells[nameof(empCodeDataGridViewTextBoxColumn)].Value?.ToString();
-                string empName = row.Cells[nameof(empNameDataGridViewTextBoxColumn)].Value?.ToString();
-
-                using (var dlg = new DeleteEmployeeForm(empId, empCode, empName))
-                {
-                    if (dlg.ShowDialog() == DialogResult.OK)
-                    {
-                        LoadEmployeeData();
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("삭제할 사원을 선택하세요.");
+                LoadEmployeeData();
             }
         }
 
         private void Btn_LoginInfo_Click(object sender, EventArgs e) //로그인정보버튼
         {
-            DataGridViewRow row = null;
-            if (EmpDgv.SelectedCells.Count > 0)
-                row = EmpDgv.SelectedCells[0].OwningRow;
-
-            if (row != null)
+            var row = EmpDgv.CurrentRow.DataBoundItem as EmployeeModel;
+            var dlg = new LoginInformationForm(row.LoginID, row.Pwd, row.EmpID);
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                string loginId = row.Cells[nameof(loginIDDataGridViewTextBoxColumn)].Value?.ToString();
-                string pwd = row.Cells[nameof(pwdDataGridViewTextBoxColumn)].Value?.ToString();
-                string empID = row.Cells[nameof(empIDDataGridViewTextBoxColumn)].Value?.ToString();
-
-                using (var dlg = new LoginInformationForm(loginId, pwd, empID))
-                {
-                    if (dlg.ShowDialog() == DialogResult.OK)
-                    {
-                        LoadEmployeeData();
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("로그인 정보를 볼 사원을 선택하세요.");
+                LoadEmployeeData();
             }
         }
 
@@ -159,8 +106,6 @@ namespace EmployeeManagement.Forms.Employee
             try
             {
                 var employees = EmployeeRepository.Instance.GetAllEmployees();
-
-                // DataGridView에 바인딩 -> DataBound 사용하기
                 EmpDgv.DataSource = employees;
                 EmpDgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             }
@@ -176,7 +121,7 @@ namespace EmployeeManagement.Forms.Employee
             try
             {
                 // 저장할 파일 경로 선택
-                string filePath = DataConverSion.GetExcelSaveFilePath();
+                string filePath = DataConversion.GetExcelSaveFilePath();
                 if (string.IsNullOrEmpty(filePath))
                 {
                     return; // 사용자가 취소한 경우
@@ -193,7 +138,7 @@ namespace EmployeeManagement.Forms.Employee
                 }
 
                 // Excel 파일로 변환
-                bool success = DataConverSion.ExportEmployeesToExcel(employees, filePath);
+                bool success = DataConversion.ExportEmployeesToExcel(employees, filePath);
 
                 if (success)
                 {

@@ -1,22 +1,25 @@
-﻿using System;
-using System.Configuration;
+﻿using EmployeeManagement.Models.Repository;
+using System;
 using System.Windows.Forms;
-using EmployeeManagement.Models.Repository;
 
 namespace EmployeeManagement.Forms.Employee
 {
     public partial class LoginInformationForm : Form
     {
-        private string EmpID;
+        private readonly int EmpID;
 
         public LoginInformationForm()
         {
             InitializeComponent();
+            LoadEvents();
+        }
+
+        private void LoadEvents()
+        {
             BtnSave.Click += BtnSave_Click;
             BtnClose.Click += BtnClose_Click;
         }
-
-        public LoginInformationForm(string loginId, string pwd, string empID) : this()
+        public LoginInformationForm(string loginId, string pwd, int empID) : this()
         {
             LoginIDTextBox.Text = loginId;
             PwdTextBox.Text = pwd;
@@ -28,7 +31,7 @@ namespace EmployeeManagement.Forms.Employee
             string newLoginID = LoginIDTextBox.Text.Trim();
             string newPassword = PwdTextBox.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(EmpID))
+            if (EmpID<=0) 
             {
                 MessageBox.Show("사원 정보가 없습니다.");
                 return;

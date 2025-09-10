@@ -10,6 +10,10 @@ namespace EmployeeManagement.Forms.Department
         public AddDepartmentForm()
         {
             InitializeComponent();
+            LoadEvents();
+        }
+        private void LoadEvents()
+        {
             BtnSave.Click += BtnSave_Click;
             BtnCancel.Click += BtnCancel_Click;
         }

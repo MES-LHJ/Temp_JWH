@@ -1,12 +1,11 @@
-﻿using System;
+﻿using EmployeeManagement.Models;
+using EmployeeManagement.Models.Repository;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using EmployeeManagement.Models;
-using EmployeeManagement.Models.Repository;
 
 namespace EmployeeManagement.Forms.Employee
 {
@@ -20,13 +19,16 @@ namespace EmployeeManagement.Forms.Employee
         {
             InitializeComponent();
             LoadDeptCodes();
+            LoadEvents();
+        }
+
+        private void LoadEvents()
+        {
             DeptCodeComboBox.SelectedIndexChanged += DeptCodeComboBox_SelectedIndexChanged;
             BtnSave.Click += ButtonSave_Click;
             BtnCancel.Click += BtnCancel_Click;
             BtnSelectPicture.Click += BtnSelectPicture_Click;
-
         }
-
         private void LoadDeptCodes() // 부서코드, 부서명 콤보박스에 데이터 로드
         {
             string connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString;
@@ -102,32 +104,6 @@ namespace EmployeeManagement.Forms.Employee
             string email = EmailTextBox.Text.Trim();
             string messengerId = MessengerIDTextBox.Text.Trim();
             string memo = MemoTextBox.Text;
-
-            // 필수 입력값 체크
-            if (string.IsNullOrEmpty(empCode))
-            {
-                MessageBox.Show("사원코드를 입력하세요.", "입력 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                EmpCodeTextBox.Focus();
-                return;
-            }
-            if (string.IsNullOrEmpty(empName))
-            {
-                MessageBox.Show("사원명을 입력하세요.", "입력 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                EmpNameTextBox.Focus();
-                return;
-            }
-            if (string.IsNullOrEmpty(loginId))
-            {
-                MessageBox.Show("로그인ID를 입력하세요.", "입력 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                LoginIDTextBox.Focus();
-                return;
-            }
-            if (string.IsNullOrEmpty(pwd))
-            {
-                MessageBox.Show("비밀번호를 입력하세요.", "입력 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                PwdTextBox.Focus();
-                return;
-            }
             try
             {
                 var repository = EmployeeRepository.Instance; //EmployeeRepository 객체 가져오기

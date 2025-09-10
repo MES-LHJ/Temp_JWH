@@ -7,23 +7,28 @@ namespace EmployeeManagement.Forms.Department
 {
     public partial class ManageDeptForm : Form
     {
+        private readonly DepartmentRepository DepartmentModel = DepartmentRepository.Instance;
 
         public ManageDeptForm()
         {
             InitializeComponent();
-            this.Load += DepartmentManagementForm_Load;
-            BtnChart.Click += BtnChart_Click;
-            BtnAdd.Click += BtnAdd_Click;
-            BtnModify.Click += BtnModify_Click;
-            BtnDelete.Click += BtnDelete_Click;
-            BtnClose.Click += BtnClose_Click;
+            LoadEvents();
         }
 
         private void DepartmentManagementForm_Load(object sender, EventArgs e)
         {
             LoadDepartmentData();
         }
-        private readonly DepartmentRepository DepartmentModel = DepartmentRepository.Instance;
+
+        private void LoadEvents() 
+        {
+            BtnChart.Click += BtnChart_Click;
+            BtnAdd.Click += BtnAdd_Click;
+            BtnModify.Click += BtnModify_Click;
+            BtnDelete.Click += BtnDelete_Click;
+            BtnClose.Click += BtnClose_Click;
+            this.Load += DepartmentManagementForm_Load;
+        }
 
         private void LoadDepartmentData() // 조회기능 
         {
@@ -40,7 +45,6 @@ namespace EmployeeManagement.Forms.Department
             }
         }
 
-
         private void BtnAdd_Click(object sender, EventArgs e) //추가버튼
         {
             using (var dlg = new AddDepartmentForm())
@@ -54,53 +58,21 @@ namespace EmployeeManagement.Forms.Department
 
         private void BtnModify_Click(object sender, EventArgs e) //수정버튼
         {
-            DataGridViewRow row = null;
-            if (DeptDgv.SelectedCells.Count > 0)
-                row = DeptDgv.SelectedCells[0].OwningRow;
-
-            if (row != null)
-            {
-                int deptId = Convert.ToInt32(row.Cells[nameof(deptIDDataGridViewTextBoxColumn)].Value);
-                string deptCode = row.Cells[nameof(deptCodeDataGridViewTextBoxColumn)].Value?.ToString() ?? string.Empty;
-                string deptName = row.Cells[nameof(deptNameDataGridViewTextBoxColumn)].Value?.ToString() ?? string.Empty;
-                string memo = row.Cells[nameof(memoDataGridViewTextBoxColumn)].Value?.ToString() ?? string.Empty;
-
-                using (var dlg = new ModifyDepartmentForm(deptId, deptCode, deptName, memo))
+            var row = DeptDgv.CurrentRow.DataBoundItem as DepartmentModel;
+            var dlg = new ModifyDepartmentForm(row);
+            
+                if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    if (dlg.ShowDialog() == DialogResult.OK)
-                    {
-                        LoadDepartmentData();
-                    }
+                    LoadDepartmentData();
                 }
-            }
-            else
-            {
-                MessageBox.Show("수정할 셀을 선택하세요.");
-            }
         }
         private void BtnDelete_Click(object sender, EventArgs e) //삭제버튼
         {
-            DataGridViewRow row = null;
-            if (DeptDgv.SelectedCells.Count > 0)
-                row = DeptDgv.SelectedCells[0].OwningRow;
-
-            if (row != null)
+            var row = DeptDgv.CurrentRow.DataBoundItem as DepartmentModel;
+            var dlg = new DeleteDepartmentForm(row);
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                int deptId = Convert.ToInt32(row.Cells[nameof(deptIDDataGridViewTextBoxColumn)].Value);
-                string deptCode = row.Cells[nameof(deptCodeDataGridViewTextBoxColumn)].Value?.ToString() ?? string.Empty;
-                string deptName = row.Cells[nameof(deptNameDataGridViewTextBoxColumn)].Value?.ToString() ?? string.Empty;
-
-                using (var dlg = new DeleteDepartmentForm(deptId, deptCode, deptName))
-                {
-                    if (dlg.ShowDialog() == DialogResult.OK)
-                    {
-                        LoadDepartmentData();
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("삭제할 셀을 선택하세요.");
+                LoadDepartmentData();
             }
         }
 
@@ -109,7 +81,7 @@ namespace EmployeeManagement.Forms.Department
             this.Close();
         }
 
-        private void BtnChart_Click(object sender, EventArgs e)
+        private void BtnChart_Click(object sender, EventArgs e) //차트버튼
         {
             var dlg = new ChartDepartment();
             dlg.ShowDialog();

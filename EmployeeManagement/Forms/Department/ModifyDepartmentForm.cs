@@ -6,15 +6,18 @@ namespace EmployeeManagement.Forms.Department
 {
     public partial class ModifyDepartmentForm : Form
     {
-        private readonly int DeptID;
+        private Models.DepartmentModel department;
 
-        public ModifyDepartmentForm(int deptId, string deptCode, string deptName, string memo)
+        public ModifyDepartmentForm(Models.DepartmentModel department)
         {
             InitializeComponent();
-            this.DeptID = deptId;
-            DeptCodeTextBox.Text = deptCode;   // 부서코드
-            DeptNameTextBox.Text = deptName;   // 부서명
-            MemoTextBox.Text = memo;       // 메모를 '부서관리'에서 받아오는 생성자
+            this.department = department;//위치 LoadDepartmentData();보다 위로
+            LoadDepartmentData();
+        }
+        private void LoadDepartmentData() {
+            DeptCodeTextBox.Text = department.DeptCode;
+            DeptNameTextBox.Text = department.DeptName;
+            MemoTextBox.Text = department.Memo;
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -30,13 +33,10 @@ namespace EmployeeManagement.Forms.Department
             }
             try
             {
-                var department = new Models.DepartmentModel
-                { 
-                    DeptID = this.DeptID,
-                    DeptCode = newDeptCode,
-                    DeptName = newDeptName, 
-                    Memo = newMemo,
-                };
+                department.DeptCode = newDeptCode;
+                department.DeptName = newDeptName;
+                department.Memo = newMemo;
+
                 var repository = DepartmentRepository.Instance;
                 bool success = repository.UpdateDepartment(department);
 

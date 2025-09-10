@@ -1,7 +1,5 @@
 ﻿using EmployeeManagement.Models.Repository;
 using System;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace EmployeeManagement.Forms
@@ -11,6 +9,11 @@ namespace EmployeeManagement.Forms
         public LoginForm()
         {
             InitializeComponent();
+            LoadEvents();
+        }
+
+        private void LoadEvents()
+        {
             LoginIDTextBox.Focus();
             BtnLogin.Click += BtnLogin_Click;
             BtnClose.Click += BtnClose_Click;

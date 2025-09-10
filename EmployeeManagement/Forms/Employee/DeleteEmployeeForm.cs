@@ -1,6 +1,5 @@
 ﻿using EmployeeManagement.Models.Repository;
 using System;
-using System.Configuration;
 using System.Windows.Forms;
 
 namespace EmployeeManagement
@@ -13,10 +12,14 @@ namespace EmployeeManagement
         public DeleteEmployeeForm()
         {
             InitializeComponent();
+            LoadEvents();
+        }
+
+        private void LoadEvents()
+        {
             BtnDelete.Click += BtnDelete_Click;
             BtnCancel.Click += BtnClose_Click;
         }
-
         public DeleteEmployeeForm(int empId, string empCode, string empName) : this()
         {
             this.empId = Convert.ToInt32(empId);

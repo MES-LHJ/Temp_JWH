@@ -1,23 +1,28 @@
 ﻿using EmployeeManagement.Models.Repository;
 using System;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace EmployeeManagement.Forms.Department
 {
     public partial class DeleteDepartmentForm : Form
     {
-        private readonly int DeptID;
+        private Models.DepartmentModel department;
 
-        public DeleteDepartmentForm(int deptId, string deptCode, string deptName)
+        public DeleteDepartmentForm(Models.DepartmentModel department)
         {
             InitializeComponent();
+            this.department = department;
+            LoadDepartmentData();
+            LoadEvents();
+        }
+        private void LoadEvents()
+        {
             BtnDelete.Click += BtnDelete_Click;
             BtnCancel.Click += BtnCancel_Click;
-            this.DeptID = deptId;
-            DeptCodeTextBox.Text = deptCode; // 부서코드
-            DeptNameTextBox.Text = deptName; // 부서명
-
+        }
+        private void LoadDepartmentData() { 
+            DeptCodeTextBox.Text = department.DeptCode;
+            DeptNameTextBox.Text = department.DeptName;
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
@@ -25,13 +30,12 @@ namespace EmployeeManagement.Forms.Department
             var repo = DepartmentRepository.Instance;
 
             var confirm = MessageBox.Show("정말 삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
             if (confirm != DialogResult.Yes)
                 return;
 
             try
             {
-                var deleted = repo.DeleteDepartment(this.DeptID);
+                var deleted = repo.DeleteDepartment(department.DeptID);
 
                 if (deleted)
                 {

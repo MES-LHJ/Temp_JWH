@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ClosedXML.Excel;
+using System;
 using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ClosedXML.Excel;
 
 namespace EmployeeManagement.Models.Repository
 {
-    internal class DataConverSion
+    internal class DataConversion
     {
         public static bool ExportEmployeesToExcel(BindingList<EmployeeModel> employees, string filePath)
         {

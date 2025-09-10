@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeManagement.Forms.Department;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -141,6 +142,38 @@ namespace EmployeeManagement.Models.Repository
             {
                 throw new Exception(ex.Message, ex);
             }
+        }
+
+
+        public BindingList<DepartmentModel> GetDepartmentHeadCount()
+        {
+            var chartData = new BindingList<DepartmentModel>();
+            string query = @"SELECT d.DeptID, d.DeptCode, d.DeptName, COUNT(e.EmpID) as HeadCount 
+                           FROM Department d 
+                           LEFT JOIN Employee e ON d.DeptID = e.DeptID 
+                           GROUP BY d.DeptID, d.DeptCode, d.DeptName 
+                           ORDER BY d.DeptName";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var chartItem = new DepartmentModel
+                        {
+                            DeptID = reader.GetInt32(reader.GetOrdinal("DeptID")),
+                            DeptCode = reader.GetString(reader.GetOrdinal("DeptCode")),
+                            DeptName = reader.GetString(reader.GetOrdinal("DeptName")),
+                            HeadCount = reader.GetInt32(reader.GetOrdinal("HeadCount"))
+                        };
+                        chartData.Add(chartItem);
+                    }
+                }
+            }
+            return chartData;
         }
     }
 }

@@ -1,13 +1,9 @@
-﻿using EmployeeManagement.Forms.Employee;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Reflection.Emit;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -26,7 +22,7 @@ namespace EmployeeManagement.Models.Repository
         private readonly string connectionString;
         private EmployeeRepository() 
         {   connectionString = ConfigurationManager.ConnectionStrings["EmployeeManageDB"].ConnectionString; }
-
+        private const string BASE_DIRECTORY = @"C:\NAS\";
 
         // 모든 사원 데이터 조회 (부서 정보 포함)
         public BindingList<EmployeeModel> GetAllEmployees()
@@ -101,20 +97,7 @@ namespace EmployeeManagement.Models.Repository
 
         // 사원 추가
         public bool AddEmployee(EmployeeModel employeeData) // 매개변수로 EmployeeModel 객체 받기 13개
-        {
-            // Phone 유효성 검사 (수정필요)
-            if (!IsValidPhone(employeeData.Phone))
-            {
-                throw new ArgumentException("휴대전화 번호 형식이 올바르지 않습니다. (예: 010-1234-5678)");
-            }
-
-            // Email 유효성 검사 (수정필요)
-            if (!IsValidEmail(employeeData.Email))
-            {
-                throw new ArgumentException("이메일 주소 형식이 올바르지 않습니다. (예: user@example.com)");
-            }
-
-            
+        {    
 
             string query = @"INSERT INTO Employee 
                             (DeptID, EmpCode, EmpName, Gender, LoginID, Pwd, Position, 
@@ -160,11 +143,8 @@ namespace EmployeeManagement.Models.Repository
 
             try
             {
-                // 기본 NAS 폴더
-                string baseDir = @"C:\NAS\";
-
                 // 사원별 폴더 생성
-                string empFolder = Path.Combine(baseDir, empCode);
+                string empFolder = Path.Combine(BASE_DIRECTORY, empCode);
                 if (!Directory.Exists(empFolder))
                     Directory.CreateDirectory(empFolder);
 
@@ -189,11 +169,8 @@ namespace EmployeeManagement.Models.Repository
 
             try
             {
-                // 기본 NAS 폴더
-                string baseDir = @"C:\NAS\";
-
                 // 사원별 폴더 생성
-                string empFolder = Path.Combine(baseDir, empCode);
+                string empFolder = Path.Combine(BASE_DIRECTORY, empCode);
                 if (!Directory.Exists(empFolder))
                     Directory.CreateDirectory(empFolder);
 
@@ -204,12 +181,23 @@ namespace EmployeeManagement.Models.Repository
                 File.Copy(selectedPicturePath, targetFilePath, true);
 
                 // 기존 이미지 삭제 -> 안된다 왜 안되지
-                if (!string.IsNullOrEmpty(targetFilePath))
+                if (!string.IsNullOrEmpty(currentPicturePath) && File.Exists(currentPicturePath))
                 {
                     try
                     {
-                        File.Delete(currentPicturePath);
-                        MessageBox.Show("기존 이미지가 삭제되었습니다.");
+                        // 같은 파일인지 확인 (경로 정규화 후 비교)
+                        string normalizedCurrent = Path.GetFullPath(currentPicturePath);
+                        string normalizedTarget = Path.GetFullPath(targetFilePath);
+
+                        if (!string.Equals(normalizedCurrent, normalizedTarget, StringComparison.OrdinalIgnoreCase))
+                        {
+                            File.Delete(currentPicturePath);
+                            Console.WriteLine("기존 이미지가 삭제되었습니다."); // 여기 2줄만 필요
+                        }
+                        else
+                        {
+                            Console.WriteLine("기존 이미지와 새 이미지가 같은 파일입니다.");
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -217,7 +205,7 @@ namespace EmployeeManagement.Models.Repository
                         Console.WriteLine($"기존 이미지 삭제 실패: {ex.Message}");
                     }
                 }
-                else {                     MessageBox.Show("기존 이미지가 없습니다.");
+                else {MessageBox.Show("기존 이미지가 없습니다.");
                 }
 
                 return targetFilePath;
@@ -226,33 +214,6 @@ namespace EmployeeManagement.Models.Repository
             {
                 throw new Exception($"이미지 파일 처리 중 오류: {ex.Message}", ex);
             }
-        }
-
-        // Phone 유효성 검사 메서드
-        private bool IsValidPhone(string phone)
-        {
-            if (string.IsNullOrWhiteSpace(phone))
-                return true; // 선택사항이므로 빈 값 허용
-
-            // 11자리 숫자만 있는 경우 하이픈 추가
-            if (Regex.IsMatch(phone, @"^\d{11}$"))
-            {
-                phone = phone.Insert(3, "-").Insert(8, "-");
-            }
-
-            // 휴대전화 패턴: 010, 011, 016, 017, 018, 019로 시작하는 번호
-            string phonePattern = @"^01[0-9]-\d{3,4}-\d{4}$";
-            return Regex.IsMatch(phone, phonePattern);
-        }
-        // Email 유효성 검사 메서드
-        private bool IsValidEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-                return true; // 선택사항이므로 빈 값 허용
-
-            // 이메일 패턴 검사
-            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-            return Regex.IsMatch(email, emailPattern);
         }
 
         // DeptCode로 DeptID를 검색하는 메서드
@@ -305,7 +266,7 @@ namespace EmployeeManagement.Models.Repository
                     cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpCode), employee.EmpCode ?? string.Empty);
                     cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpName), employee.EmpName ?? string.Empty);
                     // Gender enum을 문자열로 변환
-                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Gender), employee.Gender == Models.Gender.None ? string.Empty : employee.Gender.ToString());
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Gender), employee.Gender == Gender.None ? string.Empty : employee.Gender.ToString());
                     cmd.Parameters.AddWithValue(nameof(EmployeeModel.Position), employee.Position ?? string.Empty);
                     cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmploymentType), employee.EmploymentType ?? string.Empty);
                     cmd.Parameters.AddWithValue(nameof(EmployeeModel.Phone), employee.Phone ?? string.Empty);
@@ -329,6 +290,7 @@ namespace EmployeeManagement.Models.Repository
         // 사원 삭제
         public bool DeleteEmployee(int empId, string empCode)
         {
+
             string query = "DELETE FROM Employee WHERE EmpID = @EmpID";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -342,17 +304,14 @@ namespace EmployeeManagement.Models.Repository
                     // 이미지 폴더도 삭제
                     try
                     {
-                        string baseDir = @"C:\NAS";
-                        string empFolder = Path.Combine(baseDir, empCode);
+                        string empFolder = Path.Combine(BASE_DIRECTORY, empCode);
 
                         if (Directory.Exists(empFolder))
                         {
                             Directory.Delete(empFolder, true); // true = 하위 파일/폴더까지 삭제
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        // 폴더 삭제 실패해도 DB 삭제는 이미 된 상태 → 로그만 남기고 무시 가능
+                    catch (Exception ex) { 
                         Console.WriteLine($"이미지 폴더 삭제 실패: {ex.Message}");
                     }
 
