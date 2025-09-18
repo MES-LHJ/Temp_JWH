@@ -68,6 +68,7 @@ namespace EmployeeManagement.Forms.Employee
 
         private void DeptCodeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //var dep = DeptCodeComboBox.SelectedItem as DepartmentModel; 이런식
             if (DeptCodeComboBox.SelectedValue != null && deptList != null)
             {
                 // LINQ를 사용하여 List에서 검색

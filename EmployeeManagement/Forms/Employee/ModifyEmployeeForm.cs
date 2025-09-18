@@ -77,10 +77,6 @@ namespace EmployeeManagement.Forms.Employee
                 DeptCodeComboBox.DisplayMember = "DeptCode";  // 화면에 표시될 값
                 DeptCodeComboBox.ValueMember = "DeptID";    // 실제 값
 
-                // 초기 선택 없음
-                //DeptCodeComboBox.SelectedIndex = -1;
-
-                // 선택 변경 이벤트 핸들러 추가
                 DeptCodeComboBox.SelectedIndexChanged += DeptCodeComboBox_SelectedIndexChanged;
             }
             catch (Exception ex)
