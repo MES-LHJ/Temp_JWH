@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageUDeptForm));
             this.UDeptMainPanel = new DevExpress.XtraEditors.PanelControl();
             this.UDeptGridView = new DevExpress.XtraGrid.GridControl();
             this.upperDepartmentModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -44,6 +45,7 @@
             this.BtnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.BtnUDeptDataConv = new DevExpress.XtraEditors.SimpleButton();
             this.UDeptTitleLabel = new DevExpress.XtraEditors.LabelControl();
+            this.svgImageBox1 = new DevExpress.XtraEditors.SvgImageBox();
             ((System.ComponentModel.ISupportInitialize)(this.UDeptMainPanel)).BeginInit();
             this.UDeptMainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UDeptGridView)).BeginInit();
@@ -51,6 +53,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UDeptTopPanel)).BeginInit();
             this.UDeptTopPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImageBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // UDeptMainPanel
@@ -132,6 +135,7 @@
             // 
             // UDeptTopPanel
             // 
+            this.UDeptTopPanel.Controls.Add(this.svgImageBox1);
             this.UDeptTopPanel.Controls.Add(this.BtnClose);
             this.UDeptTopPanel.Controls.Add(this.BtnDelete);
             this.UDeptTopPanel.Controls.Add(this.BtnModify);
@@ -198,11 +202,20 @@
             // 
             this.UDeptTitleLabel.Appearance.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.UDeptTitleLabel.Appearance.Options.UseFont = true;
-            this.UDeptTitleLabel.Location = new System.Drawing.Point(12, 13);
+            this.UDeptTitleLabel.Location = new System.Drawing.Point(44, 14);
             this.UDeptTitleLabel.Name = "UDeptTitleLabel";
             this.UDeptTitleLabel.Size = new System.Drawing.Size(65, 20);
             this.UDeptTitleLabel.TabIndex = 0;
             this.UDeptTitleLabel.Text = "상위 부서";
+            // 
+            // svgImageBox1
+            // 
+            this.svgImageBox1.Location = new System.Drawing.Point(5, 7);
+            this.svgImageBox1.Name = "svgImageBox1";
+            this.svgImageBox1.Size = new System.Drawing.Size(33, 32);
+            this.svgImageBox1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageBox1.SvgImage")));
+            this.svgImageBox1.TabIndex = 3;
+            this.svgImageBox1.Text = "svgImageBox1";
             // 
             // ManageUDeptForm
             // 
@@ -221,6 +234,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.UDeptTopPanel)).EndInit();
             this.UDeptTopPanel.ResumeLayout(false);
             this.UDeptTopPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImageBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -242,5 +256,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn UDeptCode;
         private DevExpress.XtraGrid.Columns.GridColumn UDeptName;
         private DevExpress.XtraGrid.Columns.GridColumn Memo;
+        private DevExpress.XtraEditors.SvgImageBox svgImageBox1;
     }
 }

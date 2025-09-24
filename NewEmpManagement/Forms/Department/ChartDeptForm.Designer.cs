@@ -32,6 +32,7 @@
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.StackedBarSeriesView stackedBarSeriesView1 = new DevExpress.XtraCharts.StackedBarSeriesView();
+            DevExpress.XtraCharts.ChartTitle chartTitle1 = new DevExpress.XtraCharts.ChartTitle();
             this.ChartTopPanel = new DevExpress.XtraEditors.PanelControl();
             this.ChartLabel = new DevExpress.XtraEditors.LabelControl();
             this.DeptChartControl = new DevExpress.XtraCharts.ChartControl();
@@ -71,14 +72,25 @@
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
             this.DeptChartControl.Diagram = xyDiagram1;
             this.DeptChartControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeptChartControl.Legend.AlignmentHorizontal = DevExpress.XtraCharts.LegendAlignmentHorizontal.Right;
+            this.DeptChartControl.Legend.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeptChartControl.Legend.HorizontalIndent = 7;
+            this.DeptChartControl.Legend.Visibility = DevExpress.Utils.DefaultBoolean.True;
             this.DeptChartControl.Location = new System.Drawing.Point(0, 34);
             this.DeptChartControl.Name = "DeptChartControl";
+            this.DeptChartControl.PaletteName = "Office 2013";
             series1.Name = "Series 1";
             series1.View = stackedBarSeriesView1;
             this.DeptChartControl.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1};
             this.DeptChartControl.Size = new System.Drawing.Size(777, 457);
             this.DeptChartControl.TabIndex = 2;
+            chartTitle1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartTitle1.Text = "부서별 사원수";
+            chartTitle1.Visibility = DevExpress.Utils.DefaultBoolean.True;
+            chartTitle1.WordWrap = true;
+            this.DeptChartControl.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
+            chartTitle1});
             // 
             // departmentDetailDtoBindingSource
             // 

@@ -5,12 +5,9 @@ using NewEmpManagement.Repository;
 using NewEmpManagement.Utils;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NewEmpManagement.Forms
@@ -18,6 +15,7 @@ namespace NewEmpManagement.Forms
     public partial class AddEmpForm : XtraForm
     {
         private List<DepartmentDetailDto> deptDto;
+        private List<UpperDepartmentModel> upperDeptList;
         public AddEmpForm()
         {
             InitializeComponent();
@@ -37,16 +35,11 @@ namespace NewEmpManagement.Forms
         {
             try
             {
-                deptDto = await Repository.DepartmentRepository.Instance.GetDepartmentDetailsAsync();
-
-                //상위부서코드 중복제거
-                var distinctList = deptDto
-                    .GroupBy(x => new { x.UDeptCode, x.UDeptName })
-                    .Select(g => g.First())
-                    .ToList();
+                upperDeptList = await UpperDepartmentRepository.Instance.GetAllUpperDepartments();
+                deptDto = await DepartmentRepository.Instance.GetDepartmentDetailsAsync();
 
                 //상위부서코드Lookup박스
-                UDeptLookupBox.Properties.DataSource = distinctList;
+                UDeptLookupBox.Properties.DataSource = upperDeptList;
                 UDeptLookupBox.Properties.DisplayMember = "UDeptCode";
                 UDeptLookupBox.Properties.ValueMember = "UDeptID";
 
@@ -63,15 +56,15 @@ namespace NewEmpManagement.Forms
         private void UDeptLookupBox_EditValueChanged(object sender, EventArgs e)
         {
             // 선택된 상위부서 DTO
-            var selected = UDeptLookupBox.GetSelectedDataRow() as DepartmentDetailDto;
+            var selectedUDept = UDeptLookupBox.GetSelectedDataRow() as UpperDepartmentModel;
 
-            if (selected != null)
+            if (selectedUDept!= null)
             {
-                UDeptNameTextBox.Text = selected.UDeptName;
+                UDeptNameTextBox.Text = selectedUDept.UDeptName;
 
                 // 선택된 상위부서에 속한 하위부서만 필터링
                 var filteredDepts = deptDto
-                    .Where(d => d.UDeptID == selected.UDeptID)
+                    .Where(d => d.UDeptID == selectedUDept.UDeptID)
                     .ToList();
 
                 DeptCodeLookupBox.Properties.DataSource = filteredDepts;
@@ -95,15 +88,15 @@ namespace NewEmpManagement.Forms
                 DeptNameTextBox.Text = selectedDept.DeptName;
 
                 // 상위부서 자동 선택
-                var parentDept = deptDto.FirstOrDefault(d => d.UDeptID == selectedDept.UDeptID);
-                if (parentDept != null)
+                var parentUDept = upperDeptList.FirstOrDefault(u => u.UDeptID == selectedDept.UDeptID);
+                if (parentUDept != null)
                 {
-                    UDeptLookupBox.EditValue = parentDept.UDeptID;
-                    UDeptNameTextBox.Text = parentDept.UDeptName;
+                    UDeptLookupBox.EditValue = parentUDept.UDeptID;
+                    UDeptNameTextBox.Text = parentUDept.UDeptName;
 
                     // 선택된 상위부서 기준으로 하위부서 필터링
                     var filteredDepts = deptDto
-                        .Where(d => d.UDeptID == parentDept.UDeptID)
+                        .Where(d => d.UDeptID == parentUDept.UDeptID)
                         .ToList();
                     DeptCodeLookupBox.Properties.DataSource = filteredDepts;
 
@@ -125,8 +118,6 @@ namespace NewEmpManagement.Forms
             if (!Helpers.ValidateRequired(EmpNameTextBox, "사원명을 입력해주세요")) return;
             if (!Helpers.ValidateRequired(LoginTextBox, "로그인ID를 입력해주세요")) return;
             if (!Helpers.ValidateRequired(PwdTextBox, "비밀번호를 입력해주세요")) return;
-
-
 
             try
             {

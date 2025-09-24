@@ -64,6 +64,7 @@ namespace NewEmpManagement.Forms.UpperDepartment
         }
         private void BtnClose_Click(object sender, EventArgs e) // 닫기
         {
+            DialogResult = DialogResult.OK;
             this.Close();
         }
     }

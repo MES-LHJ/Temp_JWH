@@ -114,8 +114,8 @@ namespace NewEmpManagement.Repository
             }
 
         }
-        //안쓰면 삭제
-        public async Task<UpperDepartmentModel> GetUpperDepartmentById(int udeptId) // ID로 상위부서 조회(비동기)
+
+        public async Task<UpperDepartmentModel> GetUpperDepartmentById(int udeptId) // ID로 상위부서 조회(비동기) /보류
         {
             string query = "SELECT UDeptID, UDeptCode, UDeptName, Memo FROM UpperDepartment WHERE UDeptID = @UDeptID";
             using (SqlConnection conn = new SqlConnection(connectionString))

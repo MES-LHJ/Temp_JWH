@@ -1,16 +1,9 @@
 ﻿using DevExpress.XtraEditors;
 using NewEmpManagement.Forms.Department;
 using NewEmpManagement.Forms.Employee;
-using NewEmpManagement.Models;
+using NewEmpManagement.Models.Dto;
 using NewEmpManagement.Repository;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NewEmpManagement.Forms
@@ -48,7 +41,7 @@ namespace NewEmpManagement.Forms
             var dlg = new ManageDeptForm();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                // 새로고침
+                LoadEmpData();
             }
         }
         private void BtnRefresh_Click(object sender, EventArgs e) // 조회
@@ -84,32 +77,34 @@ namespace NewEmpManagement.Forms
             var dlg = new MultiAddEmpForm();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                // 새로고침
+                LoadEmpData();
             }
         }
         private void BtnModify_Click(object sender, EventArgs e) // 수정
         {
-            var dlg = new ModifyEmpForm();
+            var row = gridView1.GetFocusedRow() as EmployeeDetailDto;
+            var dlg = new ModifyEmpForm(row);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                // 새로고침
+                LoadEmpData();
             }
         }
         private void BtnLoginInfo_Click(object sender, EventArgs e) // 로그인정보
         {
-            var dlg = new LoginInfoEmpForm();
+            var row = gridView1.GetFocusedRow() as EmployeeDetailDto;
+            var dlg = new LoginInfoEmpForm(row);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                // 새로고침
+                LoadEmpData();
             }
         }
         private void BtnDelete_Cick(object sender, EventArgs e) // 삭제
         {
-            var row = gridView1.GetFocusedRow() as EmployeeModel;
+            var row = gridView1.GetFocusedRow() as EmployeeDetailDto;
             var dlg = new DeleteEmpForm(row);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                // 새로고침
+                LoadEmpData();
             }
         }
         private void BtnDataConv_Click(object sender, EventArgs e) // 데이터변환

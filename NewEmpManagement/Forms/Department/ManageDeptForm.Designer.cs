@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageDeptForm));
             this.DeptTopPanel = new DevExpress.XtraEditors.PanelControl();
             this.BtnClose = new DevExpress.XtraEditors.SimpleButton();
             this.BtnDelete = new DevExpress.XtraEditors.SimpleButton();
@@ -55,6 +56,7 @@
             this.colDeptName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMemo1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUDeptID1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.svgImageBox1 = new DevExpress.XtraEditors.SvgImageBox();
             ((System.ComponentModel.ISupportInitialize)(this.DeptTopPanel)).BeginInit();
             this.DeptTopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DeptMainPanel)).BeginInit();
@@ -71,10 +73,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.DeptGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImageBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // DeptTopPanel
             // 
+            this.DeptTopPanel.Controls.Add(this.svgImageBox1);
             this.DeptTopPanel.Controls.Add(this.BtnClose);
             this.DeptTopPanel.Controls.Add(this.BtnDelete);
             this.DeptTopPanel.Controls.Add(this.BtnModify);
@@ -163,7 +167,7 @@
             // 
             this.DeptTitleLabel.Appearance.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.DeptTitleLabel.Appearance.Options.UseFont = true;
-            this.DeptTitleLabel.Location = new System.Drawing.Point(15, 13);
+            this.DeptTitleLabel.Location = new System.Drawing.Point(44, 15);
             this.DeptTitleLabel.Name = "DeptTitleLabel";
             this.DeptTitleLabel.Size = new System.Drawing.Size(30, 20);
             this.DeptTitleLabel.TabIndex = 0;
@@ -331,6 +335,15 @@
             this.colUDeptID1.VisibleIndex = 4;
             this.colUDeptID1.Width = 83;
             // 
+            // svgImageBox1
+            // 
+            this.svgImageBox1.Location = new System.Drawing.Point(5, 7);
+            this.svgImageBox1.Name = "svgImageBox1";
+            this.svgImageBox1.Size = new System.Drawing.Size(33, 32);
+            this.svgImageBox1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageBox1.SvgImage")));
+            this.svgImageBox1.TabIndex = 3;
+            this.svgImageBox1.Text = "svgImageBox1";
+            // 
             // ManageDeptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -357,6 +370,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DeptGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImageBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -389,5 +403,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDeptName;
         private DevExpress.XtraGrid.Columns.GridColumn colMemo1;
         private DevExpress.XtraGrid.Columns.GridColumn colUDeptID1;
+        private DevExpress.XtraEditors.SvgImageBox svgImageBox1;
     }
 }

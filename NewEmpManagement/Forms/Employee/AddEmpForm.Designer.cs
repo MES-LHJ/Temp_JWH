@@ -32,6 +32,7 @@
             this.AddEmpPanel = new DevExpress.XtraEditors.PanelControl();
             this.AddEmpTopLabel = new DevExpress.XtraEditors.LabelControl();
             this.EmpAddPanel = new DevExpress.XtraEditors.GroupControl();
+            this.PictureEditEmp = new DevExpress.XtraEditors.PictureEdit();
             this.BtnSave = new DevExpress.XtraEditors.SimpleButton();
             this.BtnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.BtnImgSelect = new DevExpress.XtraEditors.SimpleButton();
@@ -66,11 +67,11 @@
             this.DeptCodeLookupBox = new DevExpress.XtraEditors.LookUpEdit();
             this.UDeptLookupBox = new DevExpress.XtraEditors.LookUpEdit();
             this.departmentDetailDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.PictureEditEmp = new DevExpress.XtraEditors.PictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.AddEmpPanel)).BeginInit();
             this.AddEmpPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EmpAddPanel)).BeginInit();
             this.EmpAddPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureEditEmp.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UDeptNameTextBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DeptNameTextBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmpCodeTextBox.Properties)).BeginInit();
@@ -87,7 +88,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DeptCodeLookupBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UDeptLookupBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentDetailDtoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureEditEmp.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // AddEmpPanel
@@ -155,6 +155,15 @@
             this.EmpAddPanel.TabIndex = 1;
             this.EmpAddPanel.Text = "groupControl1";
             // 
+            // PictureEditEmp
+            // 
+            this.PictureEditEmp.Location = new System.Drawing.Point(483, 75);
+            this.PictureEditEmp.Name = "PictureEditEmp";
+            this.PictureEditEmp.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.PictureEditEmp.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.PictureEditEmp.Size = new System.Drawing.Size(220, 196);
+            this.PictureEditEmp.TabIndex = 9;
+            // 
             // BtnSave
             // 
             this.BtnSave.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
@@ -183,7 +192,7 @@
             // 
             // BtnImgSelect
             // 
-            this.BtnImgSelect.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnImgSelect.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnImgSelect.Appearance.Options.UseFont = true;
             this.BtnImgSelect.Location = new System.Drawing.Point(483, 292);
             this.BtnImgSelect.Name = "BtnImgSelect";
@@ -496,15 +505,6 @@
             // 
             this.departmentDetailDtoBindingSource.DataSource = typeof(NewEmpManagement.Models.Dto.DepartmentDetailDto);
             // 
-            // PictureEditEmp
-            // 
-            this.PictureEditEmp.Location = new System.Drawing.Point(483, 75);
-            this.PictureEditEmp.Name = "PictureEditEmp";
-            this.PictureEditEmp.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.PictureEditEmp.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.PictureEditEmp.Size = new System.Drawing.Size(220, 196);
-            this.PictureEditEmp.TabIndex = 9;
-            // 
             // AddEmpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -520,6 +520,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.EmpAddPanel)).EndInit();
             this.EmpAddPanel.ResumeLayout(false);
             this.EmpAddPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureEditEmp.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UDeptNameTextBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DeptNameTextBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmpCodeTextBox.Properties)).EndInit();
@@ -536,7 +537,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DeptCodeLookupBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UDeptLookupBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentDetailDtoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureEditEmp.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

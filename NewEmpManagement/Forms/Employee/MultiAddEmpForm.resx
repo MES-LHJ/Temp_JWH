@@ -117,4 +117,194 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="spreadsheetCommandGalleryItem794.Description" xml:space="preserve">
+    <value>Use this chart type to:
+• Show the percentage contribution to a whole over time or categories.
+• Show the change to the percentage that each value contributes over time.
+
+Consider using a 100% stacked area chart because stacked line charts can be hard to read.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem794.Hint" xml:space="preserve">
+    <value>Use this chart type to:
+• Show the percentage contribution to a whole over time or categories.
+• Show the change to the percentage that each value contributes over time.
+
+Consider using a 100% stacked area chart because stacked line charts can be hard to read.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem797.Description" xml:space="preserve">
+    <value>Use this chart type to:
+• Show the percentage contribution to a whole over time or categories.
+• Show the change to the percentage that each value contributes over time.
+
+Consider using a 100% stacked area chart because stacked line charts can be hard to read.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem797.Hint" xml:space="preserve">
+    <value>Use this chart type to:
+• Show the percentage contribution to a whole over time or categories.
+• Show the change to the percentage that each value contributes over time.
+
+Consider using a 100% stacked area chart because stacked line charts can be hard to read.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem807.Description" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare the percentage that each value contributes to a total.
+• Show how the percentage that each value contributes changes over time
+
+Use it when:
+• The category text is long.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem807.Hint" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare the percentage that each value contributes to a total.
+• Show how the percentage that each value contributes changes over time
+
+Use it when:
+• The category text is long.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem810.Description" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare the percentage that each value contributes to a total.
+• Show how the percentage that each value contributes changes over time
+
+Use it when:
+• The category text is long.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem810.Hint" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare the percentage that each value contributes to a total.
+• Show how the percentage that each value contributes changes over time
+
+Use it when:
+• The category text is long.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem813.Description" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare the percentage that each value contributes to a total.
+• Show how the percentage that each value contributes changes over time
+
+Use it when:
+• The category text is long.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem813.Hint" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare the percentage that each value contributes to a total.
+• Show how the percentage that each value contributes changes over time
+
+Use it when:
+• The category text is long.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem816.Description" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare the percentage that each value contributes to a total.
+• Show how the percentage that each value contributes changes over time
+
+Use it when:
+• The category text is long.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem816.Hint" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare the percentage that each value contributes to a total.
+• Show how the percentage that each value contributes changes over time
+
+Use it when:
+• The category text is long.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem819.Description" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare the percentage that each value contributes to a total.
+• Show how the percentage that each value contributes changes over time
+
+Use it when:
+• The category text is long.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem819.Hint" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare the percentage that each value contributes to a total.
+• Show how the percentage that each value contributes changes over time
+
+Use it when:
+• The category text is long.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem823.Description" xml:space="preserve">
+    <value>Use this chart type to:
+• Show trends over time (years, months, and days) or categories.
+• Show data on a third axis which will show some areas in front of others.
+
+Use it when:
+• Category order is important.
+• To highlight the magnitude of change over time.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem823.Hint" xml:space="preserve">
+    <value>Use this chart type to:
+• Show trends over time (years, months, and days) or categories.
+• Show data on a third axis which will show some areas in front of others.
+
+Use it when:
+• Category order is important.
+• To highlight the magnitude of change over time.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem831.Description" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare at least three sets of values or pairs of data.
+• Show relationships between sets of values
+
+Use it when:
+• You have a third value that can be used to determine the relative size of the bubble.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem831.Hint" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare at least three sets of values or pairs of data.
+• Show relationships between sets of values
+
+Use it when:
+• You have a third value that can be used to determine the relative size of the bubble.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem832.Description" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare at least three sets of values or pairs of data.
+• Show relationships between sets of values
+
+Use it when:
+• You have a third value that can be used to determine the relative size of the bubble.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem832.Hint" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare at least three sets of values or pairs of data.
+• Show relationships between sets of values
+
+Use it when:
+• You have a third value that can be used to determine the relative size of the bubble.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem836.Description" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare values across hierarchy levels.
+• Show proportions within hierarchical levels as rectangles.
+
+Use it when:
+• The data is organized hierarchically and has fewer categories.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem836.Hint" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare values across hierarchy levels.
+• Show proportions within hierarchical levels as rectangles.
+
+Use it when:
+• The data is organized hierarchically and has fewer categories.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem837.Description" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare values across hierarchy levels.
+• Show proportions within hierarchical levels as rings.
+
+Use it when:
+• The data is organized hierarchically and has many categories.</value>
+  </data>
+  <data name="spreadsheetCommandGalleryItem837.Hint" xml:space="preserve">
+    <value>Use this chart type to:
+• Compare values across hierarchy levels.
+• Show proportions within hierarchical levels as rings.
+
+Use it when:
+• The data is organized hierarchically and has many categories.</value>
+  </data>
 </root>

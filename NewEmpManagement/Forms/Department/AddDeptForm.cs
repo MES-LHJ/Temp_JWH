@@ -14,7 +14,8 @@ namespace NewEmpManagement.Forms.Department
     public partial class AddDeptForm : XtraForm
     {
         private List<DepartmentDetailDto> upperDepartments;
-
+        private List<UpperDepartmentModel> upperDeptList;
+        public DepartmentDetailDto NewDepartmentDto { get; private set; }
         public AddDeptForm()
         {
             InitializeComponent();
@@ -24,16 +25,15 @@ namespace NewEmpManagement.Forms.Department
 
         private async void LoadUpperDepartmentData()
         {
-
             try
             {
-                upperDepartments = await DepartmentRepository.Instance.GetDepartmentDetailsAsync();
-                var distinctList = upperDepartments
-                    .GroupBy(x => new { x.UDeptCode, x.UDeptName })
-                    .Select(g => g.First())
-                    .ToList();
+                upperDeptList = await UpperDepartmentRepository.Instance.GetAllUpperDepartments();
+                //var distinctList = upperDepartments
+                //    .GroupBy(x => x.UDeptCode)
+                //    .Select(g => g.First())
+                //    .ToList();
 
-                UDeptCodeLookUpBox.Properties.DataSource = distinctList;
+                UDeptCodeLookUpBox.Properties.DataSource = upperDeptList;
                 UDeptCodeLookUpBox.Properties.DisplayMember = "UDeptCode";
                 UDeptCodeLookUpBox.Properties.ValueMember = "UDeptID";
             }
@@ -50,7 +50,7 @@ namespace NewEmpManagement.Forms.Department
         }
         private void UDeptCodeLookUpBox_EditValueChanged(object sender, EventArgs e)
         {
-            var selected = UDeptCodeLookUpBox.GetSelectedDataRow() as UpperDepartmentModel;
+            var selected = UDeptCodeLookUpBox.GetSelectedDataRow() as DepartmentDetailDto;
             if (selected != null)
             {
                 UDeptNameTextBox.Text = selected.UDeptName;
@@ -63,7 +63,6 @@ namespace NewEmpManagement.Forms.Department
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
-
             if (!Helpers.ValidateRequired(UDeptCodeLookUpBox, "상위부서코드를 선택해주세요")) return;
             if (!Helpers.ValidateRequired(DeptCodeTextBox, "부서코드를 입력해주세요")) return;
             if (!Helpers.ValidateRequired(DeptNameTextBox, "부서명을 입력해주세요")) return;

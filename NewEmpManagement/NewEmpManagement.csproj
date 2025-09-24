@@ -179,11 +179,18 @@
     <Compile Include="Forms\UpperDepartment\ModifyUDeptForm.Designer.cs">
       <DependentUpon>ModifyUDeptForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChartDeptDto.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\Dto\DepartmentDetailDto.cs" />
     <Compile Include="Models\Dto\EmployeeDetailDto.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\Gender.cs" />
+    <Compile Include="Models\TreeNodeDto.cs" />
+    <Compile Include="NewEmployeeManagementDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewEmployeeManagementDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Repository\DepartmentRepository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\UpperDepartmentRepository.cs" />
@@ -252,10 +259,23 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="NewEmployeeManagementDBDataSet.xsc">
+      <DependentUpon>NewEmployeeManagementDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="NewEmployeeManagementDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewEmployeeManagementDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NewEmployeeManagementDBDataSet.xss">
+      <DependentUpon>NewEmployeeManagementDBDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\DataSources\NewEmpManagement.Models.DepartmentModel.datasource" />
     <None Include="Properties\DataSources\NewEmpManagement.Models.Dto.DepartmentDetailDto.datasource" />
     <None Include="Properties\DataSources\NewEmpManagement.Models.Dto.EmployeeDetailDto.datasource" />
     <None Include="Properties\DataSources\NewEmpManagement.Models.EmployeeModel.datasource" />
+    <None Include="Properties\DataSources\NewEmpManagement.Models.TreeNode.datasource" />
+    <None Include="Properties\DataSources\NewEmpManagement.Models.TreeNodeDto.datasource" />
     <None Include="Properties\DataSources\NewEmpManagement.Models.UpperDepartmentModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

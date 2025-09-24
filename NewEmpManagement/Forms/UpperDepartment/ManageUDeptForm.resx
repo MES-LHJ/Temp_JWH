@@ -120,4 +120,29 @@
   <metadata name="upperDepartmentModelBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="DevExpress.Data.v21.2" name="DevExpress.Data.v21.2, Version=21.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="svgImageBox1.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x
+        NS4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAAB1E
+        ZXZFeHByZXNzLlV0aWxzLlN2Zy5TdmdJbWFnZQEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADqAwAAAu+7
+        vzw/eG1sIHZlcnNpb249JzEuMCcgZW5jb2Rpbmc9J1VURi04Jz8+DQo8c3ZnIHg9IjBweCIgeT0iMHB4
+        IiB2aWV3Qm94PSIwIDAgMzIgMzIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3Jn
+        LzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNw
+        YWNlPSJwcmVzZXJ2ZSIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAw
+        IDMyIDMyIj4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5ZZWxsb3d7ZmlsbDojRkZCMTE1O30K
+        CS5SZWR7ZmlsbDojRDExQzFDO30KCS5CbHVle2ZpbGw6IzExNzdENzt9CgkuR3JlZW57ZmlsbDojMDM5
+        QzIzO30KCS5CbGFja3tmaWxsOiM3MjcyNzI7fQoJLldoaXRle2ZpbGw6I0ZGRkZGRjt9Cgkuc3Qwe29w
+        YWNpdHk6MC41O30KCS5zdDF7ZGlzcGxheTpub25lO30KCS5zdDJ7ZGlzcGxheTppbmxpbmU7ZmlsbDoj
+        MDM5QzIzO30KCS5zdDN7ZGlzcGxheTppbmxpbmU7ZmlsbDojRDExQzFDO30KCS5zdDR7ZGlzcGxheTpp
+        bmxpbmU7ZmlsbDojNzI3MjcyO30KPC9zdHlsZT4NCiAgPGcgaWQ9IkVtcGxveWVlcyI+DQogICAgPHBh
+        dGggZD0iTTEwLDkuOWMtMC4xLDAuNSwwLjIsMC45LDAuNCwxLjRzLTAuMSwxLjcsMC45LDEuNmMwLDAs
+        MCwwLjEsMCwwLjJjMC42LDIuMywyLDQuOSw0LjcsNC45czQuMi0yLjYsNC43LTQuOSAgIFYxM2MxLDAu
+        MSwwLjYtMS4xLDAuOS0xLjZjMC4yLTAuNSwwLjQtMC45LDAuMy0xLjRjLTAuMS0wLjQtMC40LTAuNC0w
+        LjUtMC4zQzIzLjIsNC44LDIwLjMsNSwyMC4zLDVTMjAsMiwxNC44LDIgICBDMTAsMiw5LjQsNiwxMC41
+        LDkuNkMxMC40LDkuNiwxMC4xLDkuNywxMCw5Ljl6IE0yMCwxOGMtMC44LDEuNS0yLjEsNC00LDRzLTMu
+        Mi0yLjUtNC00Yy0yLjMsMy41LTgsMS04LDguNVYzMGgyNHYtMy41ICAgQzI4LDE5LjEsMjIuMywyMS40
+        LDIwLDE4eiIgY2xhc3M9IkJsdWUiIC8+DQogIDwvZz4NCjwvc3ZnPgs=
+</value>
+  </data>
 </root>

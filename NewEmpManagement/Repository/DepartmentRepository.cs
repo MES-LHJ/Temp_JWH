@@ -131,7 +131,5 @@ namespace NewEmpManagement.Repository
 
             return dtoList;
         }
-        
-
     }
 }

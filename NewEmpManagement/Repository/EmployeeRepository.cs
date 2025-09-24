@@ -106,7 +106,8 @@ namespace NewEmpManagement.Repository
                             DeptCode = dept.DeptCode,
                             DeptName = dept.DeptName,
                             UDeptCode = uDept?.UDeptCode ?? string.Empty,
-                            UDeptName = uDept?.UDeptName ?? string.Empty
+                            UDeptName = uDept?.UDeptName ?? string.Empty,
+                            UDeptID = uDept?.UDeptID ?? 0
                            }).ToList();
 
             return dtoList;
@@ -123,9 +124,8 @@ namespace NewEmpManagement.Repository
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    //DB에는 string.Empty가 들어가고 UI에서는 None이 나온다.
                     string dbGender = emp.Gender == Gender.남 ? "남" :
-                                      emp.Gender == Gender.여 ? "여" : string.Empty;
+                                      emp.Gender == Gender.여 ? "여" : "None";
 
                     cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpCode), emp.EmpCode);
                     cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpName), emp.EmpName);
@@ -151,7 +151,104 @@ namespace NewEmpManagement.Repository
                 return false;
             } 
         }
-        public string AddImage(string empCode, string selectedPicturePath) // 이미지 경로 추가
+
+        public bool AddEmployeesBulk(List<EmployeeModel> employees) // 다중 추가
+        {
+            string query = @"INSERT INTO Employee 
+                (EmpCode, EmpName, LoginID, Pwd, Position, EmploymentType, Gender, Phone, Email, MessengerID, Memo, ImagePath, DeptID) 
+                VALUES 
+                (@EmpCode, @EmpName, @LoginID, @Pwd, @Position, @EmploymentType, @Gender, @Phone, @Email, @MessengerID, @Memo, @ImagePath, @DeptID)";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (SqlTransaction tran = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            foreach (var emp in employees)
+                            {
+                                using (SqlCommand cmd = new SqlCommand(query, conn, tran))
+                                {
+                                    string dbGender = emp.Gender == Gender.남 ? "남" :
+                                                      emp.Gender == Gender.여 ? "여" : "None";
+
+                                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpCode), emp.EmpCode);
+                                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpName), emp.EmpName);
+                                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.LoginID), string.IsNullOrEmpty(emp.LoginID) ? (object)DBNull.Value : emp.LoginID);
+                                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Pwd), emp.Pwd);
+                                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Position), emp.Position);
+                                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmploymentType), emp.EmploymentType);
+                                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Gender), dbGender);
+                                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Phone), emp.Phone);
+                                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Email), emp.Email);
+                                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.MessengerID), emp.MessengerID);
+                                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Memo), string.IsNullOrEmpty(emp.Memo) ? (object)DBNull.Value : emp.Memo);
+                                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.ImagePath), string.IsNullOrEmpty(emp.ImagePath) ? (object)DBNull.Value : emp.ImagePath);
+                                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.DeptID), emp.DeptID);
+
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+
+                            tran.Commit();
+                            return true;
+                        }
+                        catch
+                        {
+                            tran.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"오류: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public bool UpdateEmployee(EmployeeModel emp) // 수정
+        {
+            try
+            {
+                string query = @"UPDATE Employee SET EmpCode = @EmpCode, EmpName = @EmpName, LoginID = @LoginID,
+                                                Pwd = @Pwd, Position = @Position, EmploymentType = @EmploymentType,
+                                                Gender = @Gender, Phone = @Phone, Email = @Email, MessengerID = @MessengerID,
+                                                Memo = @Memo, ImagePath = @ImagePath, DeptID = @DeptID WHERE EmpID = @EmpID";
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    string dbGender = emp.Gender == Gender.남 ? "남" :
+                                      emp.Gender == Gender.여 ? "여" : "None";
+
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpID), emp.EmpID);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpCode), emp.EmpCode);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpName), emp.EmpName);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.LoginID), string.IsNullOrEmpty(emp.LoginID) ? (object)DBNull.Value : emp.LoginID);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Pwd), emp.Pwd);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Position), emp.Position);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmploymentType), emp.EmploymentType);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Gender), dbGender);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Phone), emp.Phone);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Email), emp.Email);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.MessengerID), emp.MessengerID);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.Memo), string.IsNullOrEmpty(emp.Memo) ? (object)DBNull.Value : emp.Memo);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.ImagePath), string.IsNullOrEmpty(emp.ImagePath) ? (object)DBNull.Value : emp.ImagePath);
+                    cmd.Parameters.AddWithValue(nameof(EmployeeModel.DeptID), emp.DeptID);
+                    conn.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public string AddImage(string empCode, string selectedPicturePath) // 이미지 추가
         {
             string empFolder = Path.Combine(BASE_DIRECTORY, empCode);
 
@@ -173,8 +270,46 @@ namespace NewEmpManagement.Repository
                 throw;
             }
         }
-        public bool DeleteEmployee(int empId) // 삭제
+        public string UpdateEmployeeImage(string empCode, string selectedPicturePath, string currentPicturePath) // 이미지 수정
         {
+            try
+            {
+                // 1. 새 이미지가 선택되었는지 확인
+                if (string.IsNullOrEmpty(selectedPicturePath) || selectedPicturePath == currentPicturePath)
+                    return currentPicturePath; // 변경된 이미지가 없으면 종료
+
+                // 2. 사원별 폴더 경로 설정
+                string employeeFolder = Path.Combine(BASE_DIRECTORY, empCode);
+                if (!Directory.Exists(employeeFolder))
+                {
+                    Directory.CreateDirectory(employeeFolder);
+                }
+
+                // 3. 새 이미지 파일명을 결정 (원본 파일명 사용 가능)
+                string newFileName = Path.GetFileName(selectedPicturePath);
+                string newFilePath = Path.Combine(employeeFolder, newFileName);
+                string targetFilePath = Path.Combine(employeeFolder, Path.GetFileName(selectedPicturePath));
+
+                // 4. 새 이미지 복사
+                File.Copy(selectedPicturePath, newFilePath, true);
+
+                // 5. 기존 이미지 삭제 (현재 경로가 존재하고 새 이미지가 아니면)
+                if (!string.IsNullOrEmpty(currentPicturePath) && File.Exists(currentPicturePath))
+                {
+                    File.Delete(currentPicturePath);
+                }
+
+                return targetFilePath;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool DeleteEmployee(int empId, string empCode) // 삭제
+        {
+            string empFolder = Path.Combine(BASE_DIRECTORY, empCode);
             try
             {
                 string query = "DELETE FROM Employee WHERE EmpID = @EmpID";
@@ -183,6 +318,10 @@ namespace NewEmpManagement.Repository
                 {
                     cmd.Parameters.AddWithValue(nameof(EmployeeModel.EmpID), empId);
                     conn.Open();
+                    if (Directory.Exists(empFolder))
+                    {
+                        Directory.Delete(empFolder, true);
+                    }
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }

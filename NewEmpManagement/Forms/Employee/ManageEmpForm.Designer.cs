@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageEmpForm));
             this.EmpGridView = new DevExpress.XtraGrid.GridControl();
             this.employeeDetailDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -62,13 +63,13 @@
             this.BtnMultiAdd = new DevExpress.XtraEditors.SimpleButton();
             this.BtnDepartment = new DevExpress.XtraEditors.SimpleButton();
             this.BtnRefresh = new DevExpress.XtraEditors.SimpleButton();
-            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.svgImageBox1 = new DevExpress.XtraEditors.SvgImageBox();
             ((System.ComponentModel.ISupportInitialize)(this.EmpGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeDetailDtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmpTopPanel)).BeginInit();
             this.EmpTopPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImageBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // EmpGridView
@@ -347,6 +348,7 @@
             this.EmpTopPanel.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.EmpTopPanel.Appearance.Options.UseBackColor = true;
             this.EmpTopPanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.EmpTopPanel.Controls.Add(this.svgImageBox1);
             this.EmpTopPanel.Controls.Add(this.EmpTitleLabel);
             this.EmpTopPanel.Controls.Add(this.BtnClose);
             this.EmpTopPanel.Controls.Add(this.BtnDataConv);
@@ -367,7 +369,7 @@
             // 
             this.EmpTitleLabel.Appearance.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EmpTitleLabel.Appearance.Options.UseFont = true;
-            this.EmpTitleLabel.Location = new System.Drawing.Point(18, 11);
+            this.EmpTitleLabel.Location = new System.Drawing.Point(44, 10);
             this.EmpTitleLabel.Name = "EmpTitleLabel";
             this.EmpTitleLabel.Size = new System.Drawing.Size(60, 20);
             this.EmpTitleLabel.TabIndex = 0;
@@ -453,6 +455,15 @@
             this.BtnRefresh.TabIndex = 1;
             this.BtnRefresh.Text = "조회";
             // 
+            // svgImageBox1
+            // 
+            this.svgImageBox1.Location = new System.Drawing.Point(5, 5);
+            this.svgImageBox1.Name = "svgImageBox1";
+            this.svgImageBox1.Size = new System.Drawing.Size(33, 32);
+            this.svgImageBox1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageBox1.SvgImage")));
+            this.svgImageBox1.TabIndex = 2;
+            this.svgImageBox1.Text = "svgImageBox1";
+            // 
             // ManageEmpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -468,7 +479,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.EmpTopPanel)).EndInit();
             this.EmpTopPanel.ResumeLayout(false);
             this.EmpTopPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImageBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -488,7 +499,6 @@
         private DevExpress.XtraEditors.SimpleButton BtnMultiAdd;
         private DevExpress.XtraEditors.SimpleButton BtnRefresh;
         private DevExpress.XtraEditors.SimpleButton BtnDepartment;
-        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
         private System.Windows.Forms.BindingSource employeeDetailDtoBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colEmpID;
         private DevExpress.XtraGrid.Columns.GridColumn colEmpCode;
@@ -508,5 +518,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDeptName;
         private DevExpress.XtraGrid.Columns.GridColumn colUDeptCode;
         private DevExpress.XtraGrid.Columns.GridColumn colUDeptName;
+        private DevExpress.XtraEditors.SvgImageBox svgImageBox1;
     }
 }

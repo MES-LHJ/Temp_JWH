@@ -1,16 +1,8 @@
 ﻿using DevExpress.XtraEditors;
 using NewEmpManagement.Forms.UpperDepartment;
-using NewEmpManagement.Models;
 using NewEmpManagement.Models.Dto;
 using NewEmpManagement.Repository;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NewEmpManagement.Forms.Department
@@ -19,6 +11,7 @@ namespace NewEmpManagement.Forms.Department
     {
         private readonly UpperDepartmentRepository uDeptList = UpperDepartmentRepository.Instance;
         private readonly DepartmentRepository deptList = DepartmentRepository.Instance;
+        private readonly EmployeeRepository empList = EmployeeRepository.Instance;
         public ManageDeptForm()
         {
             InitializeComponent();
@@ -74,7 +67,8 @@ namespace NewEmpManagement.Forms.Department
             var dlg = new TreeListDeptForm();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-
+                LoadUpperDeptData();
+                LoadDeptData();
             }
         }
         private void BtnChart_Click(object sender, EventArgs e) // 차트
@@ -82,7 +76,8 @@ namespace NewEmpManagement.Forms.Department
             var dlg = new ChartDeptForm();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-
+                LoadUpperDeptData();
+                LoadDeptData();
             }
         }
         private void BtnAdd_Click(Object sender, EventArgs e) // 추가
