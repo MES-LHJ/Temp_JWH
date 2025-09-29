@@ -23,7 +23,7 @@ namespace ApiEmpManagement.Forms.Dept
             InitializeComponent();
             LoadEvent();
             this.token = token;
-            
+            LoadDesign();
         }
         private void LoadEvent()
         {
@@ -33,7 +33,17 @@ namespace ApiEmpManagement.Forms.Dept
             BtnDelete.Click += BtnDelete_Click;
             BtnClose.Click += BtnClose_Click;
         }
-
+        private void LoadDesign()
+        {
+            BtnAdd.LookAndFeel.UseDefaultLookAndFeel = false;
+            BtnDelete.LookAndFeel.UseDefaultLookAndFeel = false;
+            BtnModify.LookAndFeel.UseDefaultLookAndFeel = false;
+            BtnClose.LookAndFeel.UseDefaultLookAndFeel = false;
+            BtnAdd.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            BtnModify.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            BtnDelete.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            BtnClose.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+        }
         private async void LoadDeptData(object sender, EventArgs e)
         {
             try

@@ -18,6 +18,9 @@ namespace ApiEmpManagement
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ManageEmpForm());
+            // DevExpress 전역 LookAndFeel 무효화
+            DevExpress.LookAndFeel.UserLookAndFeel.Default.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+
         }
     }
 }

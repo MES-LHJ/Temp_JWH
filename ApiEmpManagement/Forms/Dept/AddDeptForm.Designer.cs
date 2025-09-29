@@ -29,45 +29,45 @@
         private void InitializeComponent()
         {
             this.DeptAddMainPanel = new DevExpress.XtraEditors.GroupControl();
-            this.BtnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.BtnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.MemoTextBox = new DevExpress.XtraEditors.TextEdit();
-            this.DeptCodeTextBox = new DevExpress.XtraEditors.TextEdit();
-            this.UDeptIdTextBox = new DevExpress.XtraEditors.TextEdit();
-            this.DeptNameTextBox = new DevExpress.XtraEditors.TextEdit();
-            this.DeptAddPanel = new DevExpress.XtraEditors.PanelControl();
-            this.DeptAddLabel = new DevExpress.XtraEditors.LabelControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.DeptCodeTextBox = new DevExpress.XtraEditors.TextEdit();
+            this.MemoTextBox = new DevExpress.XtraEditors.TextEdit();
+            this.UDeptIdTextBox = new DevExpress.XtraEditors.TextEdit();
+            this.BtnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.BtnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.DeptNameTextBox = new DevExpress.XtraEditors.TextEdit();
+            this.FactoryIdComboBox = new DevExpress.XtraEditors.ComboBoxEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.FactoryIdComboBox = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.DeptAddPanel = new DevExpress.XtraEditors.PanelControl();
+            this.DeptAddLabel = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.DeptAddMainPanel)).BeginInit();
             this.DeptAddMainPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MemoTextBox.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeptCodeTextBox.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UDeptIdTextBox.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeptNameTextBox.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeptAddPanel)).BeginInit();
-            this.DeptAddPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DeptCodeTextBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MemoTextBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UDeptIdTextBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeptNameTextBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FactoryIdComboBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FactoryIdComboBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeptAddPanel)).BeginInit();
+            this.DeptAddPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // DeptAddMainPanel
@@ -79,91 +79,9 @@
             this.DeptAddMainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DeptAddMainPanel.Location = new System.Drawing.Point(0, 40);
             this.DeptAddMainPanel.Name = "DeptAddMainPanel";
-            this.DeptAddMainPanel.Size = new System.Drawing.Size(500, 299);
+            this.DeptAddMainPanel.Size = new System.Drawing.Size(514, 313);
             this.DeptAddMainPanel.TabIndex = 5;
             this.DeptAddMainPanel.Text = "groupControl1";
-            // 
-            // BtnCancel
-            // 
-            this.BtnCancel.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
-            this.BtnCancel.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.BtnCancel.Appearance.ForeColor = System.Drawing.Color.White;
-            this.BtnCancel.Appearance.Options.UseBackColor = true;
-            this.BtnCancel.Appearance.Options.UseFont = true;
-            this.BtnCancel.Appearance.Options.UseForeColor = true;
-            this.BtnCancel.Location = new System.Drawing.Point(336, 250);
-            this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(144, 37);
-            this.BtnCancel.StyleController = this.layoutControl1;
-            this.BtnCancel.TabIndex = 8;
-            this.BtnCancel.Text = "취소";
-            // 
-            // BtnSave
-            // 
-            this.BtnSave.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(117)))), ((int)(((byte)(182)))));
-            this.BtnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.BtnSave.Appearance.ForeColor = System.Drawing.Color.White;
-            this.BtnSave.Appearance.Options.UseBackColor = true;
-            this.BtnSave.Appearance.Options.UseFont = true;
-            this.BtnSave.Appearance.Options.UseForeColor = true;
-            this.BtnSave.Location = new System.Drawing.Point(180, 250);
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(140, 37);
-            this.BtnSave.StyleController = this.layoutControl1;
-            this.BtnSave.TabIndex = 8;
-            this.BtnSave.Text = "저장";
-            // 
-            // MemoTextBox
-            // 
-            this.MemoTextBox.Location = new System.Drawing.Point(20, 202);
-            this.MemoTextBox.Name = "MemoTextBox";
-            this.MemoTextBox.Size = new System.Drawing.Size(460, 20);
-            this.MemoTextBox.StyleController = this.layoutControl1;
-            this.MemoTextBox.TabIndex = 1;
-            // 
-            // DeptCodeTextBox
-            // 
-            this.DeptCodeTextBox.Location = new System.Drawing.Point(253, 131);
-            this.DeptCodeTextBox.Name = "DeptCodeTextBox";
-            this.DeptCodeTextBox.Size = new System.Drawing.Size(227, 20);
-            this.DeptCodeTextBox.StyleController = this.layoutControl1;
-            this.DeptCodeTextBox.TabIndex = 1;
-            // 
-            // UDeptIdTextBox
-            // 
-            this.UDeptIdTextBox.Location = new System.Drawing.Point(253, 54);
-            this.UDeptIdTextBox.Name = "UDeptIdTextBox";
-            this.UDeptIdTextBox.Properties.UseReadOnlyAppearance = false;
-            this.UDeptIdTextBox.Size = new System.Drawing.Size(227, 20);
-            this.UDeptIdTextBox.StyleController = this.layoutControl1;
-            this.UDeptIdTextBox.TabIndex = 1;
-            // 
-            // DeptNameTextBox
-            // 
-            this.DeptNameTextBox.Location = new System.Drawing.Point(20, 131);
-            this.DeptNameTextBox.Name = "DeptNameTextBox";
-            this.DeptNameTextBox.Size = new System.Drawing.Size(213, 20);
-            this.DeptNameTextBox.StyleController = this.layoutControl1;
-            this.DeptNameTextBox.TabIndex = 1;
-            // 
-            // DeptAddPanel
-            // 
-            this.DeptAddPanel.Controls.Add(this.DeptAddLabel);
-            this.DeptAddPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DeptAddPanel.Location = new System.Drawing.Point(0, 0);
-            this.DeptAddPanel.Name = "DeptAddPanel";
-            this.DeptAddPanel.Size = new System.Drawing.Size(500, 40);
-            this.DeptAddPanel.TabIndex = 4;
-            // 
-            // DeptAddLabel
-            // 
-            this.DeptAddLabel.Appearance.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeptAddLabel.Appearance.Options.UseFont = true;
-            this.DeptAddLabel.Location = new System.Drawing.Point(12, 12);
-            this.DeptAddLabel.Name = "DeptAddLabel";
-            this.DeptAddLabel.Size = new System.Drawing.Size(73, 23);
-            this.DeptAddLabel.TabIndex = 0;
-            this.DeptAddLabel.Text = "부서 추가";
             // 
             // layoutControl1
             // 
@@ -179,9 +97,85 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1008, 119, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(500, 299);
+            this.layoutControl1.Size = new System.Drawing.Size(514, 313);
             this.layoutControl1.TabIndex = 10;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // DeptCodeTextBox
+            // 
+            this.DeptCodeTextBox.Location = new System.Drawing.Point(260, 135);
+            this.DeptCodeTextBox.Name = "DeptCodeTextBox";
+            this.DeptCodeTextBox.Size = new System.Drawing.Size(234, 20);
+            this.DeptCodeTextBox.StyleController = this.layoutControl1;
+            this.DeptCodeTextBox.TabIndex = 1;
+            // 
+            // MemoTextBox
+            // 
+            this.MemoTextBox.Location = new System.Drawing.Point(20, 210);
+            this.MemoTextBox.Name = "MemoTextBox";
+            this.MemoTextBox.Size = new System.Drawing.Size(474, 20);
+            this.MemoTextBox.StyleController = this.layoutControl1;
+            this.MemoTextBox.TabIndex = 1;
+            // 
+            // UDeptIdTextBox
+            // 
+            this.UDeptIdTextBox.Location = new System.Drawing.Point(260, 54);
+            this.UDeptIdTextBox.Name = "UDeptIdTextBox";
+            this.UDeptIdTextBox.Properties.UseReadOnlyAppearance = false;
+            this.UDeptIdTextBox.Size = new System.Drawing.Size(234, 20);
+            this.UDeptIdTextBox.StyleController = this.layoutControl1;
+            this.UDeptIdTextBox.TabIndex = 1;
+            // 
+            // BtnSave
+            // 
+            this.BtnSave.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(117)))), ((int)(((byte)(182)))));
+            this.BtnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.BtnSave.Appearance.ForeColor = System.Drawing.Color.White;
+            this.BtnSave.Appearance.Options.UseBackColor = true;
+            this.BtnSave.Appearance.Options.UseFont = true;
+            this.BtnSave.Appearance.Options.UseForeColor = true;
+            this.BtnSave.Location = new System.Drawing.Point(185, 262);
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(144, 39);
+            this.BtnSave.StyleController = this.layoutControl1;
+            this.BtnSave.TabIndex = 8;
+            this.BtnSave.Text = "저장";
+            // 
+            // BtnCancel
+            // 
+            this.BtnCancel.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
+            this.BtnCancel.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.BtnCancel.Appearance.ForeColor = System.Drawing.Color.White;
+            this.BtnCancel.Appearance.Options.UseBackColor = true;
+            this.BtnCancel.Appearance.Options.UseFont = true;
+            this.BtnCancel.Appearance.Options.UseForeColor = true;
+            this.BtnCancel.Location = new System.Drawing.Point(345, 262);
+            this.BtnCancel.Name = "BtnCancel";
+            this.BtnCancel.Size = new System.Drawing.Size(149, 39);
+            this.BtnCancel.StyleController = this.layoutControl1;
+            this.BtnCancel.TabIndex = 8;
+            this.BtnCancel.Text = "취소";
+            // 
+            // DeptNameTextBox
+            // 
+            this.DeptNameTextBox.Location = new System.Drawing.Point(20, 135);
+            this.DeptNameTextBox.Name = "DeptNameTextBox";
+            this.DeptNameTextBox.Size = new System.Drawing.Size(220, 20);
+            this.DeptNameTextBox.StyleController = this.layoutControl1;
+            this.DeptNameTextBox.TabIndex = 1;
+            // 
+            // FactoryIdComboBox
+            // 
+            this.FactoryIdComboBox.EditValue = "1";
+            this.FactoryIdComboBox.Location = new System.Drawing.Point(20, 54);
+            this.FactoryIdComboBox.Name = "FactoryIdComboBox";
+            this.FactoryIdComboBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.FactoryIdComboBox.Properties.PopupSizeable = true;
+            this.FactoryIdComboBox.Properties.ReadOnly = true;
+            this.FactoryIdComboBox.Size = new System.Drawing.Size(220, 20);
+            this.FactoryIdComboBox.StyleController = this.layoutControl1;
+            this.FactoryIdComboBox.TabIndex = 9;
             // 
             // Root
             // 
@@ -197,17 +191,17 @@
             this.layoutControlItem7,
             this.emptySpaceItem1});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(500, 299);
+            this.Root.Size = new System.Drawing.Size(514, 313);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.BtnCancel;
-            this.layoutControlItem3.Location = new System.Drawing.Point(318, 238);
+            this.layoutControlItem3.Location = new System.Drawing.Point(327, 250);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(43, 30);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(8, 10, 2, 2);
-            this.layoutControlItem3.Size = new System.Drawing.Size(162, 41);
+            this.layoutControlItem3.Size = new System.Drawing.Size(167, 43);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -215,11 +209,11 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.BtnSave;
-            this.layoutControlItem1.Location = new System.Drawing.Point(160, 238);
+            this.layoutControlItem1.Location = new System.Drawing.Point(165, 250);
             this.layoutControlItem1.MinSize = new System.Drawing.Size(43, 30);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 8, 2, 2);
-            this.layoutControlItem1.Size = new System.Drawing.Size(158, 41);
+            this.layoutControlItem1.Size = new System.Drawing.Size(162, 43);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
@@ -229,28 +223,15 @@
             this.layoutControlItem2.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem2.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem2.Control = this.MemoTextBox;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 158);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 166);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(125, 52);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 5);
-            this.layoutControlItem2.Size = new System.Drawing.Size(480, 80);
+            this.layoutControlItem2.Size = new System.Drawing.Size(494, 84);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.Text = "메모";
             this.layoutControlItem2.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(79, 21);
-            // 
-            // FactoryIdComboBox
-            // 
-            this.FactoryIdComboBox.EditValue = "1";
-            this.FactoryIdComboBox.Location = new System.Drawing.Point(20, 54);
-            this.FactoryIdComboBox.Name = "FactoryIdComboBox";
-            this.FactoryIdComboBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.FactoryIdComboBox.Properties.PopupSizeable = true;
-            this.FactoryIdComboBox.Properties.ReadOnly = true;
-            this.FactoryIdComboBox.Size = new System.Drawing.Size(213, 20);
-            this.FactoryIdComboBox.StyleController = this.layoutControl1;
-            this.FactoryIdComboBox.TabIndex = 9;
             // 
             // layoutControlItem4
             // 
@@ -265,7 +246,7 @@
             this.layoutControlItem4.MinSize = new System.Drawing.Size(125, 52);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 20, 5);
-            this.layoutControlItem4.Size = new System.Drawing.Size(233, 87);
+            this.layoutControlItem4.Size = new System.Drawing.Size(240, 91);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.Text = "공장ID";
             this.layoutControlItem4.TextLocation = DevExpress.Utils.Locations.Top;
@@ -280,11 +261,11 @@
             this.layoutControlItem5.AppearanceItemCaptionDisabled.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
             this.layoutControlItem5.AppearanceItemCaptionDisabled.Options.UseForeColor = true;
             this.layoutControlItem5.Control = this.UDeptIdTextBox;
-            this.layoutControlItem5.Location = new System.Drawing.Point(233, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(240, 0);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(125, 52);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 20, 5);
-            this.layoutControlItem5.Size = new System.Drawing.Size(247, 87);
+            this.layoutControlItem5.Size = new System.Drawing.Size(254, 91);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.Text = "상위부서ID";
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top;
@@ -299,11 +280,11 @@
             this.layoutControlItem6.AppearanceItemCaptionDisabled.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
             this.layoutControlItem6.AppearanceItemCaptionDisabled.Options.UseForeColor = true;
             this.layoutControlItem6.Control = this.DeptNameTextBox;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 87);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 91);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(125, 52);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 5);
-            this.layoutControlItem6.Size = new System.Drawing.Size(233, 71);
+            this.layoutControlItem6.Size = new System.Drawing.Size(240, 75);
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.Text = "이름";
             this.layoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top;
@@ -318,11 +299,11 @@
             this.layoutControlItem7.AppearanceItemCaptionDisabled.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(80)))), ((int)(((byte)(59)))));
             this.layoutControlItem7.AppearanceItemCaptionDisabled.Options.UseForeColor = true;
             this.layoutControlItem7.Control = this.DeptCodeTextBox;
-            this.layoutControlItem7.Location = new System.Drawing.Point(233, 87);
+            this.layoutControlItem7.Location = new System.Drawing.Point(240, 91);
             this.layoutControlItem7.MinSize = new System.Drawing.Size(125, 52);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 5);
-            this.layoutControlItem7.Size = new System.Drawing.Size(247, 71);
+            this.layoutControlItem7.Size = new System.Drawing.Size(254, 75);
             this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem7.Text = "코드";
             this.layoutControlItem7.TextLocation = DevExpress.Utils.Locations.Top;
@@ -331,41 +312,60 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 238);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 250);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(160, 41);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(165, 43);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // DeptAddPanel
+            // 
+            this.DeptAddPanel.Controls.Add(this.DeptAddLabel);
+            this.DeptAddPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DeptAddPanel.Location = new System.Drawing.Point(0, 0);
+            this.DeptAddPanel.Name = "DeptAddPanel";
+            this.DeptAddPanel.Size = new System.Drawing.Size(514, 40);
+            this.DeptAddPanel.TabIndex = 4;
+            // 
+            // DeptAddLabel
+            // 
+            this.DeptAddLabel.Appearance.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeptAddLabel.Appearance.Options.UseFont = true;
+            this.DeptAddLabel.Location = new System.Drawing.Point(12, 12);
+            this.DeptAddLabel.Name = "DeptAddLabel";
+            this.DeptAddLabel.Size = new System.Drawing.Size(73, 23);
+            this.DeptAddLabel.TabIndex = 0;
+            this.DeptAddLabel.Text = "부서 추가";
             // 
             // AddDeptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 339);
+            this.ClientSize = new System.Drawing.Size(514, 353);
             this.Controls.Add(this.DeptAddMainPanel);
             this.Controls.Add(this.DeptAddPanel);
             this.Name = "AddDeptForm";
             this.Text = "AddDeptForm";
             ((System.ComponentModel.ISupportInitialize)(this.DeptAddMainPanel)).EndInit();
             this.DeptAddMainPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.MemoTextBox.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeptCodeTextBox.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UDeptIdTextBox.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeptNameTextBox.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeptAddPanel)).EndInit();
-            this.DeptAddPanel.ResumeLayout(false);
-            this.DeptAddPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DeptCodeTextBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MemoTextBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UDeptIdTextBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeptNameTextBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FactoryIdComboBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FactoryIdComboBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeptAddPanel)).EndInit();
+            this.DeptAddPanel.ResumeLayout(false);
+            this.DeptAddPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.DeptModifyMainPanel = new DevExpress.XtraEditors.GroupControl();
-            this.DeptModifyPanel = new DevExpress.XtraEditors.PanelControl();
-            this.DeptModifyLabel = new DevExpress.XtraEditors.LabelControl();
             this.DeptAddMainPanel = new DevExpress.XtraEditors.GroupControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.DeptCodeTextBox = new DevExpress.XtraEditors.TextEdit();
@@ -49,10 +47,10 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.DeptModifyPanel = new DevExpress.XtraEditors.PanelControl();
+            this.DeptModifyLabel = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.DeptModifyMainPanel)).BeginInit();
             this.DeptModifyMainPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DeptModifyPanel)).BeginInit();
-            this.DeptModifyPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DeptAddMainPanel)).BeginInit();
             this.DeptAddMainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -71,6 +69,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeptModifyPanel)).BeginInit();
+            this.DeptModifyPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // DeptModifyMainPanel
@@ -85,25 +85,6 @@
             this.DeptModifyMainPanel.Size = new System.Drawing.Size(529, 324);
             this.DeptModifyMainPanel.TabIndex = 7;
             this.DeptModifyMainPanel.Text = "groupControl1";
-            // 
-            // DeptModifyPanel
-            // 
-            this.DeptModifyPanel.Controls.Add(this.DeptModifyLabel);
-            this.DeptModifyPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DeptModifyPanel.Location = new System.Drawing.Point(0, 0);
-            this.DeptModifyPanel.Name = "DeptModifyPanel";
-            this.DeptModifyPanel.Size = new System.Drawing.Size(529, 40);
-            this.DeptModifyPanel.TabIndex = 6;
-            // 
-            // DeptModifyLabel
-            // 
-            this.DeptModifyLabel.Appearance.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeptModifyLabel.Appearance.Options.UseFont = true;
-            this.DeptModifyLabel.Location = new System.Drawing.Point(12, 12);
-            this.DeptModifyLabel.Name = "DeptModifyLabel";
-            this.DeptModifyLabel.Size = new System.Drawing.Size(65, 20);
-            this.DeptModifyLabel.TabIndex = 0;
-            this.DeptModifyLabel.Text = "부서 수정";
             // 
             // DeptAddMainPanel
             // 
@@ -352,6 +333,25 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(170, 45);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // DeptModifyPanel
+            // 
+            this.DeptModifyPanel.Controls.Add(this.DeptModifyLabel);
+            this.DeptModifyPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DeptModifyPanel.Location = new System.Drawing.Point(0, 0);
+            this.DeptModifyPanel.Name = "DeptModifyPanel";
+            this.DeptModifyPanel.Size = new System.Drawing.Size(529, 40);
+            this.DeptModifyPanel.TabIndex = 6;
+            // 
+            // DeptModifyLabel
+            // 
+            this.DeptModifyLabel.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.DeptModifyLabel.Appearance.Options.UseFont = true;
+            this.DeptModifyLabel.Location = new System.Drawing.Point(12, 12);
+            this.DeptModifyLabel.Name = "DeptModifyLabel";
+            this.DeptModifyLabel.Size = new System.Drawing.Size(68, 21);
+            this.DeptModifyLabel.TabIndex = 0;
+            this.DeptModifyLabel.Text = "부서 수정";
+            // 
             // ModifyDeptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -363,9 +363,6 @@
             this.Text = "ModifyDeptForm";
             ((System.ComponentModel.ISupportInitialize)(this.DeptModifyMainPanel)).EndInit();
             this.DeptModifyMainPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DeptModifyPanel)).EndInit();
-            this.DeptModifyPanel.ResumeLayout(false);
-            this.DeptModifyPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DeptAddMainPanel)).EndInit();
             this.DeptAddMainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -384,6 +381,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeptModifyPanel)).EndInit();
+            this.DeptModifyPanel.ResumeLayout(false);
+            this.DeptModifyPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }

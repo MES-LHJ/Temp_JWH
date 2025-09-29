@@ -22,7 +22,7 @@ namespace ApiEmpManagement.Model.Dto
         public long FactoryId { get; set; }
         public string FactoryCode { get; set; }
         public string FactoryName { get; set; }
-        public long? DeaprtmentId { get; set; }
+        public long? DepartmentId { get; set; }
         public string DepartmentCode { get; set; }
         public string DepartmentName { get; set; }
         public string DepartmentMemo { get; set; }

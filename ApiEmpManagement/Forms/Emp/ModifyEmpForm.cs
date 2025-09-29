@@ -69,14 +69,14 @@ namespace ApiEmpManagement.Forms.Emp
 
         public string MessengerId
         {
-            get => MemoTextBox.Text;
-            set => MemoTextBox.Text = value;
+            get => MsgIDTextBox.Text;
+            set => MsgIDTextBox.Text = value;
         }
 
         public string Memo
         {
-            get => MsgIDTextBox.Text;
-            set => MsgIDTextBox.Text = value;
+            get => MemoTextBox.Text;
+            set => MemoTextBox.Text = value;
         }
 
         public long DepartmentId
@@ -101,7 +101,7 @@ namespace ApiEmpManagement.Forms.Emp
             EmailTextBox.Text = _employeeDto.Email;
             MsgIDTextBox.Text = _employeeDto.MessengerId;
             MemoTextBox.Text = _employeeDto.Memo;
-            DeptCodeTextBox.Text = _employeeDto.DeaprtmentId.ToString();
+            DeptCodeTextBox.Text = _employeeDto.DepartmentId.ToString();
         }
         private async void BtnModify_Click(object sender, EventArgs e)
         {

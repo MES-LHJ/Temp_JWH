@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace ApiEmpManagement.Forms.Dept
 {
-    public partial class DelDeptForm : DevExpress.XtraEditors.XtraForm
+    public partial class DelDeptForm : XtraForm
     {
         private readonly DepartmentDto _deptDto;
         private readonly string _token;

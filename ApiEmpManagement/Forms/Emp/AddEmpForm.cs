@@ -2,16 +2,7 @@
 using ApiEmpManagement.Service;
 using DevExpress.XtraEditors;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace ApiEmpManagement.Forms.Emp
 {
@@ -29,10 +20,7 @@ namespace ApiEmpManagement.Forms.Emp
             BtnSave.Click += btnAdd_Click;
             BtnCancel.Click += btnCancel_Click;
         }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+
         #region Form Properties (Get/Set)
 
         public string EmployeeCode
@@ -136,6 +124,10 @@ namespace ApiEmpManagement.Forms.Emp
             {
                 XtraMessageBox.Show($"사원 추가 실패: {ex.Message}");
             }
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
